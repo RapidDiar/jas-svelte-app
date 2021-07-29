@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/favicon.png" />
+		<link
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+			rel="stylesheet"
+		/>
+		<!-- Google Fonts -->
+		<link
+			href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+			rel="stylesheet"
+		/>
+		<!-- MDB -->
+		<link
+			href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css"
+			rel="stylesheet"
+		/>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Auth</title>
+
+		
+
+		<link rel="modulepreload" href="/./_app/start-fdd847ce.js">
+		<link rel="modulepreload" href="/./_app/chunks/vendor-bdbcc82c.js">
+		<link rel="modulepreload" href="/./_app/layout.svelte-ca89383c.js">
+		<link rel="modulepreload" href="/./_app/pages/auth.svelte-1caa4c79.js">
+		<link rel="modulepreload" href="/./_app/chunks/CompNavbar-2b06cd8f.js">
+		<link rel="stylesheet" href="/./_app/assets/start-a8cd1609.css">
+
+		<script type="module">
+			import { start } from "/./_app/start-fdd847ce.js";
+			start({
+				target: document.querySelector("#svelte"),
+				paths: {"base":"","assets":"/."},
+				session: {},
+				host: location.host,
+				route: true,
+				spa: false,
+				trailing_slash: "never",
+				hydrate: {
+					status: 200,
+					error: null,
+					nodes: [
+						import("/./_app/layout.svelte-ca89383c.js"),
+						import("/./_app/pages/auth.svelte-1caa4c79.js")
+					],
+					page: {
+						host: location.host, // TODO this is redundant
+						path: "/auth",
+						query: new URLSearchParams(""),
+						params: {}
+					}
+				}
+			});
+		</script>
+	</head>
+	<body>
+		<div id="svelte">
+
+
+
+
+<header class="p-3 border-bottom shadow "><div class="container-fluid"><div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"><a href="/" class="navbar-brand d-flex align-items-center col-2 text-dark text-decoration-none">Photo
+        </a>
+
+        <form class="col-7 mb-3 mb-lg-0 me-5"><input type="search" class="form-control" placeholder="Поиск" aria-label="Search"></form>
+
+        <ul class="nav col-2 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 ms-3"><li><a href="#" class="nav-link px-2 link-secondary">Marketplace</a></li></ul> 
+
+        <div class=" text-end"><a type="button" href="/auth" class="btn btn-outline-primary me-2">Войти</a>
+          <a type="button" href="/auth" class="btn btn-primary">Регистрация</a></div></div></div>
+  </header>
+
+
+<div class="container-fluid"><div style="height: 800px" class="row justify-content-center align-items-center w-100"><div style="background-color: rgba(0, 0, 0, 0.1)" class="col-4 pt-5 pe-3 pb-5 ps-3 w-25">
+
+            
+            <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="#pills-login" role="tab" aria-controls="pills-login" aria-selected="true">Login</a></li>
+            <li class="nav-item" role="presentation"><a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="#pills-register" role="tab" aria-controls="pills-register" aria-selected="false">Register</a></li></ul>
+            
+
+            
+                        <div class="tab-content"><div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login"><form>
+                <div class="input-group mb-3"><span class="input-group-text border-1 border-end-0 bg-light"><i class="fas fa-user-alt"></i></span>
+                    <input type="text" class="form-control border-start-0" placeholder="username" value=""></div>
+
+
+                
+                <div class="input-group mb-3"><span class="input-group-text border-1 border-end-0 bg-light"><i class="fas fa-key"></i></span>
+                    <input type="password" placeholder="password" class="form-control border-start-0" value=""></div>                  
+
+                
+                <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button></form></div>
+            <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register"><form>
+                <div class="input-group mb-3"><span class="input-group-text border-1 border-end-0 bg-light"><i class="fas fa-user-alt"></i></span>
+                    <input type="text" class="form-control border-start-0" placeholder="username"></div>
+
+                
+                <div class="input-group mb-3"><span class="input-group-text border-1 border-end-0 bg-light"><i class="fas fa-at"></i></span>
+                    <input type="email" class="form-control border-start-0" placeholder="email"></div>
+
+                
+                <div class="input-group mb-3"><span class="input-group-text border-1 border-end-0 bg-light"><i class="fas fa-key"></i></span>
+                    <input type="password" id="loginPassword" placeholder="password" class="form-control border-start-0"></div>
+
+                
+                <button type="submit" class="btn btn-primary btn-block mb-3">Register</button></form></div></div>
+            
+
+            </div></div></div>
+
+
+
+	
+</div>
+		<script
+			type="text/javascript"
+			src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"
+		></script>
+	</body>
+</html>

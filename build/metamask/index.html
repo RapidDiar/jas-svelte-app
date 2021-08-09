@@ -23,16 +23,17 @@
 
 		
 
-		<link rel="modulepreload" href="/./_app/start-fdd847ce.js">
-		<link rel="modulepreload" href="/./_app/chunks/vendor-bdbcc82c.js">
-		<link rel="modulepreload" href="/./_app/layout.svelte-ca89383c.js">
-		<link rel="modulepreload" href="/./_app/pages/metamask.svelte-6a299870.js">
-		<link rel="modulepreload" href="/./_app/chunks/CompFooter-dad57895.js">
-		<link rel="modulepreload" href="/./_app/chunks/CompNavbar-2b06cd8f.js">
+		<link rel="modulepreload" href="/./_app/start-53c7c8f8.js">
+		<link rel="modulepreload" href="/./_app/chunks/vendor-da21a39a.js">
+		<link rel="modulepreload" href="/./_app/chunks/singletons-12a22614.js">
+		<link rel="modulepreload" href="/./_app/layout.svelte-16f13f02.js">
+		<link rel="modulepreload" href="/./_app/pages/metamask.svelte-6d17a979.js">
+		<link rel="modulepreload" href="/./_app/chunks/CompFooter-ed1bcf59.js">
+		<link rel="modulepreload" href="/./_app/chunks/CompNavbar-812b48d8.js">
 		<link rel="stylesheet" href="/./_app/assets/start-a8cd1609.css">
 
 		<script type="module">
-			import { start } from "/./_app/start-fdd847ce.js";
+			import { start } from "/./_app/start-53c7c8f8.js";
 			start({
 				target: document.querySelector("#svelte"),
 				paths: {"base":"","assets":"/."},
@@ -45,8 +46,8 @@
 					status: 200,
 					error: null,
 					nodes: [
-						import("/./_app/layout.svelte-ca89383c.js"),
-						import("/./_app/pages/metamask.svelte-6a299870.js")
+						import("/./_app/layout.svelte-16f13f02.js"),
+						import("/./_app/pages/metamask.svelte-6d17a979.js")
 					],
 					page: {
 						host: location.host, // TODO this is redundant
@@ -62,16 +63,20 @@
 		<div id="svelte">
 
 
-<header class="p-3 border-bottom shadow "><div class="container-fluid"><div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"><a href="/" class="navbar-brand d-flex align-items-center col-2 text-dark text-decoration-none">Photo
-        </a>
+<nav class="navbar navbar-light bg-light shadow-5"><div class="container-fluid ps-3 pe-3"><a class="navbar-brand" href="/">Photo
+    </a>
 
-        <form class="col-7 mb-3 mb-lg-0 me-5"><input type="search" class="form-control" placeholder="Поиск" aria-label="Search"></form>
+    <div class="input-group w-50"><span class="input-group-text border-1 border-end-0" id="search-addon"><i class="fas fa-search"></i></span>
+      <input type="search" class="form-control border-start-0" placeholder="Search" aria-label="Search" aria-describedby="search-addon"></div>
+  
+    <div class="d-flex align-items-center"><button href="#" class="btn btn-link px-3 me-2">Marketplace
+        </button>
 
-        <ul class="nav col-2 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 ms-3"><li><a href="#" class="nav-link px-2 link-secondary">Marketplace</a></li></ul> 
-
-        <div class=" text-end"><a type="button" href="/auth" class="btn btn-outline-primary me-2">Войти</a>
-          <a type="button" href="/auth" class="btn btn-primary">Регистрация</a></div></div></div>
-  </header>
+        <a type="button" class="btn btn-link px-3 me-2" href="/auth">Login
+      </a>
+        <a type="button" class="btn btn-primary" href="/auth">Sign up
+        </a></div></div>
+</nav>
 <div class="container" style="height: 570px;"><div class="row justify-content-center mt-5 align-content-stretch"><div class="col text-center"><img src="https://cdn.iconscout.com/icon/free/png-512/metamask-2728406-2261817.png" class="w-25"></div></div>
     <div class="row justify-content-center mt-5"><div class="col text-center"><button type="button" class="btn btn-primary btn-lg">Connect wallet</button></div></div></div>
 <footer class="p-4"><div class="container-fluid">

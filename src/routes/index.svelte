@@ -5,6 +5,56 @@ import MainCardItem from "../components/MainPage/MainCardItem.svelte";
 import CompFooter from "../components/CompFooter.svelte";
 import MainAboutNft from "../components/MainPage/MainAboutNft.svelte";
 import MainGuide from "../components/MainPage/MainGuide.svelte";
+import axiosInstance from "../components/axios/axiosApi";
+import {onMount} from 'svelte'
+import { authStore } from "../store";
+// import axiosInstanceJwt from "../components/axios/axiosApiJwt";
+import axios from "axios";
+import MainCard from "../components/MainPage/MainCard.svelte";
+
+let dataCard = []
+
+onMount(()=> {
+
+  console.log(localStorage)
+    axiosInstance.post('/api/token/refresh/', {refresh :localStorage.getItem('refreshToken')}).then(
+    res => {
+      $authStore.isLogin = true
+      console.log(res)
+      localStorage.setItem('accessToken', res.data.access)
+    },
+    err => {
+      console.log(err.response)
+      localStorage.setItem('accessToken', '')
+      localStorage.setItem('refreshToken', '')
+      localStorage.setItem('userId', '')
+    })
+  })
+
+onMount(()=> {
+
+  const config = {
+    headers: {
+      Authorization: 'JWT ' + localStorage.getItem('accessToken'),
+      'Content-Type' : 'application/json',
+      Accept: 'application/json'
+    }
+  }
+
+  // http://10.0.10.49:8000/
+  // http://127.0.0.1:8000/
+
+  axios.get('http://127.0.0.1:8000/account/api/NFT/', config).then(
+        res=> {
+          console.log(res)
+          dataCard = res.data
+          console.log(randomItem)
+        },
+        err=> {
+          console.log(err.response)
+        }
+      )
+})
 
 </script>
 
@@ -25,23 +75,7 @@ import MainGuide from "../components/MainPage/MainGuide.svelte";
     </div>
     <div class="col-4">
       <!--START Card 1  -->
-      <div class="card">
-        <img src="https://images.ctfassets.net/rporu91m20dc/48FOwmEHJwz03qpd42nzwr/1a287846478a7fc8dcc47754baa85cdd/doom_eternal_bg_date_m_n_launch.jpg?q=70" class="card-img-top" style="height: 500px; object-fit:cover;  "/>
-        <div class="card-body">
-          <div class="container">
-            <div class="row">
-              <div class="col">
-                <h5 class="card-title">Tron</h5>
-              </div>
-              <div class="col text-end">
-                <p class="card-text mb-1">Price:</p>
-                <p class="card-text mb-1">0.10 ETH</p> 
-                <p class="card-text mb-1">tron</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+        <MainCard data = {dataCard[Math.floor(Math.random() * dataCard.length)]}/>
       <!--END Card 1-->
     </div>
   </div>
@@ -57,12 +91,9 @@ import MainGuide from "../components/MainPage/MainGuide.svelte";
     <div class="col-8">
       <!--START Card 2  -->
       <div class="row row-cols-1 row-cols-md-3 g-4">
-        <MainCardItem/>
-        <MainCardItem/>
-        <MainCardItem/>
-        <MainCardItem/>
-        <MainCardItem/>
-        <MainCardItem/>
+          {#each {length: 6} as _ ,index}
+          <MainCardItem data={dataCard[index]}/>
+          {/each}
       </div>
       <!--END Card 2-->
     </div>
@@ -79,9 +110,9 @@ import MainGuide from "../components/MainPage/MainGuide.svelte";
     <div class="col-8">
       <!--START Card 3  -->
       <div class="row row-cols-1 row-cols-md-3 g-4">
-      <MainCardItem/>
-      <MainCardItem/>
-      <MainCardItem/>
+        {#each {length: 3} as _ , index}
+          <MainCardItem data={dataCard[index]}/>
+        {/each}
       </div>
       <!--END Card 3-->
     </div>

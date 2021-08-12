@@ -4,10 +4,9 @@ import CompNavbar from "../components/CompNavbar.svelte";
 import FilePond, { registerPlugin, supported } from 'svelte-filepond';
 import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
-import { dataset_dev } from "svelte/internal";
-import axios from "axios";
 import {fly} from 'svelte/transition'
 import { goto } from "$app/navigation";
+import axiosApiMedia from "../components/axios/axiosApiMedia";
 
 let data = {
     image: '',
@@ -30,15 +29,7 @@ let visible = ''
     }
 
     const onSubmit = () => {
-
-
-        const config = {
-        headers: {
-            Authorization: 'JWT ' + localStorage.getItem('accessToken'),
-		    'Content-Type': 'multipart/form-data'
-        }
-        }
-
+        axiosApiMedia.defaults.headers.Authorization = 'JWT ' + localStorage.getItem('accessToken')  
 
         console.log(data)
         const form = new FormData()
@@ -52,7 +43,7 @@ let visible = ''
         form.append('facebook','https://www.facebook.com/'+ data.facebook)
         form.append('owner', localStorage.getItem('userId'))
 
-        axios.post('http://127.0.0.1:8000/account/api/NFT/', form, config).then(
+        axiosApiMedia.post('/account/api/NFT/', form).then(
             res=> {
                 visible = 'success'
                 setTimeout(() => {
@@ -74,6 +65,7 @@ let visible = ''
     }
 
 </script>
+
 <CompNavbar/>
     <div class="container-fluid">
         <div class="row justify-content-center mt-5 mb-5">

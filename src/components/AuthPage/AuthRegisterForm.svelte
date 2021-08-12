@@ -1,8 +1,6 @@
 <script>
-
-    import {goto} from "$app/navigation"
+    
     import axiosInstance from '../axios/axiosApi.js'
-    import { authStore } from "../../store"
 
     let data = {
         username: '',
@@ -11,6 +9,7 @@
     }
 
     let message = false
+    
     let messageText = ''
 
     const onRegister = () => {
@@ -29,8 +28,7 @@
                 console.log(err.response.data.username[0])
             }
         )
-    }
-    
+    }    
 
 </script>
 

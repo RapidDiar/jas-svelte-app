@@ -1,6 +1,22 @@
 <script>
+import { onMount } from "svelte";
 import CompFooter from "../components/CompFooter.svelte";
 import CompNavbar from "../components/CompNavbar.svelte";
+
+let metamask = false
+
+onMount(() => {
+    
+    if (typeof window.ethereum !== 'undefined') {
+    metamask = true
+    }
+})
+
+async function connectMetamask() {
+    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+    const account = accounts[0];
+    console.log(account)
+}
 
 </script>
 
@@ -14,7 +30,7 @@ import CompNavbar from "../components/CompNavbar.svelte";
     </div>
     <div class="row justify-content-center mt-5">
         <div class="col text-center">
-            <button type="button" class="btn btn-primary btn-lg">Connect wallet</button>
+            <button type="button" class="btn btn-primary btn-lg" on:click={connectMetamask}>Connect wallet</button>
         </div>
     </div>
 </div>

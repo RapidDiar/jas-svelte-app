@@ -3,7 +3,6 @@
     import axiosInstance from '../axios/axiosApi.js'
     import { authStore } from "../../store"
     import jwt_decode from 'jwt-decode'
-import axiosInstanceJwt from "../axios/axiosApiJwt.js";
 
 
     if ($authStore.isLogin) {
@@ -22,7 +21,7 @@ import axiosInstanceJwt from "../axios/axiosApiJwt.js";
     const onLogin = () =>    {
         console.log(data)
         
-        axiosInstanceJwt.post('/api/token/', data).then(
+        axiosInstance.post('/api/token/', data).then(
             res => {
                 $authStore.error = false
                 $authStore.isLogin = true
@@ -46,6 +45,7 @@ import axiosInstanceJwt from "../axios/axiosApiJwt.js";
 
 
 </script>
+
             <div
                 class="tab-pane fade show active"
                 id="pills-login"

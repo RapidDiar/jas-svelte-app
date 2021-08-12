@@ -1,5 +1,4 @@
 <script>
-import MainBackImg from "../components/MainPage/MainBackImg.svelte";
 import CompNavbar from "../components/CompNavbar.svelte";
 import MainCardItem from "../components/MainPage/MainCardItem.svelte";
 import CompFooter from "../components/CompFooter.svelte";
@@ -8,14 +7,11 @@ import MainGuide from "../components/MainPage/MainGuide.svelte";
 import axiosInstance from "../components/axios/axiosApi";
 import {onMount} from 'svelte'
 import { authStore } from "../store";
-// import axiosInstanceJwt from "../components/axios/axiosApiJwt";
-import axios from "axios";
 import MainCard from "../components/MainPage/MainCard.svelte";
 
 let dataCard = []
 
 onMount(()=> {
-
   console.log(localStorage)
     axiosInstance.post('/api/token/refresh/', {refresh :localStorage.getItem('refreshToken')}).then(
     res => {
@@ -32,19 +28,9 @@ onMount(()=> {
   })
 
 onMount(()=> {
+  axiosInstance.defaults.headers.Authorization = 'JWT ' + localStorage.getItem('accessToken')
 
-  const config = {
-    headers: {
-      Authorization: 'JWT ' + localStorage.getItem('accessToken'),
-      'Content-Type' : 'application/json',
-      Accept: 'application/json'
-    }
-  }
-
-  // http://10.0.10.49:8000/
-  // http://127.0.0.1:8000/
-
-  axios.get('http://127.0.0.1:8000/account/api/NFT/', config).then(
+  axiosInstance.get('/account/api/NFT/').then(
         res=> {
           console.log(res)
           dataCard = res.data

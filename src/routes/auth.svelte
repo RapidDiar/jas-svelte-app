@@ -8,8 +8,6 @@ import CompNavbar from "../components/CompNavbar.svelte";
     <title>Auth</title>
 </svelte:head>
 
-<CompNavbar/>
-
 
 <div class="container-fluid">
     <div style="height: 800px" class="row justify-content-center align-items-center w-100">

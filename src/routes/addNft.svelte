@@ -66,7 +66,6 @@ let visible = ''
 
 </script>
 
-<CompNavbar/>
     <div class="container-fluid">
         <div class="row justify-content-center mt-5 mb-5">
             <div class="col-4 text-center">
@@ -179,7 +178,7 @@ let visible = ''
     </div>
     {/if}
 
-<CompFooter/>
+
 
 <style global>
     @import 'filepond/dist/filepond.css';

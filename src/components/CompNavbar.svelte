@@ -18,8 +18,10 @@ const onLogout = () => {
   localStorage.setItem('accessToken','')
   localStorage.setItem('refreshToken','')
   localStorage.setItem('userId','')
-  location.reload()
+  localStorage.setItem('metamaskID','')
+  // location.reload()
 }
+
 </script>
 
 <nav class="navbar navbar-light bg-light shadow-5">
@@ -35,9 +37,9 @@ const onLogout = () => {
     </div>
   
     <div class="d-flex align-items-center">
-        <button href="#" class="btn btn-link px-3 me-2">
+        <a href="/marketplace" class="btn btn-link px-3 me-2">
           Marketplace
-        </button>
+        </a>
 
         {#if $authStore.isLogin} 
 
@@ -62,13 +64,17 @@ const onLogout = () => {
         aria-labelledby="navbarDropdownMenuLink"
       >
         <li>
-          <a class="dropdown-item" href="#">My profile</a>
+          <a class="dropdown-item" href="/myProfile/onSale">My profile</a>
         </li>
         <li>
           <a class="dropdown-item" href="/addNft">Add NFT</a>
         </li>
         <li>
-          <a class="dropdown-item" href="/metamask">Connect Metamask</a>
+          {#if $authStore.metamaskID === ''}
+            <a class="dropdown-item" href="/metamask">Connect Metamask</a>
+          {:else}
+            <a class="dropdown-item" href="#">{$authStore.metamaskID}</a>
+          {/if}
         </li>
         <li>
           <button class="dropdown-item" on:click={onLogout}>Logout</button>

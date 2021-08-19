@@ -29,10 +29,8 @@
 		<link rel="modulepreload" href="/./_app/pages/__layout.svelte-28e3d48f.js">
 		<link rel="modulepreload" href="/./_app/chunks/CompFooter-f2c3c056.js">
 		<link rel="modulepreload" href="/./_app/chunks/store-258fb817.js">
-		<link rel="modulepreload" href="/./_app/pages/addNft.svelte-7d10981a.js">
-		<link rel="modulepreload" href="/./_app/chunks/navigation-43bc8d96.js">
+		<link rel="modulepreload" href="/./_app/pages/marketplace/index.svelte-dca9f54b.js">
 		<link rel="stylesheet" href="/./_app/assets/start-a8cd1609.css">
-		<link rel="stylesheet" href="/./_app/assets/pages/addNft.svelte-9cb1453b.css">
 
 		<script type="module">
 			import { start } from "/./_app/start-a09378e9.js";
@@ -49,11 +47,11 @@
 					error: null,
 					nodes: [
 						import("/./_app/pages/__layout.svelte-28e3d48f.js"),
-						import("/./_app/pages/addNft.svelte-7d10981a.js")
+						import("/./_app/pages/marketplace/index.svelte-dca9f54b.js")
 					],
 					page: {
 						host: location.host, // TODO this is redundant
-						path: "/addNft",
+						path: "/marketplace",
 						query: new URLSearchParams(""),
 						params: {}
 					}
@@ -79,46 +77,11 @@
         <a type="button" class="btn btn-primary" href="/auth">Sign up
         </a></div></div>
 </nav>
-<div class="container-fluid"><div class="row justify-content-center mt-5 mb-5"><div class="col-4 text-center"><h1>CHANGES SAVED</h1></div></div>
-        <form>
+<div class="container-fluid"><div class="row"><div class="col-10"><select class="custom-select p-3"><option selected value="Recently added">Recently added</option><option value="1">One</option><option value="2">Two</option><option value="3">Three</option></select>
 
-            <div class="row justify-content-center"><div class="col-6"><div class="card shadow-custom"><div class="card-body"><h1>Image</h1>
-                            <p>Download image</p></div>
-                        <div class="card-body align-self-center col-6">
+                        <select class="custom-select p-3"><option selected value="Open this select menu">Open this select menu</option><option value="1">One</option><option value="2">Two</option><option value="3">Three</option></select>
 
-
-
-<div class="filepond--wrapper"><input type="file"  ></div></div></div></div></div>
-
-            
-
-            
-       
-            <div class="row justify-content-center mt-5"><div class="col-6   "><div class="card"><div class="card-body"><h1 class="card-title">Information </h1>
-                            <p>Add information</p></div>
-                        <div class="card-body"><div class="row"><div class="col"><input type="text" class="form-control mb-3" placeholder="Title" value="">
-                                      <input type="number" class="form-control mb-3" placeholder="Price" value="">
-                                      <input type="text" class="form-control mb-3" placeholder="Tags" value=""></div>
-                                <div class="col"><textarea class="form-control h-100" placeholder="Description"></textarea></div></div></div></div></div></div>
-
-            
-
-            
-
-            <div class="row justify-content-center mt-5"><div class="col-6"><div class="card"><div class="card-body"><h1 class="card-title">Links</h1>
-                            <p>Add links to social --network</p></div>
-
-                        <div class="card-body"><div class="input-group mb-3"><span class="input-group-text col-2">facebook.com/</span>
-                                <input type="text" class="form-control" aria-describedby="basic-addon3" value=""></div>
-                            <div class="input-group mb-3"><span class="input-group-text col-2">instagram.com/</span>
-                                <input type="text" class="form-control" aria-describedby="basic-addon3" value=""></div>
-                            <div class="input-group mb-3"><span class="input-group-text col-lg-2">t.me/</span>
-                                <input type="text" class="form-control" aria-describedby="basic-addon3" value=""></div></div></div></div></div>
-
-            
-            <div class="row justify-content-center mt-5 mb-5"><div class="col-2"><button type="submit" class="btn btn-primary btn-block btn-lg">Save</button></div></div></form></div>
-
-    
+                    <select class="custom-select p-3"><option selected value="Open this select menu">Open this select menu</option><option value="1">One</option><option value="2">Two</option><option value="3">Three</option></select></div></div></div>
 <footer class="p-4"><div class="container-fluid">
     <div class="row border-bottom pb-4"><div class="col"><h2>Photo</h2></div>
       <div class="col"><div class="row justify-content-end"><div class="col-2"><h5 class="mb-3">Mobile app</h5>

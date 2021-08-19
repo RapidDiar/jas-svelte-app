@@ -11,9 +11,8 @@ import MainCard from "../components/MainPage/MainCard.svelte";
 
 let dataCard = []
 
-onMount(()=> {
-  console.log(localStorage)
-    axiosInstance.post('/api/token/refresh/', {refresh :localStorage.getItem('refreshToken')}).then(
+const getToken = () => {
+      axiosInstance.post('/api/token/refresh/', {refresh :localStorage.getItem('refreshToken')}).then(
     res => {
       $authStore.isLogin = true
       console.log(res)
@@ -25,21 +24,24 @@ onMount(()=> {
       localStorage.setItem('refreshToken', '')
       localStorage.setItem('userId', '')
     })
-  })
+}
 
-onMount(()=> {
-  axiosInstance.defaults.headers.Authorization = 'JWT ' + localStorage.getItem('accessToken')
-
-  axiosInstance.get('/account/api/NFT/').then(
+const getNft = () => {
+  axiosInstance.get('/account/nft-list/').then(
         res=> {
           console.log(res)
-          dataCard = res.data
-          console.log(randomItem)
+          dataCard = [...res.data]
         },
         err=> {
           console.log(err.response)
         }
       )
+}
+
+onMount(()=> {
+  console.log(localStorage)
+  getToken()
+  getNft()
 })
 
 </script>
@@ -48,7 +50,7 @@ onMount(()=> {
     <title>Index</title>
 </svelte:head>
 
-<CompNavbar/>
+
 <!-- <MainBackImg/> -->
 
 <div class="container-fluid"> 
@@ -56,8 +58,8 @@ onMount(()=> {
   <div class=" row justify-content-center mt-5 mb-5">
     <div class="col-4 text-center align-self-center">
       <h1 class="mb-5">Discover, collect, and sell extraordinary NFTs</h1>
-      <button type="button" class="btn btn-primary btn-lg me-5 col-4">Explore</button>
-      <button type="button" class="btn btn-primary btn-lg col-4">Create</button>
+      <a href='/marketplace'class="btn btn-primary btn-lg me-5 col-4">Explore</a>
+      <a href={$authStore.isLogin ? '/addNft' : '/auth'} class="btn btn-primary btn-lg col-4">Create</a>
     </div>
     <div class="col-4">
       <!--START Card 1  -->
@@ -78,7 +80,11 @@ onMount(()=> {
       <!--START Card 2  -->
       <div class="row row-cols-1 row-cols-md-3 g-4">
           {#each {length: 6} as _ ,index}
-          <MainCardItem data={dataCard[index]}/>
+          {#if dataCard[index] === undefined }
+            <MainCardItem/>
+          {:else}
+            <MainCardItem data={dataCard[index]}/>
+          {/if}
           {/each}
       </div>
       <!--END Card 2-->
@@ -97,7 +103,11 @@ onMount(()=> {
       <!--START Card 3  -->
       <div class="row row-cols-1 row-cols-md-3 g-4">
         {#each {length: 3} as _ , index}
-          <MainCardItem data={dataCard[index]}/>
+          {#if dataCard[index] === undefined}
+            <MainCardItem/>
+          {:else}
+            <MainCardItem data={dataCard[index]}/>
+          {/if}
         {/each}
       </div>
       <!--END Card 3-->
@@ -137,7 +147,7 @@ onMount(()=> {
 
 </div>
 
-<CompFooter/>
+// <CompFooter/>
 
 <style>
 .cardImageContainer {

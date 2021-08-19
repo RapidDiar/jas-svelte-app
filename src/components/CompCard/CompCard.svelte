@@ -1,5 +1,4 @@
   <script>
-import { onMount } from "svelte";
 
 export let data = {
   image: "https://mdbootstrap.com/img/new/standard/city/041.jpg",
@@ -34,10 +33,11 @@ export let data = {
     </div>
   </div>
 
+
 <style>
 
   img {
-    height: 250px;
+    height: 230px;
     object-fit: cover;
   }
   

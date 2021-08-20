@@ -7,6 +7,8 @@ import CompCard from "../../components/CompCard/CompCard.svelte"
 
 let data = []
 
+let filterVisible = false
+
 let filter = {
     recentlyAdd: false,
     sortBy: '',
@@ -45,6 +47,10 @@ const onFilter = () => {
     }
 }
 
+const activateFilter = () => {
+    filterVisible = !filterVisible
+}
+
 </script>
 
 <div class="container-fluid">
@@ -52,7 +58,7 @@ const onFilter = () => {
         <div class="col-8">
             <div class="row">
                 <div class="col-3">
-                    <button type="button" class="btn btn-primary btn-lg h-100 w-100 ">Filter</button>
+                    <button type="button" class="btn btn-primary btn-lg h-100 w-100 " on:click={activateFilter}>Filter</button>
                 </div>
                 <div class="col d-flex justify-content-lg-end">
                     <select class="custom-select p-2 col-3 me-5" bind:value={filter.recentlyAdd} on:change={onFilter}>
@@ -75,6 +81,7 @@ const onFilter = () => {
                     </select>
                 </div>
             </div>
+            {#if filterVisible}
             <div class="row mt-4">
                 <div class="col">
                     <div class="row">
@@ -116,7 +123,7 @@ const onFilter = () => {
                     </div>          
                 </div>   
             </div>
-
+            {/if}
             <div class="row mt-4">
                 <p> 10 501 results</p>
             </div>

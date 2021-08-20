@@ -1,12 +1,14 @@
 <script>
 
-
+export let data = {
+    image: "https://mdbootstrap.com/img/new/slides/041.jpg"
+}
 
 </script>
 
 
 
-<img src="https://mdbootstrap.com/img/new/slides/041.jpg" class="img-fluid mb-3 nftImage rounded-4" alt="..." />
+<img src={data.image} class="img-fluid mb-3 nftImage rounded-4" alt="..." />
 
 
 <div class="card p-3">

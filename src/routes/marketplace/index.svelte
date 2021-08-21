@@ -9,6 +9,8 @@ let data = []
 
 let filterVisible = false
 
+let resLen
+
 let filter = {
     recentlyAdd: false,
     sortBy: '',
@@ -21,16 +23,13 @@ const getData = () => {
         res => {
             console.log(res)
             data = [...res.data]
+            resLen = data.length.toString()
         },
         err => {
             console.log(err.response)
         }
     )
 }
-
-
-
-
 
 onMount(()=> {
     getData()
@@ -125,7 +124,7 @@ const activateFilter = () => {
             </div>
             {/if}
             <div class="row mt-4">
-                <p> 10 501 results</p>
+                <p> {resLen} results</p>
             </div>
 
             <div class="row row-cols-1 row-cols-md-4 g-4">

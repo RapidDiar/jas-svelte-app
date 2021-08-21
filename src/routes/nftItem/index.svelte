@@ -14,9 +14,10 @@ const getData = () => {
     })
 }   
 
-   getData()
+getData()    
+   
 onMount(()=> {
- 
+    
     console.log('data',data)
     console.log(item.title)
 

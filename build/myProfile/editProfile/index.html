@@ -23,21 +23,22 @@
 
 		
 
-		<link rel="modulepreload" href="/./_app/start-a09378e9.js">
-		<link rel="modulepreload" href="/./_app/chunks/vendor-ea1ca524.js">
+		<link rel="modulepreload" href="/./_app/start-2acf7766.js">
+		<link rel="modulepreload" href="/./_app/chunks/vendor-46274d12.js">
 		<link rel="modulepreload" href="/./_app/chunks/singletons-12a22614.js">
-		<link rel="modulepreload" href="/./_app/pages/__layout.svelte-28e3d48f.js">
-		<link rel="modulepreload" href="/./_app/chunks/CompFooter-f2c3c056.js">
-		<link rel="modulepreload" href="/./_app/chunks/store-258fb817.js">
-		<link rel="modulepreload" href="/./_app/pages/myProfile/__layout.svelte-f35cbdf3.js">
-		<link rel="modulepreload" href="/./_app/chunks/axiosApi-e38cf905.js">
-		<link rel="modulepreload" href="/./_app/pages/myProfile/editProfile.svelte-2a89bde8.js">
+		<link rel="modulepreload" href="/./_app/pages/__layout.svelte-870d0f29.js">
+		<link rel="modulepreload" href="/./_app/chunks/translations-4b00f8c5.js">
+		<link rel="modulepreload" href="/./_app/chunks/i18n-94025d06.js">
+		<link rel="modulepreload" href="/./_app/chunks/store-185a41c5.js">
+		<link rel="modulepreload" href="/./_app/pages/myProfile/__layout.svelte-5c0a317e.js">
+		<link rel="modulepreload" href="/./_app/chunks/axiosApi-6a96a9e8.js">
+		<link rel="modulepreload" href="/./_app/pages/myProfile/editProfile.svelte-f9a0c511.js">
 		<link rel="stylesheet" href="/./_app/assets/start-a8cd1609.css">
 		<link rel="stylesheet" href="/./_app/assets/pages/myProfile/__layout.svelte-6f57a517.css">
 		<link rel="stylesheet" href="/./_app/assets/pages/myProfile/editProfile.svelte-3a6f2c70.css">
 
 		<script type="module">
-			import { start } from "/./_app/start-a09378e9.js";
+			import { start } from "/./_app/start-2acf7766.js";
 			start({
 				target: document.querySelector("#svelte"),
 				paths: {"base":"","assets":"/."},
@@ -50,9 +51,9 @@
 					status: 200,
 					error: null,
 					nodes: [
-						import("/./_app/pages/__layout.svelte-28e3d48f.js"),
-						import("/./_app/pages/myProfile/__layout.svelte-f35cbdf3.js"),
-						import("/./_app/pages/myProfile/editProfile.svelte-2a89bde8.js")
+						import("/./_app/pages/__layout.svelte-870d0f29.js"),
+						import("/./_app/pages/myProfile/__layout.svelte-5c0a317e.js"),
+						import("/./_app/pages/myProfile/editProfile.svelte-f9a0c511.js")
 					],
 					page: {
 						host: location.host, // TODO this is redundant
@@ -68,20 +69,24 @@
 		<div id="svelte">
 
 
-<nav class="navbar navbar-light bg-light shadow-5"><div class="container-fluid ps-3 pe-3"><a class="navbar-brand" href="/">Photo
+<nav class="navbar navbar-light bg-light shadow-5"><div class="container-fluid ps-3 pe-3"><a class="navbar-brand" href="/" style="font-family: 'Open Sans'; font-size:22px; font-weight: medium; color:rgb(0, 0, 0, 0.75);">ArtMarketplace
     </a>
 
-    <div class="input-group w-50"><span class="input-group-text border-1 border-end-0" id="search-addon"><i class="fas fa-search"></i></span>
-      <input type="search" class="form-control border-start-0" placeholder="Search" aria-label="Search" aria-describedby="search-addon"></div>
+ <div class="input-group w-50"><span class="input-group-text border-1 border-end-0" id="search-addon"><i class="fas fa-search"></i></span>
+      <input type="search" class="form-control border-start-0" placeholder="Search" aria-label="Search" aria-describedby="search-addon" style="font-family: 'Open Sans'; font-size:16px; font-weight: meduim; color:rgb(0, 0, 0);"></div>
   
-    <div class="d-flex align-items-center"><a href="/marketplace" class="btn btn-link px-3 me-2">Marketplace
-        </a>
+    <div class="d-flex align-items-center"><a href="/marketplace" class="btn btn-link px-3 me-2" style="color: black; font-family: 'Open Sans'; font-size:12px; font-weight: meduim; color:rgb(0, 0, 0);">Marketplace</a>
 
-        <a type="button" class="btn btn-link px-3 me-2" href="/auth">Login
-      </a>
-        <a type="button" class="btn btn-primary" href="/auth">Sign up
-        </a></div></div>
-</nav>
+        <div class="d-flex align-items-center"><a href="https://newcab.kazpatent.kz/" class="btn btn-link px-3 me-2" style="color:black; font-family: 'Open Sans'; font-size:12px; font-weight: meduim; color:rgb(0, 0, 0);">Author Rights</a>
+        
+    <div class="d-flex align-items-center"><a href="/auth" class="btn btn-link px- me-2" style="background-color: gold; color: black; font-family: 'Open Sans'; font-size:12px; font-weight: meduim; color:rgb(0, 0, 0);">Create</a>
+
+        <a type="button" class="btn btn-primary text-nowrap" style="background-color: black; font-family: 'Open Sans'; font-size:12px; font-weight: meduim; color: white;" href="/auth">Sign In</a>
+
+            <select class="form-select ms-3" style="border:honeydew; font-family: 'Open Sans'; font-size:16px; font-weight: meduim; color:rgb(0, 0, 0);"><option value="en">en
+          </option><option value="ru">ru
+          </option><option value="kz">kz
+          </option></select></div></div></div></div></nav>
 <div class="container-fluid"><div class="row justify-content-center"><img src="" class="img-fluid ps-0 pe-0 svelte-1hyopxr" style="height: 300px; background-color: #BDBDBD;" alt="..."></div>
     <div style="margin-top: -100px;" class="row justify-content-center "><div class="col-8"><div class="row"><div class="col-3 text-center"><img style="width: 200px; height:200px; background-color: #9E9E9E; " src="" class="img-fluid rounded-circle svelte-1hyopxr" alt=""></div>
                 <div class="col d-flex justify-content-lg-between"><a href="/myProfile/onSale" type="button" class="btn btn-light btn-lg me-2 w-responsive pt-3 pb-3 h-25 align-self-end">On Sale</a>
@@ -117,27 +122,29 @@
 
     </div></div></div></div>
 </div>
-<footer class="p-4"><div class="container-fluid">
-    <div class="row border-bottom pb-4"><div class="col"><h2>Photo</h2></div>
-      <div class="col"><div class="row justify-content-end"><div class="col-2"><h5 class="mb-3">Mobile app</h5>
-            <ul class="list-unstyled"><li class="mb-1"><a href="#" class="text-dark">Features</a></li>
-              <li class="mb-1"><a href="#" class="text-dark">Live share</a></li>
-              <li class="mb-1"><a href="#" class="text-dark">Video record</a></li></ul></div>
+<footer class="p-4" style="background-color: rgb(0,0,0,0.9);"><div class="container-fluid">
+    <div class="row border-bottom pb-4"><div class="col-2"><h2 style="text-align:center; color:white; font-family: 'Open Sans'; font-size:32px; font-weight: meduim;">Art</h2>
+        <h2 style="text-align:center; color:white; font-family: 'Open Sans'; font-size:28px; font-weight: meduim;">Marketplace</h2></div>
+      <div class="col"><div class="row justify-content-end"><div class="col-2"><h5 class="mb-3" style="color:white; font-family: 'Open Sans'; font-size:24px; font-weight: meduim;">Mobile app</h5>
+            
+            <ul class="list-unstyled"><li class="mb-1"><a href="#" class="text" style="color:white; font-family: 'Open Sans'; font-size:18px; font-weight: meduim;">Features</a></li>
+              <li class="mb-1"><a href="#" class="text" style="color: white; font-family: 'Open Sans'; font-size:18px; font-weight: meduim;">Live share</a></li>
+              <li class="mb-1"><a href="#" class="text" style="color: white; font-family: 'Open Sans'; font-size:18px; font-weight: meduim;">Video record</a></li></ul></div>
 
-          <div class="col-2"><h5 class="mb-3">Community</h5>
-            <ul class="list-unstyled"><li class="mb-1"><a href="#" class="text-dark">Featured artists</a></li>
-              <li class="mb-1"><a href="#" class="text-dark">The Portal</a></li>
-              <li class="mb-1"><a href="#" class="text-dark">Live events</a></li></ul></div>
+          <div class="col-2"><h5 class="mb-3" style="color: white; font-family: 'Open Sans'; font-size:24px; font-weight: meduim;">Community</h5>
+            <ul class="list-unstyled"><li class="mb-1"><a href="#" class="text" style="color: white; font-family: 'Open Sans'; font-size:18px; font-weight: meduim;">Featured artists</a></li>
+              <li class="mb-1"><a href="#" class="text" style="color: white; font-family: 'Open Sans'; font-size:18px; font-weight: meduim;">The Portal</a></li>
+              <li class="mb-1"><a href="#" class="text" style="color: white; font-family: 'Open Sans'; font-size:18px; font-weight: meduim;">Live events</a></li></ul></div>
 
-          <div class="col-2"><h5 class="mb-3">Company</h5>
-            <ul class="list-unstyled"><li class="mb-1"><a href="#" class="text-dark">About us</a></li>
-              <li class="mb-1"><a href="#" class="text-dark">Contact us</a></li>
-              <li class="mb-1"><a href="#" class="text-dark">History</a></li></ul></div></div></div></div>
+          <div class="col-2"><h5 class="mb-3" style="color: white; font-family: 'Open Sans'; font-size:24px; font-weight: meduim;">Company</h5>
+            <ul class="list-unstyled"><li class="mb-1"><a href="#" class="text" style="color: white; font-family: 'Open Sans'; font-size:18px; font-weight: meduim;">About us</a></li>
+              <li class="mb-1"><a href="#" class="text" style="color: white; font-family: 'Open Sans'; font-size:18px; font-weight: meduim;">Contact us</a></li>
+              <li class="mb-1"><a href="#" class="text" style="color: white; font-family: 'Open Sans'; font-size:18px; font-weight: meduim;">History</a></li></ul></div></div></div></div>
     
     
     
-    <div class="row mt-3"><div class="col"><p>© Photo, Inc. 2019.</p></div>
-      <div class="col d-flex justify-content-end me-4"><p class="mb-0 me-2 align-self-center ">Follow us: </p>
+    <div class="row mt-3"><div class="col"><p style="color: white; font-family: 'Open Sans'; font-size:16px; font-weight: meduim;">© ArtMarketplace, Inc. 2019.</p></div>
+      <div class="col d-flex justify-content-end me-4"><p class="mb-0 me-2 align-self-center " style="color: white; font-family: 'Open Sans'; font-size:16px; font-weight: meduim;">Follow us:</p>
         
         <a class="btn btn-primary btn-floating m-1" style="background-color: #ed302f;" href="#!" role="button"><i class="fab fa-youtube"></i></a>
         

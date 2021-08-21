@@ -1,0 +1,10 @@
+version: "3.1"
+services:  
+  jas_frontend:
+    build: ./
+    container_name: jas-svelte-app
+    restart: always
+    command:
+       "yarn dev --host"
+    ports:
+        - 3000:3000

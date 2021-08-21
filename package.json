@@ -20,6 +20,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@metamask/detect-provider": "^1.2.0",
     "axios": "^0.21.1",
     "filepond": "^4.28.2",
     "filepond-plugin-image-exif-orientation": "^1.0.11",

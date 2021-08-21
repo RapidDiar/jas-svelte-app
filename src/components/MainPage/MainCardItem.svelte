@@ -1,4 +1,6 @@
   <script>
+import { goto } from "$app/navigation";
+import { nftStore } from "../../nftStore";
 
 export let data = {
   image: "https://mdbootstrap.com/img/new/standard/city/041.jpg",
@@ -7,10 +9,15 @@ export let data = {
   tags: 'tron'
 }
 
+    const goToPage = () => {
+      nftStore.set(data)
+      goto('/nftItem')
+    }
+
   </script>
   
   <div class="col">
-    <div class="card h-100">
+    <div class="card h-100 hover-shadow" on:click={goToPage}>
       <img
         src={data.image}
         class="card-img-top"
@@ -32,3 +39,12 @@ export let data = {
       </div>
     </div>
   </div>
+
+<style>
+
+  img {
+    height: 250px;
+    object-fit: cover;
+  }
+  
+</style>

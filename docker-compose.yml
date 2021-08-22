@@ -4,7 +4,11 @@ services:
     build: ./
     container_name: jas-svelte-app
     restart: always
+    volumes:
+      - .:/src/
+      - /src/node_modules/
     command:
-       "yarn dev --host"
+      "yarn dev --host"
     ports:
-        - 3000:3000
+      - 3000:3000
+      - 24678:24678

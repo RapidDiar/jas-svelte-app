@@ -20,28 +20,16 @@
 		last_name: null
 	};
 
-	let message = false;
-
-	let messageText = '';
-
 	const onRegister = async () => {
-		console.log(message);
-		axiosInstance.post('/api/authentication/registration/', data).then(
-			(res) => {
-				message = true;
-				messageText = 'Account created successfully!';
-				console.log(res);
-                localStorage.setItem('userData', JSON.stringify(res.data))
-                $authStore.isLogin = true;
-                goto('/');
-			},
-			(err) => {
-				message = true;
-				messageText = err.response.data.username[0];
-				console.log(messageText);
-				console.log(err.response.data.username[0]);
-			}
-		);
+		try {
+			const response = await axiosInstance.post('/api/authentication/registration/', data);
+			localStorage.setItem('jas-auth-data', JSON.stringify(response.data));
+			$authStore.isLogin = true;
+			$authStore.authData = response.data;
+			goto('/myProfile/onSale');
+		} catch (error) {
+			$authStore.isLogin = false;
+		}
 	};
 </script>
 

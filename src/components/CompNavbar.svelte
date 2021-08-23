@@ -1,22 +1,15 @@
 <script>
-	import { onMount } from 'svelte';
-
 	import { authStore } from '../store';
-
 	import translations from '../translations';
 	import { dict, locale, t } from '../i18n';
+	import { goto } from '$app/navigation';
 
 	$: languages = Object.keys(translations);
 	$: dict.set(translations);
 	$: outerWidth = 0;
+	$: isLogin = $authStore.isLogin;
+
 	let open = false;
-	onMount(() => {
-		if (localStorage.getItem('accessToken') == '') {
-			$authStore.isLogin = false;
-		} else {
-			$authStore.isLogin = true;
-		}
-	});
 
 	const burgerHandler = () => {
 		open = !open;
@@ -26,12 +19,9 @@
 
 	const onLogout = () => {
 		$authStore.isLogin = false;
-		console.log($authStore.isLogin);
-		localStorage.setItem('accessToken', '');
-		localStorage.setItem('refreshToken', '');
-		localStorage.setItem('userId', '');
-		localStorage.setItem('metamaskID', '');
-		// location.reload()
+		localStorage.removeItem('jas-auth-data');
+		localStorage.removeItem('metamaskID');
+		goto('/');
 	};
 </script>
 
@@ -62,7 +52,7 @@
 						<a href="https://newcab.kazpatent.kz/" class="mobile_link">Author Rights</a>
 						<div />
 						<div>
-							{#if $authStore.isLogin}
+							{#if isLogin}
 								<a href="/addNft" class="mobile_link">
 									{$t('main.button.create')}
 								</a>
@@ -337,7 +327,8 @@
 		:global(#svelte) {
 			overflow-x: hidden;
 		}
-		.mobile_link, .lang_select_title_mobile {
+		.mobile_link,
+		.lang_select_title_mobile {
 			color: #202121;
 			padding: 12px;
 			font-size: 24px;
@@ -357,7 +348,8 @@
 	}
 
 	@media screen and (max-width: 400px) {
-		.mobile_link, .lang_select_title_mobile {
+		.mobile_link,
+		.lang_select_title_mobile {
 			font-size: 18px;
 		}
 	}

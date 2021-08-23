@@ -1,8 +1,5 @@
 <script>
-	import CompNavbar from '../components/CompNavbar.svelte';
 	import MainCardItem from '../components/MainPage/MainCardItem.svelte';
-	import CompFooter from '../components/CompFooter.svelte';
-	import MainAboutNft from '../components/MainPage/MainAboutNft.svelte';
 	import MainGuide from '../components/MainPage/MainGuide.svelte';
 	import axiosInstance from '../components/axios/axiosApi';
 	import { onMount } from 'svelte';
@@ -16,49 +13,49 @@
 
 	let dataCard = [];
 
-  let userData
+	let userData;
 
+	// const getToken = (refreshToken) => {
+	// 	axiosInstance.post('/api/authentication/token/refresh/', { refresh: refreshToken }).then(
+	// 		(res) => {
+	// 			$authStore.isLogin = true;
+	// 			console.log(res);
+	// 			localStorage.setItem('userData', JSON.stringify(res.data));
+	// 		},
+	// 		(err) => {
+	// 			$authStore.isLogin = false;
+	// 			console.log(err.response);
+	// 			localStorage.setItem('userData', '');
+	// 			localStorage.setItem('MetamaskId', '');
+	// 		}
+	// 	);
+	// };
 
-	const getToken = (refreshToken) => {
-		axiosInstance
-			.post('/api/authentication/token/refresh/', { refresh: refreshToken })
-			.then(
-				(res) => {
-					$authStore.isLogin = true;
-					console.log(res);
-					localStorage.setItem('userData', JSON.stringify(res.data));
-				},
-				(err) => {
-          $authStore.isLogin = false;
-					console.log(err.response);
-					localStorage.setItem('userData', '');
-					localStorage.setItem('MetamaskId', '');
-				}
-			);
-	};
+	// const getNft = () => {
+	// 	axiosInstance.get('/account/nft-list/').then(
+	// 		(res) => {
+	// 			console.log(res);
+	// 			dataCard = [...res.data];
+	// 		},
+	// 		(err) => {
+	// 			console.log(err.response);
+	// 		}
+	// 	);
+	// };
 
-	const getNft = () => {
-		axiosInstance.get('/account/nft-list/').then(
-			(res) => {
-				console.log(res);
-				dataCard = [...res.data];
-			},
-			(err) => {
-				console.log(err.response);
-			}
-		);
-	};
-
-	onMount(() => {
-    if (localStorage.getItem("userData")) {
-      userData = JSON.parse(localStorage.getItem("userData"))
-      console.log(userData.refresh_token)
-      getToken(userData.refresh_token);
-    } else {
-      $authStore.isLogin = false;
-    }
-    getNft();
-	});
+	// onMount(() => {
+	// 	console.log('JAS AUTH DATA');
+	// 	const authData = JSON.parse(localStorage.getItem('jas-auth-data'));
+	// 	console.log(authData, 'auth data index svelte');
+	// 	if (localStorage.getItem('jas-auth-data')) {
+	// 		userData = JSON.parse(localStorage.getItem('userData'));
+	// 		console.log(userData.refresh_token);
+	// 		getToken(userData.refresh_token);
+	// 	} else {
+	// 		$authStore.isLogin = false;
+	// 	}
+	// 	getNft();
+	// });
 </script>
 
 <svelte:head>
@@ -162,7 +159,10 @@
 <!-- START Section-2 -->
 <div class="row justify-content-center mb-4">
 	<div class="col-8">
-		<h3 class="pop_title" style="font-family: 'Open Sans'; font-size:28px; font-weight: bold; margin-top:30px">
+		<h3
+			class="pop_title"
+			style="font-family: 'Open Sans'; font-size:28px; font-weight: bold; margin-top:30px"
+		>
 			{$t('main.title.pop')}
 		</h3>
 	</div>
@@ -433,17 +433,19 @@
 		.aboutus_title {
 			text-align: center;
 		}
-    .card {
-      width: 100% !important;
-    }
-    .card_main {
-      width: 100%;
-    }
-    .gallery_title, .pop_title, .nft_title {
-      text-align: center;
-    }
-	.carousel {
-		padding-top: 97px;
+		.card {
+			width: 100% !important;
+		}
+		.card_main {
+			width: 100%;
+		}
+		.gallery_title,
+		.pop_title,
+		.nft_title {
+			text-align: center;
+		}
+		.carousel {
+			padding-top: 97px;
+		}
 	}
-  }
 </style>

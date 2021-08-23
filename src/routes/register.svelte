@@ -24,7 +24,7 @@
 
 	let messageText = '';
 
-	const onRegister = () => {
+	const onRegister = async () => {
 		console.log(message);
 		axiosInstance.post('/api/authentication/registration/', data).then(
 			(res) => {

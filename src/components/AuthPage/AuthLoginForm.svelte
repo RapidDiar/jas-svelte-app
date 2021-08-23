@@ -21,7 +21,7 @@
     const onLogin = () =>    {
         console.log(data)
         
-        axiosInstance.post('/api/token/', data).then(
+        axiosInstance.post('/api/authentication/login/', data).then(
             res => {
                 $authStore.error = false
                 $authStore.isLogin = true

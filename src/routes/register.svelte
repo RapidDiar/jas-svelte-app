@@ -31,7 +31,9 @@
 				message = true;
 				messageText = 'Account created successfully!';
 				console.log(res);
-				console.log(messageText);
+                localStorage.setItem('userData', JSON.stringify(res.data))
+                $authStore.isLogin = true;
+                goto('/');
 			},
 			(err) => {
 				message = true;

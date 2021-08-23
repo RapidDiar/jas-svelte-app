@@ -27,8 +27,6 @@
 
 	let alert = '';
 
-	let decode = '';
-
 	const onLogin = () => {
 		console.log(data);
 
@@ -37,11 +35,7 @@
 				$authStore.error = false;
 				$authStore.isLogin = true;
 				console.log(res);
-				decode = jwt_decode(res.data.access);
-				console.log(decode.user_id);
-				localStorage.setItem('userId', decode.user_id);
-				localStorage.setItem('accessToken', res.data.access);
-				localStorage.setItem('refreshToken', res.data.refresh);
+                localStorage.setItem('userData', JSON.stringify(res.data))
 				goto('/');
 			},
 			(err) => {

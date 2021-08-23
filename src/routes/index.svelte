@@ -1,8 +1,5 @@
 <script>
-import CompNavbar from "../components/CompNavbar.svelte";
 import MainCardItem from "../components/MainPage/MainCardItem.svelte";
-import CompFooter from "../components/CompFooter.svelte";
-import MainAboutNft from "../components/MainPage/MainAboutNft.svelte";
 import MainGuide from "../components/MainPage/MainGuide.svelte";
 import axiosInstance from "../components/axios/axiosApi";
 import {onMount} from 'svelte'
@@ -32,6 +29,8 @@ const getToken = () => {
 }
 
 const getNft = () => {
+
+
   axiosInstance.get('/account/nft-list/').then(
         res=> {
           console.log(res)

@@ -15,7 +15,22 @@
 	$: dict.set(translations);
 
 	let dataCard = [];
-
+	let count = 1;
+	
+	function scrollDown() {
+		count += 1;
+		if(count > 4) {
+			count = 4;
+		}
+		console.log(count);
+	}
+	function scrollUp() {
+		count -= 1;
+		if(count < 1) {
+			count = 1;
+		}
+		console.log(count);
+	}
 	const getToken = () => {
 		axiosInstance
 			.post('/api/token/refresh/', { refresh: localStorage.getItem('refreshToken') })
@@ -34,27 +49,6 @@
 			);
 	};
 
-<<<<<<< HEAD
-const getNft = () => {
-
-
-  axiosInstance.get('/account/nft-list/').then(
-        res=> {
-          console.log(res)
-          dataCard = [...res.data]
-        },
-        err=> {
-          console.log(err.response)
-        }
-      )
-}
-
-onMount(()=> {
-  console.log(localStorage)
-  getToken()
-  getNft()
-})
-=======
 	const getNft = () => {
 		axiosInstance.get('/account/nft-list/').then(
 			(res) => {
@@ -66,8 +60,6 @@ onMount(()=> {
 			}
 		);
 	};
->>>>>>> bf2f64d540a1e1dcef5a960a5b30aafc860a25d7
-
 	onMount(() => {
 		console.log(localStorage);
 		getToken();
@@ -176,7 +168,10 @@ onMount(()=> {
 <!-- START Section-2 -->
 <div class="row justify-content-center mb-4">
 	<div class="col-8">
-		<h3 class="pop_title" style="font-family: 'Open Sans'; font-size:28px; font-weight: bold; margin-top:30px">
+		<h3
+			class="pop_title"
+			style="font-family: 'Open Sans'; font-size:28px; font-weight: bold; margin-top:30px"
+		>
 			{$t('main.title.pop')}
 		</h3>
 	</div>
@@ -307,29 +302,81 @@ onMount(()=> {
 			<div class="row justify-content-center mb-4">
 				<div class="col-2">
 					<div class="row justify-content-center mb-4">
-						<i class="fas fa-caret-up" style="font-size:50px; color:gold" />
+						<i on:click={scrollUp} class="fas fa-caret-up" style="font-size:50px; color:gold" />
 
 						<!-- <i class="fas fa-caret-down"></i> -->
 					</div>
 					<div class="row justify-content-center mb-4">
-						<i class="fas fa-caret-down" style="font-size:50px; color:gold" />
+						<i on:click={scrollDown} class="fas fa-caret-down" style="font-size:50px; color:gold" />
 					</div>
 				</div>
 
-				<div class="col-7">
-					<div class="card-body">
-						<h5
-							class="card-title"
-							style="font-family: 'Open Sans'; font-size:24  px; font-weight: bold;"
-						>
-							{$t('main.nft.subtitle.deposit')}
-						</h5>
-						<p
-							class="card-text mt-4 mb-4"
-							style="font-family: 'Open Sans'; font-size:14px; font-weight: regular;"
-						>
-							{$t('main.nft.text.deposit')}
-						</p>
+				<div class="col-7 main_cards">
+					<div class="info_cards">
+						{#if (count === 1)}
+							<div class="card-body">
+								<h5
+									class="card-title"
+									style="font-family: 'Open Sans'; font-size:24  px; font-weight: bold;"
+								>
+									{$t('main.nft.subtitle.marketplace')}
+								</h5>
+								<p
+									class="card-text mt-4 mb-4"
+									style="font-family: 'Open Sans'; font-size:14px; font-weight: regular;"
+								>
+									{$t('main.nft.text.marketplace')}
+								</p>
+							</div>
+						{/if}
+						{#if (count === 2)}
+							<div class="card-body">
+								<h5
+									class="card-title"
+									style="font-family: 'Open Sans'; font-size:24  px; font-weight: bold;"
+								>
+									{$t('main.nft.subtitle.deposit')}
+								</h5>
+								<p
+									class="card-text mt-4 mb-4"
+									style="font-family: 'Open Sans'; font-size:14px; font-weight: regular;"
+								>
+									{$t('main.nft.text.deposit')}
+								</p>
+							</div>
+						{/if}
+						{#if (count === 3)}
+							<div class="card-body">
+								<h5
+									class="card-title"
+									style="font-family: 'Open Sans'; font-size:24  px; font-weight: bold;"
+								>
+									{$t('main.nft.subtitle.cryptocurrencies')}
+								</h5>
+								<p
+									class="card-text mt-4 mb-4"
+									style="font-family: 'Open Sans'; font-size:14px; font-weight: regular;"
+								>
+									{$t('main.nft.text.cryptocurrencies')}
+								</p>
+							</div>
+						{/if}
+						{#if (count === 4)}
+							<div class="card-body">
+								<h5
+									class="card-title"
+									style="font-family: 'Open Sans'; font-size:24  px; font-weight: bold;"
+								>
+									{$t('main.nft.subtitle.add')}
+								</h5>
+								<p
+									class="card-text mt-4 mb-4"
+									style="font-family: 'Open Sans'; font-size:14px; font-weight: regular;"
+								>
+									{$t('main.nft.text.add')}
+								</p>
+							</div>
+						{/if}
 					</div>
 				</div>
 			</div>
@@ -428,7 +475,18 @@ onMount(()=> {
 		font-weight: 600;
 		font-family: 'Orbitron', sans-serif;
 	}
-
+	.info_cards {
+		height: auto;
+		scroll-behavior: smooth;
+	}
+	.main_cards {
+		max-height: 146px;
+		overflow: scroll;
+		scroll-behavior: smooth;
+	}
+	.main_cards::-webkit-scrollbar {
+		display: none; /* Safari and Chrome */
+	}
 	@media screen and (max-width: 579px) {
 		.section1 {
 			display: flex;
@@ -447,17 +505,19 @@ onMount(()=> {
 		.aboutus_title {
 			text-align: center;
 		}
-    .card {
-      width: 100% !important;
-    }
-    .card_main {
-      width: 100%;
-    }
-    .gallery_title, .pop_title, .nft_title {
-      text-align: center;
-    }
-	.carousel {
-		padding-top: 97px;
+		.card {
+			width: 100% !important;
+		}
+		.card_main {
+			width: 100%;
+		}
+		.gallery_title,
+		.pop_title,
+		.nft_title {
+			text-align: center;
+		}
+		.carousel {
+			padding-top: 97px;
+		}
 	}
-  }
 </style>

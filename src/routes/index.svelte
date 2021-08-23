@@ -16,45 +16,27 @@
 
 	let dataCard = [];
 
-	const getToken = () => {
+  let userData
+
+
+	const getToken = (refreshToken) => {
 		axiosInstance
-			.post('/api/token/refresh/', { refresh: localStorage.getItem('refreshToken') })
+			.post('/api/authentication/token/refresh/', { refresh: refreshToken })
 			.then(
 				(res) => {
 					$authStore.isLogin = true;
 					console.log(res);
-					localStorage.setItem('accessToken', res.data.access);
+					localStorage.setItem('userData', JSON.stringify(res.data));
 				},
 				(err) => {
+          $authStore.isLogin = false;
 					console.log(err.response);
-					localStorage.setItem('accessToken', '');
-					localStorage.setItem('refreshToken', '');
-					localStorage.setItem('userId', '');
+					localStorage.setItem('userData', '');
+					localStorage.setItem('MetamaskId', '');
 				}
 			);
 	};
 
-<<<<<<< HEAD
-const getNft = () => {
-
-
-  axiosInstance.get('/account/nft-list/').then(
-        res=> {
-          console.log(res)
-          dataCard = [...res.data]
-        },
-        err=> {
-          console.log(err.response)
-        }
-      )
-}
-
-onMount(()=> {
-  console.log(localStorage)
-  getToken()
-  getNft()
-})
-=======
 	const getNft = () => {
 		axiosInstance.get('/account/nft-list/').then(
 			(res) => {
@@ -66,12 +48,16 @@ onMount(()=> {
 			}
 		);
 	};
->>>>>>> bf2f64d540a1e1dcef5a960a5b30aafc860a25d7
 
 	onMount(() => {
-		console.log(localStorage);
-		getToken();
-		getNft();
+    if (localStorage.getItem("userData")) {
+      userData = JSON.parse(localStorage.getItem("userData"))
+      console.log(userData.refresh_token)
+      getToken(userData.refresh_token);
+    } else {
+      $authStore.isLogin = false;
+    }
+    getNft();
 	});
 </script>
 

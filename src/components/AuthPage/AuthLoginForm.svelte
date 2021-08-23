@@ -34,7 +34,6 @@
                 goto('/')
             },
             err => {
-
                 $authStore.error = true
                 alert="Incorrect login or password"
                 console.log(err.response)

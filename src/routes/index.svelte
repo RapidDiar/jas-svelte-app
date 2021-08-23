@@ -34,27 +34,6 @@
 			);
 	};
 
-<<<<<<< HEAD
-const getNft = () => {
-
-
-  axiosInstance.get('/account/nft-list/').then(
-        res=> {
-          console.log(res)
-          dataCard = [...res.data]
-        },
-        err=> {
-          console.log(err.response)
-        }
-      )
-}
-
-onMount(()=> {
-  console.log(localStorage)
-  getToken()
-  getNft()
-})
-=======
 	const getNft = () => {
 		axiosInstance.get('/account/nft-list/').then(
 			(res) => {
@@ -66,7 +45,6 @@ onMount(()=> {
 			}
 		);
 	};
->>>>>>> bf2f64d540a1e1dcef5a960a5b30aafc860a25d7
 
 	onMount(() => {
 		console.log(localStorage);

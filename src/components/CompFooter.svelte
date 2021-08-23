@@ -6,16 +6,16 @@ import { dict, locale, t } from '../i18n';
   $: dict.set(translations);
 </script>
 
-<footer class="p-4" style="background-color: rgb(0,0,0,0.9);">
+<footer class="p-4 page-footer" style="background-color: rgb(0,0,0,0.9);">
   <div class="container-fluid">
     <!-- START FOOTER SECTION 1 -->
-    <div class="row border-bottom pb-4">
-      <div class="col-2" >
+    <div class="footer row border-bottom pb-4">
+      <div class="title col-2" >
         <h2 style="text-align:center; color:white; font-family: 'Open Sans'; font-size:32px; font-weight: meduim;">Art</h2>
         <h2 style="text-align:center; color:white; font-family: 'Open Sans'; font-size:28px; font-weight: meduim;">Marketplace</h2>
       </div>
       <div class="col">
-        <div class="row justify-content-end">
+        <div class="footer_2nd_block row justify-content-end">
           <div class="col-2">
             <h5 class="mb-3" style="color:white; font-family: 'Open Sans'; font-size:24px; font-weight: meduim;">{$t('footer.title.mobile_app')}</h5>
             <!-- <h5 class="mb-3">Mobile app</h5> -->
@@ -109,3 +109,23 @@ import { dict, locale, t } from '../i18n';
     <!-- END FOOTER SECTION 2 -->
   </div>
 </footer>
+
+<style>
+  @media screen and (max-width: 579px) {
+    .footer {
+      flex-direction: column;
+    }
+    .footer_2nd_block {
+      flex-direction: column;
+    }
+    .title {
+      width: 100%;
+    }
+    .footer_2nd_block > div {
+      width: 100%;
+    }
+    .footer_2nd_block > div > h5, .footer_2nd_block > div > ul {
+      text-align: center;
+    }
+  }
+</style>

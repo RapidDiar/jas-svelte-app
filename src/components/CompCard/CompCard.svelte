@@ -31,7 +31,7 @@ export let data = {
                 <h5 class="card-title">{data.title}</h5>
               </div>
               <div class="col text-end">
-                <p class="card-text mb-1">Price:</p>
+                <p class="card-text mb-1">Praice:</p>
                 <p class="card-text mb-1"> ETH {data.price}</p> 
                 <p class="card-text mb-1">{data.tags}</p>
               </div>

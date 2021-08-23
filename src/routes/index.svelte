@@ -16,20 +16,23 @@
 
 	let dataCard = [];
 
-	const getToken = () => {
+  let userData
+
+
+	const getToken = (refreshToken) => {
 		axiosInstance
-			.post('/api/token/refresh/', { refresh: localStorage.getItem('refreshToken') })
+			.post('/api/authentication/token/refresh/', { refresh: refreshToken })
 			.then(
 				(res) => {
 					$authStore.isLogin = true;
 					console.log(res);
-					localStorage.setItem('accessToken', res.data.access);
+					localStorage.setItem('userData', JSON.stringify(res.data));
 				},
 				(err) => {
+          $authStore.isLogin = false;
 					console.log(err.response);
-					localStorage.setItem('accessToken', '');
-					localStorage.setItem('refreshToken', '');
-					localStorage.setItem('userId', '');
+					localStorage.setItem('userData', '');
+					localStorage.setItem('MetamaskId', '');
 				}
 			);
 	};
@@ -47,9 +50,14 @@
 	};
 
 	onMount(() => {
-		console.log(localStorage);
-		getToken();
-		getNft();
+    if (localStorage.getItem("userData")) {
+      userData = JSON.parse(localStorage.getItem("userData"))
+      console.log(userData.refresh_token)
+      getToken(userData.refresh_token);
+    } else {
+      $authStore.isLogin = false;
+    }
+    getNft();
 	});
 </script>
 

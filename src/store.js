@@ -9,5 +9,15 @@ export const authStore = writable({
 		refresh_token: null,
 		user: null,
 		access_token_expiration: null
+	},
+	profile: {
+		avatar: null,
+		background: null,
+		description: null,
+		facebook: null,
+		first_name: null,
+		instagram: null,
+		last_name: null,
+		telegram: null,
 	}
 });

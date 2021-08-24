@@ -14,7 +14,6 @@
 			let newAuthData = authData;
 			const expirationDate = new Date(authData.access_token_expiration);
 			if (!authData.access_token_expiration || expirationDate <= new Date()) {
-				console.log('updating');
 				const response = await axiosInstance.post('/api/authentication/token/refresh/', {
 					refresh: authData.refresh_token
 				});

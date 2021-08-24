@@ -23,7 +23,10 @@
 	const updateProfile = async () => {
 		try {
 			axiosInstance.defaults.headers.Authorization = 'Bearer ' + $authStore.authData?.access_token;
-			const response = await axiosInstance.post('/api/authentication/profile/', profile);
+			let fields = { ...profile };
+			delete fields.background;
+			delete fields.avatar;
+			const response = await axiosInstance.post('/api/authentication/profile/', fields);
 			$authStore.profile = response?.data?.profile;
 			message = 'success';
 		} catch (error) {

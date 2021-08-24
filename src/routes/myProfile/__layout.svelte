@@ -1,10 +1,13 @@
 <script>
 	import { authStore } from '../../store.js';
 	import { onMount } from 'svelte';
-	import axiosInstance from '../../components/axios/axiosApi.js';
+	import axiosInstance from '../../components/axios/axiosApiMedia.js';
 
+	let baseURL = 'http://0.0.0.0:8000';
 	let profile = $authStore.profile;
 	$: fullName = `${profile?.first_name} ${profile?.last_name}`;
+	let backgroundInput;
+	let avatarInput;
 
 	const truncate = (str, max, suffix) =>
 		str.length < max
@@ -21,40 +24,68 @@
 		} catch (error) {}
 	};
 
-	const setBackground = async () => {
+	const objectToFormData = () => {
+		let formData = new FormData();
+		let fields = { ...profile };
+		if (typeof fields.avatar === 'string') delete fields.avatar;
+		if (typeof fields.background === 'string') delete fields.background;
+		for (var key in fields) {
+			if (fields[key] !== null) formData.append(key, fields[key]);
+		}
+		return formData;
+	};
+
+	const getFilePath = (path) => baseURL + path;
+
+	const updateProfile = async () => {
 		try {
 			axiosInstance.defaults.headers.Authorization = 'Bearer ' + $authStore.authData?.access_token;
-			const response = await axiosInstance.get('/api/authentication/profile/');
+			const response = await axiosInstance.post(
+				'/api/authentication/profile/',
+				objectToFormData(profile)
+			);
 			$authStore.profile = response?.data?.profile;
-			profile = $authStore.profile;
-			profile.metamask_id = localStorage.getItem('MetamaskId');
+			profile = response?.data?.profile;
 		} catch (error) {}
 	};
 
+	const addBackground = () => backgroundInput.click();
+	const addAvatar = () => avatarInput.click();
+	const setBackground = (event) => {
+		profile.background = event.target.files[0];
+		updateProfile();
+	};
+	const setAvatar = (event) => {
+		profile.avatar = event.target.files[0];
+		updateProfile();
+	};
 	onMount(() => {
 		getProfile();
 	});
 </script>
 
 <div class="container-fluid">
-	<div class="row justify-content-center" on:click={setBackground}>
+	<div class="row justify-content-center" on:click={addBackground}>
 		<img
-			src={profile.background}
+			src={getFilePath(profile.background)}
 			class="img-fluid ps-0 pe-0"
 			style="height: 300px; background-color: #BDBDBD;"
 			alt="..."
 		/>
+		<input type="file" bind:this={backgroundInput} on:change={setBackground} hidden />
 	</div>
 	<div style="margin-top: -100px;" class="row justify-content-center ">
 		<div class="col-8">
 			<div class="row">
 				<div class="col-3 text-center">
 					<img
+						on:click={addAvatar}
 						style="width: 200px; height:200px; background-color: #9E9E9E; "
-						src={profile.avatar}
+						src={getFilePath(profile.avatar)}
 						class="img-fluid rounded-circle"
 						alt=""
 					/>
+					<input type="file" bind:this={avatarInput} on:change={setAvatar} hidden />
 				</div>
 				<div class="col d-flex justify-content-lg-between">
 					<a

@@ -1,8 +1,5 @@
 <script>
-	import CompNavbar from '../components/CompNavbar.svelte';
 	import MainCardItem from '../components/MainPage/MainCardItem.svelte';
-	import CompFooter from '../components/CompFooter.svelte';
-	import MainAboutNft from '../components/MainPage/MainAboutNft.svelte';
 	import MainGuide from '../components/MainPage/MainGuide.svelte';
 	import axiosInstance from '../components/axios/axiosApi';
 	import { onMount } from 'svelte';
@@ -14,49 +11,63 @@
 
 	$: dict.set(translations);
 
-  let dataCard = [];
-  let userData
-let promise = getNft()
+	let dataCard = [];
+	let userData;
+	let promise = getNft();
 
-	async function getToken (refreshToken) {
-		await axiosInstance
-		.post('/api/authentication/token/refresh/', { refresh: refreshToken })
-		.then(
+	async function getToken(refreshToken) {
+		await axiosInstance.post('/api/authentication/token/refresh/', { refresh: refreshToken }).then(
 			(res) => {
 				$authStore.isLogin = true;
 				console.log(res);
 				localStorage.setItem('userData', JSON.stringify(res.data));
 			},
 			(err) => {
-          		$authStore.isLogin = false;
+				$authStore.isLogin = false;
 				console.log(err.response);
 				localStorage.setItem('userData', '');
 				localStorage.setItem('MetamaskId', '');
 			}
 		);
-	};
+	}
 
-	async function getNft () {
+	async function getNft() {
 		try {
-			let res = await axiosInstance.get('/api/nft/')
-			let data = [...res.data.results]
-			return data 
+			let res = await axiosInstance.get('/api/nft/');
+			let data = [...res.data.results];
+			return data;
 		} catch (err) {
-			console.log(err.response)	
+			console.log(err.response);
 		}
-	};
+	}
 
-	onMount(async() => {
-		if (localStorage.getItem("userData")) {
-		userData = JSON.parse(localStorage.getItem("userData"))
-		await getToken(userData.refresh_token);
+	onMount(async () => {
+		if (localStorage.getItem('userData')) {
+			userData = JSON.parse(localStorage.getItem('userData'));
+			await getToken(userData.refresh_token);
 		} else {
-		$authStore.isLogin = false;
+			$authStore.isLogin = false;
 		}
-		dataCard = await getNft()
-		console.log(dataCard.length)
+		dataCard = await getNft();
+		console.log(dataCard.length);
 	});
- 
+
+	let count = 1;
+
+	function scrollDown() {
+		count += 1;
+		if (count > 4) {
+			count = 4;
+		}
+		console.log(count);
+	}
+	function scrollUp() {
+		count -= 1;
+		if (count < 1) {
+			count = 1;
+		}
+		console.log(count);
+	}
 </script>
 
 <svelte:head>
@@ -160,7 +171,10 @@ let promise = getNft()
 <!-- START Section-2 -->
 <div class="row justify-content-center mb-4">
 	<div class="col-8">
-		<h3 class="pop_title" style="font-family: 'Open Sans'; font-size:28px; font-weight: bold; margin-top:30px">
+		<h3
+			class="pop_title"
+			style="font-family: 'Open Sans'; font-size:28px; font-weight: bold; margin-top:30px"
+		>
 			{$t('main.title.pop')}
 		</h3>
 	</div>
@@ -169,14 +183,13 @@ let promise = getNft()
 	<div class="col-8">
 		<!--START Card 2  -->
 		<div class="row row-cols-1 row-cols-md-3 g-4">
-			{#await promise }
-				<MainCardItem/>
-			{:then data} 
+			{#await promise}
+				<MainCardItem />
+			{:then data}
 				{#each { length: 6 } as _, index}
 					<MainCardItem data={dataCard[index]} />
 				{/each}
 			{/await}
-
 		</div>
 		<!--END Card 2-->
 	</div>
@@ -206,16 +219,19 @@ let promise = getNft()
 		<div class="subsection2 col-4">
 			<!--START Card 1  -->
 			{#await promise}
-				<div class="shadow-1 d-flex align-items-center justify-content-center" style="height: 620.327px">
+				<div
+					class="shadow-1 d-flex align-items-center justify-content-center"
+					style="height: 620.327px"
+				>
 					<div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
-  						<span class="visually-hidden">Loading...</span>
+						<span class="visually-hidden">Loading...</span>
 					</div>
 				</div>
-			{:then data} 
+			{:then data}
 				<MainCard data={data[Math.floor(Math.random() * data.length)]} />
 				<!-- <MainCard data={data[0]} /> -->
 			{/await}
-			
+
 			<!--END Card 1-->
 		</div>
 	</div>
@@ -306,29 +322,81 @@ let promise = getNft()
 			<div class="row justify-content-center mb-4">
 				<div class="col-2">
 					<div class="row justify-content-center mb-4">
-						<i class="fas fa-caret-up" style="font-size:50px; color:gold" />
+						<i on:click={scrollUp} class="fas fa-caret-up" style="font-size:50px; color:gold" />
 
 						<!-- <i class="fas fa-caret-down"></i> -->
 					</div>
 					<div class="row justify-content-center mb-4">
-						<i class="fas fa-caret-down" style="font-size:50px; color:gold" />
+						<i on:click={scrollDown} class="fas fa-caret-down" style="font-size:50px; color:gold" />
 					</div>
 				</div>
 
-				<div class="col-7">
-					<div class="card-body">
-						<h5
-							class="card-title"
-							style="font-family: 'Open Sans'; font-size:24  px; font-weight: bold;"
-						>
-							{$t('main.nft.subtitle.deposit')}
-						</h5>
-						<p
-							class="card-text mt-4 mb-4"
-							style="font-family: 'Open Sans'; font-size:14px; font-weight: regular;"
-						>
-							{$t('main.nft.text.deposit')}
-						</p>
+				<div class="col-7 main_cards">
+					<div class="info_cards">
+						{#if count === 1}
+							<div class="card-body">
+								<h5
+									class="card-title"
+									style="font-family: 'Open Sans'; font-size:24  px; font-weight: bold;"
+								>
+									{$t('main.nft.subtitle.marketplace')}
+								</h5>
+								<p
+									class="card-text mt-4 mb-4"
+									style="font-family: 'Open Sans'; font-size:14px; font-weight: regular;"
+								>
+									{$t('main.nft.text.marketplace')}
+								</p>
+							</div>
+						{/if}
+						{#if count === 2}
+							<div class="card-body">
+								<h5
+									class="card-title"
+									style="font-family: 'Open Sans'; font-size:24  px; font-weight: bold;"
+								>
+									{$t('main.nft.subtitle.deposit')}
+								</h5>
+								<p
+									class="card-text mt-4 mb-4"
+									style="font-family: 'Open Sans'; font-size:14px; font-weight: regular;"
+								>
+									{$t('main.nft.text.deposit')}
+								</p>
+							</div>
+						{/if}
+						{#if count === 3}
+							<div class="card-body">
+								<h5
+									class="card-title"
+									style="font-family: 'Open Sans'; font-size:24  px; font-weight: bold;"
+								>
+									{$t('main.nft.subtitle.cryptocurrencies')}
+								</h5>
+								<p
+									class="card-text mt-4 mb-4"
+									style="font-family: 'Open Sans'; font-size:14px; font-weight: regular;"
+								>
+									{$t('main.nft.text.cryptocurrencies')}
+								</p>
+							</div>
+						{/if}
+						{#if count === 4}
+							<div class="card-body">
+								<h5
+									class="card-title"
+									style="font-family: 'Open Sans'; font-size:24  px; font-weight: bold;"
+								>
+									{$t('main.nft.subtitle.add')}
+								</h5>
+								<p
+									class="card-text mt-4 mb-4"
+									style="font-family: 'Open Sans'; font-size:14px; font-weight: regular;"
+								>
+									{$t('main.nft.text.add')}
+								</p>
+							</div>
+						{/if}
 					</div>
 				</div>
 			</div>
@@ -427,7 +495,18 @@ let promise = getNft()
 		font-weight: 600;
 		font-family: 'Orbitron', sans-serif;
 	}
-
+	.info_cards {
+		height: auto;
+		scroll-behavior: smooth;
+	}
+	.main_cards {
+		max-height: 146px;
+		overflow: scroll;
+		scroll-behavior: smooth;
+	}
+	.main_cards::-webkit-scrollbar {
+		display: none; /* Safari and Chrome */
+	}
 	@media screen and (max-width: 579px) {
 		.section1 {
 			display: flex;
@@ -446,17 +525,19 @@ let promise = getNft()
 		.aboutus_title {
 			text-align: center;
 		}
-    .card {
-      width: 100% !important;
-    }
-    .card_main {
-      width: 100%;
-    }
-    .gallery_title, .pop_title, .nft_title {
-      text-align: center;
-    }
-	.carousel {
-		padding-top: 97px;
+		.card {
+			width: 100% !important;
+		}
+		.card_main {
+			width: 100%;
+		}
+		.gallery_title,
+		.pop_title,
+		.nft_title {
+			text-align: center;
+		}
+		.carousel {
+			padding-top: 97px;
+		}
 	}
-  }
 </style>

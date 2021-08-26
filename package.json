@@ -28,6 +28,7 @@
     "filepond-plugin-image-preview": "^4.6.7",
     "jwt-decode": "^3.1.2",
     "svelte-filepond": "^0.2.0",
+    "svelte-image-encoder": "^1.2.5",
     "svelte-navigator": "^3.1.5"
   }
 }

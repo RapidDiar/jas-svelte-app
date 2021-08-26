@@ -1,8 +1,4 @@
 <script>
-	import AuthRegisterForm from '../components/AuthPage/AuthRegisterForm.svelte';
-	import AuthLoginForm from '../components/AuthPage/AuthLoginForm.svelte';
-	import CompNavbar from '../components/CompNavbar.svelte';
-
 	import translations from '../translations';
 	import { dict, t } from '../i18n';
 
@@ -25,25 +21,16 @@
 		password: ''
 	};
 
-	let alert = '';
-
-	const onLogin = () => {
-		console.log(data);
-
-		axiosInstance.post('/api/authentication/login/', data).then(
-			(res) => {
-				$authStore.error = false;
-				$authStore.isLogin = true;
-				console.log(res);
-                localStorage.setItem('userData', JSON.stringify(res.data))
-				goto('/');
-			},
-			(err) => {
-				$authStore.error = true;
-				alert = 'Incorrect login or password';
-				console.log(err.response);
-			}
-		);
+	const onLogin = async () => {
+		try {
+			const response = await axiosInstance.post('/api/authentication/login/', data);
+			localStorage.setItem('jas-auth-data', JSON.stringify(response.data));
+			$authStore.isLogin = true;
+			$authStore.authData = response.data;
+			goto('/myProfile/onSale');
+		} catch (error) {
+			$authStore.isLogin = false;
+		}
 	};
 </script>
 

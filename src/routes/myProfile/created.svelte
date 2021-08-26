@@ -1,17 +1,18 @@
 <script>
 import { onMount } from "svelte";
-
-import axiosInstance from "../../components/axios/axiosApi";
+import { authStore } from '../../store.js';
+import axiosInstance from '../../components/axios/axiosApiMedia';
 import CompCard from "../../components/CompCard/CompCard.svelte";
-
+import axiosApiMedia from '../../components/axios/axiosApiMedia';
 let items = []
-
+let profile = $authStore.profile;
 const getData = () => {
-    axiosInstance.defaults.headers.Authorization = 'JWT ' + localStorage.getItem('accessToken')
-    axiosInstance.get('/account/api/NFT/').then(
+    console.log($authStore.authData);
+    axiosInstance.defaults.headers.Authorization = 'Bearer ' + $authStore.authData?.access_token;
+    axiosApiMedia.get('/api/nft/').then(
         res => {
-            console.log(res.data)
-            items = [...res.data]
+            console.log(res.data.results)
+            items = [...res.data.results]
             // res.data.map(item => {
             //     console.log(item)
             //     items.push(item)
@@ -34,7 +35,7 @@ onMount(()=> {
 </script>
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
-    {#each items as item }
+    {#each items.reverse() as item }
         <CompCard data={item}/>
     {/each}
 </div>

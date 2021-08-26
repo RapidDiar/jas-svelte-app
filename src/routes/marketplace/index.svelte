@@ -1,137 +1,138 @@
 <script>
-import axiosInstance from "../../components/axios/axiosApi";
+	import MainCardItem from '../../components/MainPage/MainCardItem.svelte';
+	import axiosInstance from '../../components/axios/axiosApi';
+	import { onMount } from 'svelte';
+	// import { page } from "$app/stores";
+	let links = {
+		next: null,
+		previous: null
+	};
+	let isLoading = false;
+	let nftList = [];
+	let page = 1;
+	let pages = 0;
+	let filterVisible = false;
 
-import { onMount } from "svelte";
+	let filter = {
+		recentlyAdd: false,
+		sortBy: '',
+		maxPrice: null,
+		minPrice: null
+	};
 
-import CompCard from "../../components/CompCard/CompCard.svelte"
+	const getNFTList = async (selectedPage) => {
+		isLoading = true;
+		page = selectedPage;
+		const response = await axiosInstance.get(`/api/nft/?page=${page}`);
+		nftList = response.data.results;
+		links = response.data.links;
+		pages = Math.ceil(response.data.total / response.data.page_size);
+		isLoading = false;
+	};
 
-let data = []
-
-let filterVisible = false
-
-let resLen
-
-let filter = {
-    recentlyAdd: false,
-    sortBy: '',
-    maxPrice: null,
-    minPrice: null,
-}
-
-const getData = () => {
-    axiosInstance('/account/nft-list/').then(
-        res => {
-            console.log(res)
-            data = [...res.data]
-            resLen = data.length.toString()
-        },
-        err => {
-            console.log(err.response)
-        }
-    )
-}
-
-onMount(()=> {
-    getData()
-    
-})
-
-const onFilter = () => {
-    if (filter.recentlyAdd) {
-        data = [...data]
-        data.reverse()
-    } else {
-        data = [...data]
-        data.reverse()
-    }
-}
-
-const activateFilter = () => {
-    filterVisible = !filterVisible
-}
-
+	onMount(async () => {
+		console.log(window.location);
+		await getNFTList(page);
+	});
 </script>
 
 <div class="container-fluid">
-    <div class="row justify-content-lg-center mt-4">
-        <div class="col-8">
-            <div class="row">
-                <div class="col-3">
-                    <button type="button" class="btn btn-primary btn-lg h-100 w-100 " on:click={activateFilter}>Filter</button>
-                </div>
-                <div class="col d-flex justify-content-lg-end">
-                    <select class="custom-select p-2 col-3 me-5" bind:value={filter.recentlyAdd} on:change={onFilter}>
-                        <option selected value="">Recently added</option>
-                        <option value={true}>True</option>
-                        <option value={false}>False</option>
-                        <option value="3">Three</option>
-                    </select>
-                    <select class="custom-select p-2 col-3 me-5">
-                        <option selected>All items</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
-                    <select class="custom-select p-2 col-3">
-                        <option selected>Sort by</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
-                </div>
-            </div>
-            {#if filterVisible}
-            <div class="row mt-4">
-                <div class="col">
-                    <div class="row">
-                        <h4>Price</h4>
-                    </div>
-                    <div class="row">
-                        <select class="custom-select p-2 col-8 ms-2">
-                        <option selected>Sort by</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="row">
-                        <h4>Author</h4>
-                    </div>
-                    <div class="row">
-                        <select class="custom-select p-2 col-8 ms-2">
-                        <option selected>Sort by</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="row">
-                        <h4 class="w-100">Price range</h4>
-                    </div>  
-                    <div class="row">
-                        <div class="input-group input-group-lg w-50">
-                            <input type="text" class="form-control" placeholder=""/>
-                        </div>
-                        <div class="input-group input-group-lg w-50">
-                            <input type="text" class="form-control" />
-                        </div>  
-                    </div>          
-                </div>   
-            </div>
-            {/if}
-            <div class="row mt-4">
-                <p> {resLen} results</p>
-            </div>
+	<div class="row justify-content-lg-center mt-4 mb-5">
+		<div class="col-2 pe-5">
+			<h4 class="mb-5">Explore</h4>
+			<p><i class="fas fa-circle me-3" />View All</p>
+			<p><i class="fas fa-stop me-3" />By Collection</p>
+			<p><i class="fas fa-user-circle me-3" />By Author</p>
+			<hr />
+			<h4 class="mb-3">Categories</h4>
+			<p class="mb-1">Modernism</p>
+			<p class="mb-1">Impressionism</p>
+			<p class="mb-1">Abstract Art</p>
+			<p class="mb-1">Expressionism</p>
+			<p class="mb-1">Cubism</p>
+			<p class="mb-1">Surrealism</p>
+			<p class="mb-1">See All</p>
+			<hr />
+			<h4 class="mb-3">Price</h4>
+			<div class="d-flex">
+				<div class="input-group mb-3 w- 50">
+					<input type="text" class="form-control" placeholder="min" />
+				</div>
+				<div class="input-group mb-3">
+					<input type="text" class="form-control" placeholder="max" />
+				</div>
+			</div>
+			<hr />
+			<h4 class="mb-3">Status</h4>
+			<p class="mb-1">On Sale</p>
+			<p class="mb-1">Has offers</p>
+			<p class="mb-1">Buy Now</p>
+			<p class="mb-1">On Auction</p>
+			<div class="d-flex justify-content-center mt-4">
+				<button type="button" class="btn btn-primary btn-lg">Search</button>
+			</div>
+		</div>
+		<div class="col-6">
+			<div class="row mb-4">
+				<div class="col-3">
+					{#if isLoading}
+						<p class="mb-0 align-self-center">Loading</p>
+					{:else}
+						<p class="mb-0 align-self-center">{nftList.length} results</p>
+					{/if}
+				</div>
+				<div class="col d-flex justify-content-lg-end">
+					<select class="custom-select p-2 col-3">
+						<option selected>Sort by</option>
+						<option value="1">One</option>
+						<option value="2">Two</option>
+						<option value="3">Three</option>
+					</select>
+				</div>
+			</div>
 
-            <div class="row row-cols-1 row-cols-md-4 g-4">
-                {#each data as item }
-                    <CompCard data={item}/>
-                {/each}
-            </div>
-        </div>
-    </div>
+			{#if isLoading}
+				<div class="row justify-content-center mt-5" style="height: 1500px;">
+					<div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+						<span class="visually-hidden">Loading...</span>
+					</div>
+				</div>
+			{:else}
+				<div class="row row-cols-1 row-cols-md-3 g-4">
+					{#each nftList as nft}
+						<MainCardItem data={nft} />
+					{/each}
+				</div>
+			{/if}
+		</div>
+	</div>
+	<div class="row justify-content-center mb-5">
+		<div class="col-auto">
+			{#if nftList.length}
+				<nav>
+					<ul class="pagination pagination-lg">
+						<li class="page-item">
+							{#if links.previous}<div class="page-link" on:click={() => getNFTList(page - 1)}>
+									Previous
+								</div>{/if}
+						</li>
+						{#each { length: pages } as _, index}
+							<li class="page-item" aria-current="page">
+								<div class="page-link" on:click={() => getNFTList(index + 1)}>
+									{index + 1}<span class="visually-hidden" />
+								</div>
+							</li>
+						{/each}
+						<li class="page-item">
+							{#if links.next}<div class="page-link" on:click={() => getNFTList(page + 1)}>
+									Next
+								</div>{/if}
+						</li>
+					</ul>
+				</nav>
+			{:else}
+				<div>No results</div>
+			{/if}
+		</div>
+	</div>
 </div>

@@ -1,6 +1,5 @@
-  <script>
-
-    import { goto } from "$app/navigation";
+<script>
+import { goto } from "$app/navigation";
 import { nftStore } from "../../nftStore";
 
 export let data = {
@@ -12,7 +11,7 @@ export let data = {
 
     const goToPage = () => {
       nftStore.set(data)
-      goto('/nftItem')
+      goto(`/nftItem/${data.id}`)
     }
 
   </script>

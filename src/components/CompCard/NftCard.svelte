@@ -1,27 +1,48 @@
 <script>
+import { onMount } from "svelte";
+import axiosInstance from "../axios/axiosApi";
+let host = 'http://127.0.0.1:8000/'
+let date
+export let data = {}
 
-export let data = {
-    image: "https://mdbootstrap.com/img/new/slides/041.jpg"
+function getDataDate () {
+    let result = new Date(data.created_at)
+    return (`${result.getDate()}.${result.getMonth()}.${result.getFullYear()}`)
 }
+
+
+
+onMount(()=>{
+    date = getDataDate()
+    console.log(date)
+    axiosInstance.get('https://api.coinmarketcap.com/v1/ticker/ethereum/').then(
+        res => {
+            console.log(res)
+        },
+        err => {
+            console.log(err.response)
+        }
+    )
+})
 
 </script>
 
 
 
-<img src={data.image} class="img-fluid mb-3 nftImage rounded-4" alt="..." />
+<img src={host + data.image} class="img-fluid mb-3 nftImage rounded-4" alt="..." />
 
 
 <div class="card p-3">
     <div class="row">
         <div class="col-2 text-center pe-0">
             <img
-                src="https://mdbootstrap.com/img/new/standard/city/047.jpg"
+                src={host + data.image}
                 class="avatar img-fluid rounded-circle"
                 alt=""
             />
         </div>
         <div class="col-6 ps-0">
-            <p class="mb-1"><strong>Adah Mitchel</strong></p>
+            <p class="mb-1"><strong>{data.user.username}</strong></p>
             <p class="mb-0">Owner</p>
         </div>
         <div class="col">
@@ -30,7 +51,7 @@ export let data = {
                 <a><i class="fab fa-twitter fa-lg"></i></a>
             </div>
 
-            <p class="mb-0">Buy NFT: 10.08.2021</p>
+            <p class="mb-0">Buy NFT: {date}</p>
         </div>
     </div>
 </div>

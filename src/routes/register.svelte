@@ -198,7 +198,7 @@
 						<!-- Submit button -->
 						<button
 							type="submit"
-							class="btn btn-primary btn-rounded btn-lg btn-block mb-4"
+							class="btn btn-primary btn-rounded btn-lg btn-block mb-10 mt-6"
 							style="background-color: yellow; color:black">{$t('auth.button_register')}</button
 						>
 					</form>

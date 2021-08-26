@@ -14,51 +14,49 @@
 
 	$: dict.set(translations);
 
-	let dataCard = [];
-
+  let dataCard = [];
   let userData
+let promise = getNft()
 
-
-	const getToken = (refreshToken) => {
-		axiosInstance
-			.post('/api/authentication/token/refresh/', { refresh: refreshToken })
-			.then(
-				(res) => {
-					$authStore.isLogin = true;
-					console.log(res);
-					localStorage.setItem('userData', JSON.stringify(res.data));
-				},
-				(err) => {
-          $authStore.isLogin = false;
-					console.log(err.response);
-					localStorage.setItem('userData', '');
-					localStorage.setItem('MetamaskId', '');
-				}
-			);
-	};
-
-	const getNft = () => {
-		axiosInstance.get('/account/nft-list/').then(
+	async function getToken (refreshToken) {
+		await axiosInstance
+		.post('/api/authentication/token/refresh/', { refresh: refreshToken })
+		.then(
 			(res) => {
+				$authStore.isLogin = true;
 				console.log(res);
-				dataCard = [...res.data];
+				localStorage.setItem('userData', JSON.stringify(res.data));
 			},
 			(err) => {
+          		$authStore.isLogin = false;
 				console.log(err.response);
+				localStorage.setItem('userData', '');
+				localStorage.setItem('MetamaskId', '');
 			}
 		);
 	};
 
-	onMount(() => {
-    if (localStorage.getItem("userData")) {
-      userData = JSON.parse(localStorage.getItem("userData"))
-      console.log(userData.refresh_token)
-      getToken(userData.refresh_token);
-    } else {
-      $authStore.isLogin = false;
-    }
-    getNft();
+	async function getNft () {
+		try {
+			let res = await axiosInstance.get('/api/nft/')
+			let data = [...res.data.results]
+			return data 
+		} catch (err) {
+			console.log(err.response)	
+		}
+	};
+
+	onMount(async() => {
+		if (localStorage.getItem("userData")) {
+		userData = JSON.parse(localStorage.getItem("userData"))
+		await getToken(userData.refresh_token);
+		} else {
+		$authStore.isLogin = false;
+		}
+		dataCard = await getNft()
+		console.log(dataCard.length)
 	});
+ 
 </script>
 
 <svelte:head>
@@ -171,9 +169,14 @@
 	<div class="col-8">
 		<!--START Card 2  -->
 		<div class="row row-cols-1 row-cols-md-3 g-4">
-			{#each { length: 6 } as _, index}
-				<MainCardItem data={dataCard[index]} />
-			{/each}
+			{#await promise }
+				<MainCardItem/>
+			{:then data} 
+				{#each { length: 6 } as _, index}
+					<MainCardItem data={dataCard[index]} />
+				{/each}
+			{/await}
+
 		</div>
 		<!--END Card 2-->
 	</div>
@@ -202,7 +205,17 @@
 		</div>
 		<div class="subsection2 col-4">
 			<!--START Card 1  -->
-			<MainCard data={dataCard[Math.floor(Math.random() * dataCard.length)]} />
+			{#await promise}
+				<div class="shadow-1 d-flex align-items-center justify-content-center" style="height: 620.327px">
+					<div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+  						<span class="visually-hidden">Loading...</span>
+					</div>
+				</div>
+			{:then data} 
+				<MainCard data={data[Math.floor(Math.random() * data.length)]} />
+				<!-- <MainCard data={data[0]} /> -->
+			{/await}
+			
 			<!--END Card 1-->
 		</div>
 	</div>

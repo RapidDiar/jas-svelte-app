@@ -9,6 +9,11 @@
 	$: outerWidth = 0;
 	$: isLogin = $authStore.isLogin;
 
+	const setLocale = (event) => {
+		$locale = event.target.value;
+		localStorage.setItem('jas-locale', $locale);
+	};
+
 	let open = false;
 
 	const burgerHandler = () => {
@@ -116,7 +121,7 @@
 								<span class="lang_select_title_mobile">Язык</span>
 							</div>
 							<div class="mobile_lang">
-								<select bind:value={$locale} class="form-select ms-3">
+								<select class="form-select ms-3">
 									{#each languages as lang}
 										<option value={lang}>
 											{lang}
@@ -254,7 +259,8 @@
 						{/if}
 
 						<select
-							bind:value={$locale}
+							value={$locale}
+							on:change={setLocale}
 							class="form-select ms-3"
 							style="border:honeydew; font-family: 'Open Sans'; font-size:16px; font-weight: meduim; color:rgb(0, 0, 0);"
 						>

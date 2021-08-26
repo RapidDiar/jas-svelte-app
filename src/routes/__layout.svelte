@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
+	import { locale } from '../i18n';
 	import { authStore } from '../store.js';
 	import axiosInstance from '../components/axios/axiosApi';
 
@@ -8,6 +9,11 @@
 	import { goto } from '$app/navigation';
 
 	let authData = null;
+
+	const setLocale = () => {
+		const userLocale = localStorage.getItem('jas-locale');
+		$locale = userLocale || 'ru';
+	};
 
 	const getToken = async () => {
 		try {
@@ -36,6 +42,7 @@
 		authData = JSON.parse(localStorage.getItem('jas-auth-data'));
 		if (authData?.refresh_token) getToken();
 		else $authStore.isLogin = false;
+		setLocale();
 	});
 </script>
 

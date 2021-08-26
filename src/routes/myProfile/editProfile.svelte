@@ -1,4 +1,4 @@
-<script>
+	<script>
 	import { authStore } from '../../store.js';
 	import axiosInstance from '../../components/axios/axiosApi';
 	import { onMount } from 'svelte';

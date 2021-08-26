@@ -1,6 +1,8 @@
 <script>
 	import CompFooter from '../components/CompFooter.svelte';
 	import CompNavbar from '../components/CompNavbar.svelte';
+	import { authStore } from '../store.js';
+	import axiosInstance from '../components/axios/axiosApi';
 	import FilePond, { registerPlugin, supported } from 'svelte-filepond';
 	import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
 	import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
@@ -10,11 +12,12 @@
 
 	import translations from '../translations';
 	import { dict, t } from '../i18n';
-
-    let src;
+	let profile = $authStore.profile;
+    let image;
 
 	$: dict.set(translations);
 	let data = {
+		name: '',
 		image: '',
 		title: '',
 		price: '',
@@ -31,16 +34,18 @@
 	registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
 	function loadFile(e) {
-        data.image = URL.createObjectURL(e.target.files[0]);
-
+        data.image = e.target.files[0];
+		data.name = data.image.name;
+        image = URL.createObjectURL(data.image);
     }
 
 	const onSubmit = () => {
-		axiosApiMedia.defaults.headers.Authorization = 'JWT ' + localStorage.getItem('accessToken');
+		axiosInstance.defaults.headers.Authorization = 'Bearer ' + $authStore.authData?.access_token;
 
 		console.log(data);
 		const form = new FormData();
-		form.append('image', data.image, data.image.name);
+		form.append('name', data.name);
+		form.append('image', data.image);
 		form.append('title', data.title);
 		form.append('price', data.price);
 		form.append('tags', data.tags);
@@ -52,7 +57,7 @@
 		form.append('selling_document', data.selling_document);
 		form.append('copyright_document', data.copyright_document);
 
-		axiosApiMedia.post('/app/api/nft/', form).then(
+		axiosApiMedia.post('/api/nft/', form).then(
 			(res) => {
 				visible = 'success';
 				setTimeout(() => {
@@ -221,7 +226,7 @@
 										instantUpload={true}
                                         bind:value={data.selling_document}
                                     /> -->
-                                    <input bind:value={data.selling_document} type="file">
+                                    <input bind:value={data.selling_document} on:change={(e) => {data.selling_document = e.target.files[0]}} type="file">
 								</div>
 							</div>
 						</div>
@@ -240,7 +245,7 @@
                                             instantUpload={true}
                                             bind:value={data.copyright_document}
                                         /> -->
-                                        <input bind:value={data.copyright_document} type="file">
+                                        <input bind:value={data.copyright_document} on:change={(e) => {data.copyright_document = e.target.files[0]}} type="file">
                                     </div>
                                 </div>
                             </div>
@@ -271,7 +276,7 @@
 					</div>
 					<!-- {#if data.image} -->
 					    <img
-							src={data.image}
+							src={image}
 							style="height: 350px; object-fit:cover "
 							class="card-img-top"
 							alt=""

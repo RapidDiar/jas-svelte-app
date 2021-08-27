@@ -4,6 +4,10 @@
 	import { dict, locale, t } from '../i18n';
 	import { goto } from '$app/navigation';
 
+	import AutoComplete from 'simple-svelte-autocomplete';
+	import axiosInstance from './axios/axiosApi';
+	import { onMount } from 'svelte';
+
 	$: languages = Object.keys(translations);
 	$: dict.set(translations);
 	$: outerWidth = 0;
@@ -28,6 +32,21 @@
 		localStorage.removeItem('metamaskID');
 		goto('/');
 	};
+
+	let items;
+	let selectedDataObject;
+	let selectedDataValue;
+
+	const getNft = async () => {
+		let response = await axiosInstance.get('/api/nft/?page_size=100');
+		let data = response.data.results;
+		return data;
+	};
+
+	let promise = getNft();
+	onMount(async () => {
+		items = await getNft();
+	});
 </script>
 
 <svelte:window bind:outerWidth />
@@ -147,14 +166,31 @@
 			<span class="input-group-text border-1 border-end-0" id="search-addon"
 				><i class="fas fa-search" /></span
 			>
-			<input
+
+			{#await promise}
+				<AutoComplete className="form-control p-0" />
+			{:then data}
+				<AutoComplete
+					className="form-control p-0"
+					{items}
+					bind:selectedItem={selectedDataObject}
+					bind:value={selectedDataValue}
+					labelFieldName="name"
+					valueFieldName="id"
+					keywordsFunction={(data) => data.name + ' ' + data.user.username}
+					onChange={() =>
+						selectedDataObject
+							? goto('nftItem/' + selectedDataObject.id)
+							: console.log(selectedDataObject?.id)}
+				/>
+			{/await}
+
+			<!-- <input
 				type="search"
 				class="form-control border-start-0"
 				placeholder={$t('navbar.input_search')}
-				aria-label="Search"
-				aria-describedby="search-addon"
 				style="font-family: 'Open Sans'; font-size:16px; font-weight: meduim; color:rgb(0, 0, 0);"
-			/>
+			/> -->
 		</div>
 		{#if outerWidth > 579}
 			<div class="d-flex align-items-center">

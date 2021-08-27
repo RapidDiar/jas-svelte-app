@@ -11,6 +11,7 @@
 
 	$: dict.set(translations);
 
+	let isLogin = $authStore.isLogin;
 	let dataCard = [];
 	let userData;
 	let promise = getNft();
@@ -20,7 +21,7 @@
 			(res) => {
 				$authStore.isLogin = true;
 				console.log(res);
-				localStorage.setItem('userData', JSON.stringify(res.data));
+				localStorage.setItem('jas-auth-data', JSON.stringify(res.data));
 			},
 			(err) => {
 				$authStore.isLogin = false;
@@ -33,7 +34,7 @@
 
 	async function getNft() {
 		try {
-			let res = await axiosInstance.get('/api/nft/');
+			let res = await axiosInstance.get('/api/nft/?page_size=100');
 			let data = [...res.data.results];
 			return data;
 		} catch (err) {
@@ -42,8 +43,8 @@
 	}
 
 	onMount(async () => {
-		if (localStorage.getItem('userData')) {
-			userData = JSON.parse(localStorage.getItem('userData'));
+		if (localStorage.getItem('jas-auth-data')) {
+			userData = JSON.parse(localStorage.getItem('jas-auth-data'));
 			await getToken(userData.refresh_token);
 		} else {
 			$authStore.isLogin = false;
@@ -208,12 +209,14 @@
 			<h3 class="mb-5" style="font-family: 'Open Sans'; font-size:32px; font-weight: bold;">
 				{$t('main.title.title')}
 			</h3>
-			<button
+			<a
+				href={isLogin ? '/addNft' : '/auth'}
 				type="button"
 				class="btn btn-primary btn-lg me-5 col-4"
-				style="color:black; background-color: gold;">{$t('main.button.create')}</button
+				style="color:black; background-color: gold;">{$t('main.button.create')}</a
 			>
-			<button type="button" class="btn btn-primary btn-lg col-4">{$t('main.button.explore')}</button
+			<a href="/marketplace" type="button" class="btn btn-primary btn-lg col-4"
+				>{$t('main.button.explore')}</a
 			>
 		</div>
 		<div class="subsection2 col-4">
@@ -246,46 +249,6 @@
 		</div>
 	</div>
 	<div class="row justify-content-center mb-4">
-		<div class="col-6" />
-		<div class="col-6">
-			<h5 style="font-family: 'Open Sans'; font-size:18px; font-weight: regular;">
-				{$t('main.title.range')}
-			</h5>
-		</div>
-	</div>
-
-	<div class="row justify-content-center mb-4">
-		<div class="col-4">
-			<select class="form-select" aria-label="Default select example">
-				<option selected style="font-family: 'Open Sans'; font-size:16px; font-weight: regular;"
-					>{$t('main.title.sort')}</option
-				>
-				<option value="1" style="font-family: 'Open Sans'; font-size:16px; font-weight: regular;"
-					>{$t('main.title.newest')}</option
-				>
-				<option value="2" style="font-family: 'Open Sans'; font-size:16px; font-weight: regular;"
-					>{$t('main.title.oldest')}</option
-				>
-			</select>
-		</div>
-		<div class="col-2">
-			<input
-				type="text"
-				class="form-control border-start-0"
-				placeholder="from"
-				style="font-family: 'Open Sans'; font-size:16px; font-weight: regular;"
-			/>
-		</div>
-		<div class="col-2">
-			<input
-				type="text"
-				class="form-control border-start-0"
-				placeholder="to"
-				style="font-family: 'Open Sans'; font-size:16px; font-weight: regular;"
-			/>
-		</div>
-	</div>
-	<div class="row justify-content-center mb-4">
 		<div class="col-8">
 			<!--START Card 2  -->
 			<div class="row row-cols-1 row-cols-md-3 g-4">
@@ -302,8 +265,8 @@
 	</div>
 	<div class="row justify-content-center mb-4">
 		<div class="col-2">
-			<button class="btn btn-primary btn-lg btn-block mb-4" style="color:white"
-				>{$t('main.button.load')}</button
+			<a href="/marketplace" class="btn btn-primary btn-lg btn-block mb-4" style="color:white"
+				>{$t('main.button.load')}</a
 			>
 		</div>
 	</div>

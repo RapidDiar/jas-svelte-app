@@ -3,9 +3,9 @@
 	import { onMount } from 'svelte';
 	import axiosInstance from '../../components/axios/axiosApiMedia.js';
 
-	let baseURL = 'http://0.0.0.0:8000';
+	let baseURL = 'http://127.0.0.1:8000';
 	let profile = $authStore.profile;
-	$: fullName = `${profile?.first_name} ${profile?.last_name}`;
+	let fullName;
 	let backgroundInput;
 	let avatarInput;
 
@@ -16,7 +16,8 @@
 
 	const getProfile = async () => {
 		try {
-			axiosInstance.defaults.headers.Authorization = 'Bearer ' + $authStore.authData?.access_token;
+			let userData = JSON.parse(localStorage.getItem('jas-auth-data'));
+			axiosInstance.defaults.headers.Authorization = 'Bearer ' + userData.access_token;
 			const response = await axiosInstance.get('/api/authentication/profile/');
 			$authStore.profile = response?.data?.profile;
 			profile = $authStore.profile;
@@ -39,7 +40,8 @@
 
 	const updateProfile = async () => {
 		try {
-			axiosInstance.defaults.headers.Authorization = 'Bearer ' + $authStore.authData?.access_token;
+			let userData = JSON.parse(localStorage.getItem('jas-auth-data'));
+			axiosInstance.defaults.headers.Authorization = 'Bearer ' + userData.access_token;
 			const response = await axiosInstance.post(
 				'/api/authentication/profile/',
 				objectToFormData(profile)
@@ -60,6 +62,8 @@
 		updateProfile();
 	};
 	onMount(() => {
+		let userData = JSON.parse(localStorage.getItem('jas-auth-data'));
+		fullName = `${userData.user.first_name} ${userData.user.last_name}`;
 		getProfile();
 	});
 </script>
@@ -74,7 +78,7 @@
 		/>
 		<input type="file" bind:this={backgroundInput} on:change={setBackground} hidden />
 	</div>
-	<div style="margin-top: -100px;" class="row justify-content-center ">
+	<div style="margin-top: -100px;" class="row justify-content-center">
 		<div class="col-8">
 			<div class="row">
 				<div class="col-3 text-center">
@@ -135,7 +139,7 @@
 						>Edit profile</a
 					>
 				</div>
-				<div class="col">
+				<div class="col mb-5">
 					<slot />
 				</div>
 			</div>

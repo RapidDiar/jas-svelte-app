@@ -1,9 +1,7 @@
 <script>
 	import { goto } from '$app/navigation';
 	import { nftStore } from '../../nftStore';
-
-	let host = 'http://0.0.0.0:8000';
-
+	let host = 'http://127.0.0.1:8000';
 	export let data = {
 		image: 'https://mdbootstrap.com/img/new/standard/city/041.jpg',
 		title: 'Tron',
@@ -23,12 +21,12 @@
 			<div class="container">
 				<div class="row">
 					<div class="col">
-						<h5 class="card-title">{data.title}</h5>
+						<h5 class="card-title">{data.name}</h5>
 					</div>
 					<div class="col text-end">
 						<p class="card-text mb-1">Praice:</p>
 						<p class="card-text mb-1">ETH {data.price}</p>
-						<p class="card-text mb-1">{data.tags}</p>
+						<p class="card-text mb-1">{data.user.username}</p>
 					</div>
 				</div>
 			</div>

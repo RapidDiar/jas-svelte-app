@@ -32,7 +32,6 @@
 			}
 			$authStore.authData = newAuthData;
 			$authStore.isLogin = true;
-			goto('/myProfile/onSale');
 		} catch (error) {
 			$authStore.isLogin = false;
 		}

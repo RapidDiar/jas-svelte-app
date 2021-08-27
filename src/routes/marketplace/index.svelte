@@ -23,7 +23,7 @@
 	const getNFTList = async (selectedPage) => {
 		isLoading = true;
 		page = selectedPage;
-		const response = await axiosInstance.get(`/api/nft/?page=${page}`);
+		const response = await axiosInstance.get(`/api/nft/?page=${page}&page_size=21`);
 		nftList = response.data.results;
 		links = response.data.links;
 		pages = Math.ceil(response.data.total / response.data.page_size);
@@ -41,7 +41,19 @@
 		<div class="col-2 pe-5">
 			<h4 class="mb-5">Explore</h4>
 			<p><i class="fas fa-circle me-3" />View All</p>
-			<p><i class="fas fa-stop me-3" />By Collection</p>
+			<p>
+				<svg
+					class="me-3"
+					xmlns="http://www.w3.org/2000/svg"
+					height="16px"
+					viewBox="0 0 24 24"
+					width="16px"
+					fill="#000000"
+					><path d="M0 0h24v24H0V0z" fill="none" /><path
+						d="M20 4v12H8V4h12m0-2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 9.67l1.69 2.26 2.48-3.1L19 15H9zM2 6v14c0 1.1.9 2 2 2h14v-2H4V6H2z"
+					/></svg
+				>By Collection
+			</p>
 			<p><i class="fas fa-user-circle me-3" />By Author</p>
 			<hr />
 			<h4 class="mb-3">Categories</h4>

@@ -8,9 +8,9 @@
 	import axiosInstance from '../components/axios/axiosApi.js';
 	import { authStore } from '../store.js';
 	import jwt_decode from 'jwt-decode';
+	import { onMount } from 'svelte';
 
 	$: languages = Object.keys(translations);
-	$: dict.set(translations);
 
 	if ($authStore.isLogin) {
 		goto('/');
@@ -32,6 +32,8 @@
 			$authStore.isLogin = false;
 		}
 	};
+
+	onMount(() => {});
 </script>
 
 <svelte:head>

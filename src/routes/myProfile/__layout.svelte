@@ -3,7 +3,7 @@
 	import { onMount } from 'svelte';
 	import axiosInstance from '../../components/axios/axiosApiMedia.js';
 
-	let baseURL = 'http://127.0.0.1:8000';
+	let baseURL = 'http://10.0.40.96:8000';
 	let profile = $authStore.profile;
 	let fullName;
 	let backgroundInput;

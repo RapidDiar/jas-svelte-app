@@ -4,7 +4,7 @@
 	import { onMount } from 'svelte';
 	import NftCard from '../../components/CompCard/NftCard.svelte';
 
-	let host = 'http://127.0.0.1:8000';
+	let host = 'http://10.0.40.96:8000/';
 
 	let id = $page.params.slug;
 	let promise = getNft();

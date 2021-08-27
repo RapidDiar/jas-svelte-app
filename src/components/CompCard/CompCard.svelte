@@ -1,7 +1,7 @@
 <script>
 	import { goto } from '$app/navigation';
 	import { nftStore } from '../../nftStore';
-	let host = 'http://127.0.0.1:8000';
+	let host = 'http://10.0.40.96:8000';
 	export let data = {
 		image: 'https://mdbootstrap.com/img/new/standard/city/041.jpg',
 		title: 'Tron',

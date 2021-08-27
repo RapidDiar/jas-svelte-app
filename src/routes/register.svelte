@@ -38,7 +38,7 @@
 </svelte:head>
 
 <div class="container-fluid ">
-	<div class="row">
+	<div class="row ">
 		<div class="col" style="background-color: yellow;">
 			<div class="row justify-content-center align-items-center registerPage">
 				<div class="col-6 ">
@@ -207,6 +207,6 @@
 
 <style>
 	.registerPage {
-		height: 90vh;
+		height: 100%;
 	}
 </style>

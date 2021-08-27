@@ -11,24 +11,25 @@
 
 	$: dict.set(translations);
 
+	let isLogin = $authStore.isLogin;
 	let dataCard = [];
 	let count = 1;
-	
+
 	function scrollDown() {
 		count += 1;
-		if(count > 4) {
+		if (count > 4) {
 			count = 4;
 		}
 		console.log(count);
 	}
 	function scrollUp() {
 		count -= 1;
-		if(count < 1) {
+		if (count < 1) {
 			count = 1;
 		}
 		console.log(count);
 	}
-	
+
 	// const getNft = () => {
 	// 	axiosInstance.get('/account/nft-list/').then(
 	// 		(res) => {
@@ -176,12 +177,14 @@
 			<h3 class="mb-5" style="font-family: 'Open Sans'; font-size:32px; font-weight: bold;">
 				{$t('main.title.title')}
 			</h3>
-			<button
+			<a
+				href={isLogin ? '/addNft' : '/auth'}
 				type="button"
 				class="btn btn-primary btn-lg me-5 col-4"
-				style="color:black; background-color: gold;">{$t('main.button.create')}</button
+				style="color:black; background-color: gold;">{$t('main.button.create')}</a
 			>
-			<button type="button" class="btn btn-primary btn-lg col-4">{$t('main.button.explore')}</button
+			<a href="/marketplace" type="button" class="btn btn-primary btn-lg col-4"
+				>{$t('main.button.explore')}</a
 			>
 		</div>
 		<div class="subsection2 col-4">
@@ -201,46 +204,6 @@
 		</div>
 	</div>
 	<div class="row justify-content-center mb-4">
-		<div class="col-6" />
-		<div class="col-6">
-			<h5 style="font-family: 'Open Sans'; font-size:18px; font-weight: regular;">
-				{$t('main.title.range')}
-			</h5>
-		</div>
-	</div>
-
-	<div class="row justify-content-center mb-4">
-		<div class="col-4">
-			<select class="form-select" aria-label="Default select example">
-				<option selected style="font-family: 'Open Sans'; font-size:16px; font-weight: regular;"
-					>{$t('main.title.sort')}</option
-				>
-				<option value="1" style="font-family: 'Open Sans'; font-size:16px; font-weight: regular;"
-					>{$t('main.title.newest')}</option
-				>
-				<option value="2" style="font-family: 'Open Sans'; font-size:16px; font-weight: regular;"
-					>{$t('main.title.oldest')}</option
-				>
-			</select>
-		</div>
-		<div class="col-2">
-			<input
-				type="text"
-				class="form-control border-start-0"
-				placeholder="from"
-				style="font-family: 'Open Sans'; font-size:16px; font-weight: regular;"
-			/>
-		</div>
-		<div class="col-2">
-			<input
-				type="text"
-				class="form-control border-start-0"
-				placeholder="to"
-				style="font-family: 'Open Sans'; font-size:16px; font-weight: regular;"
-			/>
-		</div>
-	</div>
-	<div class="row justify-content-center mb-4">
 		<div class="col-8">
 			<!--START Card 2  -->
 			<div class="row row-cols-1 row-cols-md-3 g-4">
@@ -257,8 +220,8 @@
 	</div>
 	<div class="row justify-content-center mb-4">
 		<div class="col-2">
-			<button class="btn btn-primary btn-lg btn-block mb-4" style="color:white"
-				>{$t('main.button.load')}</button
+			<a href="/marketplace" class="btn btn-primary btn-lg btn-block mb-4" style="color:white"
+				>{$t('main.button.load')}</a
 			>
 		</div>
 	</div>
@@ -288,7 +251,7 @@
 
 				<div class="col-7 main_cards">
 					<div class="info_cards">
-						{#if (count === 1)}
+						{#if count === 1}
 							<div class="card-body">
 								<h5
 									class="card-title"
@@ -304,7 +267,7 @@
 								</p>
 							</div>
 						{/if}
-						{#if (count === 2)}
+						{#if count === 2}
 							<div class="card-body">
 								<h5
 									class="card-title"
@@ -320,7 +283,7 @@
 								</p>
 							</div>
 						{/if}
-						{#if (count === 3)}
+						{#if count === 3}
 							<div class="card-body">
 								<h5
 									class="card-title"
@@ -336,7 +299,7 @@
 								</p>
 							</div>
 						{/if}
-						{#if (count === 4)}
+						{#if count === 4}
 							<div class="card-body">
 								<h5
 									class="card-title"

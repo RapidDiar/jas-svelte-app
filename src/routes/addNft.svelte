@@ -13,7 +13,7 @@
 	import translations from '../translations';
 	import { dict, t } from '../i18n';
 	let profile = $authStore.profile;
-    let image;
+	let image;
 
 	$: dict.set(translations);
 	let data = {
@@ -34,13 +34,14 @@
 	registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
 	function loadFile(e) {
-        data.image = e.target.files[0];
+		data.image = e.target.files[0];
 		data.name = data.image.name;
-        image = URL.createObjectURL(data.image);
-    }
+		image = URL.createObjectURL(data.image);
+	}
 
 	const onSubmit = () => {
-		axiosInstance.defaults.headers.Authorization = 'Bearer ' + $authStore.authData?.access_token;
+		let userData = JSON.parse(localStorage.getItem('jas-auth-data'));
+		axiosApiMedia.defaults.headers.Authorization = 'Bearer ' + userData.access_token;
 
 		console.log(data);
 		const form = new FormData();
@@ -100,7 +101,7 @@
 									
                                     
 								/> -->
-                                <input bind:value={data.image} accept="image/*" type="file" on:change={loadFile}>
+								<input bind:value={data.image} accept="image/*" type="file" on:change={loadFile} />
 							</div>
 						</div>
 					</div>
@@ -119,7 +120,7 @@
 								<div class="card-body">
 									<div class="row">
 										<div class="col">
-											<input  
+											<input
 												type="text"
 												class="form-control mb-3"
 												placeholder={$t('addNft.form_text.title')}
@@ -226,36 +227,49 @@
 										instantUpload={true}
                                         bind:value={data.selling_document}
                                     /> -->
-                                    <input bind:value={data.selling_document} on:change={(e) => {data.selling_document = e.target.files[0]}} type="file">
+									<input
+										bind:value={data.selling_document}
+										on:change={(e) => {
+											data.selling_document = e.target.files[0];
+										}}
+										type="file"
+									/>
 								</div>
 							</div>
 						</div>
 
-                        <div class="row mt-5">
-                            <div class="col">
-                                <div class="card shadow-custom">
-                                    <div class="card-body">
-                                        <h3>Copyright document</h3>
-                                        <p>Upload PDF file</p>
-                                    </div>
-                                    <div class="card-body align-self-center col-6">
-                                        <!-- <FilePond
+						<div class="row mt-5">
+							<div class="col">
+								<div class="card shadow-custom">
+									<div class="card-body">
+										<h3>Copyright document</h3>
+										<p>Upload PDF file</p>
+									</div>
+									<div class="card-body align-self-center col-6">
+										<!-- <FilePond
                                             allowMultiple={true}
                                             max-files={1}
                                             instantUpload={true}
                                             bind:value={data.copyright_document}
                                         /> -->
-                                        <input bind:value={data.copyright_document} on:change={(e) => {data.copyright_document = e.target.files[0]}} type="file">
-                                    </div>
-                                </div>
-                            </div>
+										<input
+											bind:value={data.copyright_document}
+											on:change={(e) => {
+												data.copyright_document = e.target.files[0];
+											}}
+											type="file"
+										/>
+									</div>
+								</div>
+							</div>
 
-						<!-- END SECTION 3 -->
-						<div class="row justify-content-center mt-5 mb-5">
-							<div class="col-2">
-								<button type="submit" class="btn btn-primary btn-block btn-lg"
-									>{$t('addNft.button_text.save')}</button
-								>
+							<!-- END SECTION 3 -->
+							<div class="row justify-content-center mt-5 mb-5">
+								<div class="col-4 text-center">
+									<button type="submit" class="btn btn-primary btn-lg"
+										>{$t('addNft.button_text.save')}</button
+									>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -275,12 +289,7 @@
 						</div>
 					</div>
 					<!-- {#if data.image} -->
-					    <img
-							src={image}
-							style="height: 350px; object-fit:cover "
-							class="card-img-top"
-							alt=""
-						/>
+					<img src={image} style="height: 350px; object-fit:cover " class="card-img-top" alt="" />
 					<!-- {:else}
 						<img
 							src="https://sun9-15.userapi.com/impg/xm_4iGPJ8mEd1SZ6M1QqX3WDZPvrdOxOOkBWKQ/Aw7inByw0HI.jpg?size=1320x583&quality=96&sign=9f843656e46904b5ff72d7aa2c5f06e7&type=album"

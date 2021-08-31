@@ -2,6 +2,7 @@
 	import { authStore } from '../../store.js';
 	import axiosInstance from '../../components/axios/axiosApi';
 	import { onMount } from 'svelte';
+	import { fly } from 'svelte/transition';
 	let profile = $authStore.profile;
 
 	let message = '';
@@ -34,8 +35,14 @@
 			const response = await axiosInstance.post('/api/authentication/profile/', fields);
 			$authStore.profile = response?.data?.profile;
 			message = 'success';
+			setTimeout(() => {
+				message = '';
+			}, 3000);
 		} catch (error) {
 			message = 'error';
+			setTimeout(() => {
+				message = '';
+			}, 3000);
 		}
 	};
 </script>

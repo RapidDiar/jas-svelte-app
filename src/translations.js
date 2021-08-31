@@ -9,31 +9,32 @@ export default {
             li_metamask: "Connect Metamask",
             wallet: "Connect wallet",
             li_logout: "Log Out",
-            li_eng: "English",
-            li_rus: "Russian",
-            li_kaz: "Kazakh"
+            faq:"FAQ",
+            stats:"Stats",
+            rights:"Сopyright",
         },
         main: {
             title: {
                 title: "Sale of NFT tokens, confirming ownership of the material object. ",
-                subtitle: "SAVE YOUR TIME WITH US",
-                pop: "Trending",
-                new: "New",
-                gallery: "Gallery",
-                nft: "What is NFT?",
+                collection: "Collection",
+                pre_sale: "Pre-Sale Collection",
+                sellers: "Top Sellers",
+                nft: "How to upload NFT?",
                 range: "Price Range",
                 sort: "Sort by",
                 newest: "Newest",
                 oldest: "Oldest"
             },
             button: {
-                load: "Load more",
+                load: "See more",
                 explore: "Explore",
                 create: "Create",
-                learn: "Learn more"
             },
             card: {
-                price: "Price:"
+                price: "Price:",
+                title:"Title:",
+                tag:"Tag:",
+                description:"Description:"
             },
             guide: {
                 register: "Register/Sign In",
@@ -43,29 +44,29 @@ export default {
             },
             nft: {
                 subtitle: {
-                    marketplace: "What is a marketplace?",
-                    deposit: "Can marketplace users deposit and withdraw NFTs?",
-                    cryptocurrencies: "What cryptocurrencies can I use to buy or trade NFTs on the marketplace?",
-                    add: "Is it possible to create an NFT on the marketplace? How do I create and add my own NFTs?"
+                    register: "Register on kazpatent.kz",
+                    connect: "Connect Metamask",
+                    upload: "Upload image",
+                    list: "List them for sale"
                 },
                 text:
                 {
-                    marketplace: "The Marketplace is a marketplace that features all types of digital art and collectibles.",
-                    deposit: "We do not currently support NFT input or output. But we are developing this feature and it will be available soon.",
-                    cryptocurrencies: "The marketplace support ETH.",
-                    add: "The create feature is currently only available to select artists and partners. In the near future, all users will be able to create their own NFTs."
+                    register: "You need to register on the website kazpatent.kz and apply for the authorship of the painting.",
+                    connect: "Log in to your account and connect to the Metamask wallet located in the Profile.",
+                    upload: "Upload your work, add a title and description, and customize your NFTs with properties, stats, and unlockable content.",
+                    list: "Choose between auctions, fixed-price listings, and declining-price listings. You choose how you want to sell your NFTs."
                 }
             }
         },
         auth: {
             button_signin: "Sign In",
             button_register: "Sign Up",
-            text_username: "username",
-            text_first_name: "first name",
-            text_last_name: "last name",
-            text_email: "email",
-            text_password: "password",
-            text_password_confirmation: "password confirmation",
+            text_username: "Your username",
+            text_first_name: "Your first name",
+            text_last_name: "Your last name",
+            text_email: " Your email",
+            text_password: "Your password",
+            text_password_confirmation: "Confirm your password",
             incorrect: "Incorrect login or password",
             create: "Create Account",
             signin: "Sign In to ArtMarketplace"
@@ -74,13 +75,19 @@ export default {
             hello: "Hello",
             welcome: "Welcome",
             hello_text: "Click if you don't have an account yet",
-            welcome_text: "Click if you want to log into your account"
+            welcome_text: "Click if you want to log into your account",
+            auth:"Already have an account?",
+            agreement:"I agree with Privacy Policy and Term of Service",
+            register:"Don’t have an a account?",
+            forgot_password:"Forgot password?"
         },
         addNft: {
             title: {
                 image: "Image",
                 information: "Information",
-                links: "Social media"
+                links: "Social media",
+                selling_document:"Selling document",
+                copyright_document:"Copyright document"
             },
             text: {
                 card: "Preview",
@@ -89,7 +96,8 @@ export default {
                 text_links: "Add links to social network",
                 success: "Successfully added",
                 error: "Something went wrong",
-                message: "Message"
+                message: "Message",
+                text_document:"Upload PDF file",
             },
             button_text: {
                 save: "Save"
@@ -102,28 +110,66 @@ export default {
                 social_media: "Enter your username"
             }
         },
+        marketplace:{
+            view_all:"View All",
+            collection:"By Collection",
+            author:"By Author",
+            categories:"Categories",
+            categories_Modernism:"Modernism",
+            categories_Impressionism:"Impressionism",
+            categories_Abstract_Art:"Abstract Art",
+            categories_Expressionism:"Expressionism",
+            categories_Cubism:"Cubism",
+            categories_Surrealism:"Surrealism",
+            see_all:"See All",
+            status:"Status",
+            on_sale:"On Sale",
+            has_offers:"Has offers",
+            buy_now:"Buy Now",
+            on_auction:"On Auction",
+            search_button:"Search"
+        },
+        profile:{
+            account_info:"Account Info",
+            first_name:"First Name",
+            last_name:"Last Name",
+            bio:"Bio"
+        },
+        metamask:{
+            not_installed:"Metamask not installed",
+            connected:"Metamask сonnected",
+            installed:"Connect wallet",
+            for_chrome:"Metamask for Chrome",
+            wallet_address:"Wallet address"
+        },
+        nstItem:{
+            set_nsme:"Set Name:",
+            sold_by:"Sold by:",
+            similar_items:"Similar items"
+        },
         footer: {
             title: {
-                mobile_app: "Mobile app",
-                community: "Community",
-                company: "Company"
+                join_the_community: "Join the community",
+                recources: "Recources",
+                company: "Company",
+                stay_in_the_loop:"Stay in the loop"
             },
-            text_mobile_app: {
-                features: "Features",
-                live_share: "Live share",
-                video_record: "Video record"
-            },
-            text_community: {
-                artists: "Featured artists",
-                portal: "The Portal",
-                events: "Live events"
-            },
-            text_company: {
-                about_us: "About us",
-                contact_us: "Contact us",
-                history: "History"
-            },
-            follow_us: "Follow us:"
+            text:{
+                stay_in_the_loop_text: "Join our mailing list to stay in the loop with our newest feature releases, NFT drops, and tips and tricks",
+                email:"Your email address",
+                email_text:"Enter your email address here!",
+                company_about:"About",
+                company_careers:"Careers",
+                recources_help_center:"Help Center",
+                recources_partners:"Partners",
+                recources_suggestions:"Suggestions",
+                recources_discord_community:"Discord Community",
+                recources_blog:"Blog",
+                recources_docs:"Docs",
+                recources_newsletter:"Newsletter",
+                privacy_policy:"Privacy Policy",
+                terms_of_service:"Terms of Service"
+            }
         }
     },
 
@@ -139,18 +185,17 @@ export default {
             li_metamask: "Подключиться к Metamask",
             wallet: "Подключитесь к кошелку",
             li_logout: "Выйти",
-            li_eng: "Английский",
-            li_rus: "Русский",
-            li_kaz: "Казахский"
+            faq:"FAQ",
+            stats:"Cтатистика",
+            rights:"Авторские права",
         },
         main: {
             title: {
                 title: "Продажа NFT токенов, подтверждающий право собственности на материальный объект.",
-                subtitle: "ЭКОНОМЬТЕ ВРЕМЯ С НАМИ",
-                pop: "Популярные",
-                new: "Новые",
-                gallery: "Галерея",
-                nft: "Что такое NFT?",
+                collection: "Коллекции",
+                pre_sale: "Предварительная продажа",
+                sellers: "Популярные продавцы",
+                nft: "Как загрузить NFT?",
                 range: "Ценовой диапазон",
                 sort: "Сортировать по ",
                 newest: "Самые новые",
@@ -160,10 +205,12 @@ export default {
                 load: "Показать больше",
                 explore: "Изучить",
                 create: "Cоздать",
-                learn: "Узнать больше "
             },
             card: {
-                price: "Цена:"
+                price: "Цена:",
+                title:"Название:",
+                tag:"Тэг:",
+                description:"Описание:"
             },
             guide: {
                 register: "Зарегистрироваться/Войти",
@@ -173,29 +220,29 @@ export default {
             },
             nft: {
                 subtitle: {
-                    marketplace: "Что такое NFT Marketplace?",
-                    deposit: "Могут ли пользователи Marketplace покупать NFT?",
-                    cryptocurrencies: "Какие криптовалюты я могу использовать для покупки или обмена NFT в Marketplace?",
-                    add: "Можно ли создать NFT в Marketplace? Как мне создать и добавить свои собственные NFT?"
+                    register: "Зарегистрируйтесь на kazpatent.kz",
+                    connect: "Подключить Metamask",
+                    upload: "Загрузить изображение",
+                    list: "Выставьте их на продажу"
                 },
                 text:
                 {
-                    marketplace: "Marketplace - это торговая площадка, на которой представлены все виды цифрового искусства и предметов коллекционирования.",
-                    deposit: "В настоящее время мы не поддерживаем ввод и вывод NFT. Но мы разрабатываем эту функцию, и скоро она будет доступна.",
-                    cryptocurrencies: "Мarketplace поддерживает ETH.",
-                    add: "Функция создания в настоящее время доступна только избранным артистам и партнерам. В ближайшем будущем все пользователи смогут создавать свои собственные NFT."
+                    register: "Вам необходимо зарегистрироваться на сайте kazpatent.kz и подайте заявку на авторство картины.",
+                    connect: "Войдите в свою учетную запись и подключитесь к кошельку Metamask, расположенному в Профиле.",
+                    upload: "Загрузите свою работу, добавьте заголовок и описание и настройте свои NFT с помощью свойств, статистики и открываемого контента.",
+                    list: "Выбирайте между аукционами, объявлениями с фиксированной ценой и объявлениями со снижающейся ценой. Вы сами выбираете, как вы хотите продавать свои NFT."
                 }
             }
         },
         auth: {
             button_signin: "Вход",
             button_register: "Регистрация",
-            text_username: "имя пользователя",
-            text_first_name: "имя",
-            text_last_name: "фамилия",
-            text_email: "электронная почта",
-            text_password: "пароль",
-            text_password_confirmation: "повторите пароль",
+            text_username: "Ваше имя пользователя",
+            text_first_name: "Ваше имя",
+            text_last_name: "Ваша фамилия",
+            text_email: "Ваша электронная почта",
+            text_password: "Ваш пароль",
+            text_password_confirmation: "Подвердите пароль",
             incorrect: "Неправильный логин или пароль",
             create: "Создание Аккаунта",
             signin: "Войти в ArtMarketplace"
@@ -204,13 +251,19 @@ export default {
             hello: "Привет",
             welcome: "Добро пожаловать",
             hello_text: "Если у вас еще нет аккаунта, нажмите сюда",
-            welcome_text: "Если вы хотите зайти через свой аккаунт, нажмите сюда"
+            welcome_text: "Если вы хотите зайти через свой аккаунт, нажмите сюда",
+            auth:"У вас уже есть учетная запись?",
+            agreement:"Я согласен с Политикой конфиденциальности и Условиями предоставления услуг",
+            register:"У вас нет учетной записи?",
+            forgot_password:"Забыли пароль?"
         },
         addNft: {
             title: {
                 image: "Изображение",
                 information: "Информация",
-                links: "Соц. сети"
+                links: "Соц. сети",
+                selling_document:"Документ купли-продажи",
+                copyright_document:"Документ, подверждающий авторские права"
             },
             text: {
                 card: "Предварительный просмотр",
@@ -219,7 +272,8 @@ export default {
                 text_links: "Добавьте ссылки на ваши соц. сети",
                 success: "Успешно добавлено",
                 error: "Что-то пошло не так",
-                message: "Сообщение"
+                message: "Сообщение",
+                text_document:"Загрузитe PDF-файл",
             },
             button_text: {
                 save: "Сохранить"
@@ -232,159 +286,66 @@ export default {
                 social_media: "Введите ваш никнэйм"
             }
         },
+        marketplace:{
+            view_all:"Просмотреть все",
+            collection:"По коллекции",
+            author:"По автору",
+            categories:"Категории",
+            categories_Modernism:"Модернизм",
+            categories_Impressionism:"Импрессионизм",
+            categories_Abstract_Art:"Абстрактное искусство",
+            categories_Expressionism:"Экспрессионизм",
+            categories_Cubism:"Кубизм",
+            categories_Surrealism:"Сюрреализм",
+            see_all:"Показать все",
+            status:"Статус",
+            on_sale:"В продаже",
+            has_offers:"Имеет предложения",
+            buy_now:"Купить сейчас",
+            on_auction:"На Аукционе",
+            search_button:"Поиск"
+        },
+        profile:{
+            account_info:"Информация о аккаунте",
+            first_name:"Имя",
+            last_name:"Фамилия",
+            bio:"О себе"
+        },
+        metamask:{
+            not_installed:"Metamask не установлена",
+            connected:"Подключена к Metamask",
+            installed:"Подключить кошелек",
+            for_chrome:"Metamask для Chrome",
+            wallet_address:"Адрес кошелька"
+        },
+        nstItem:{
+            set_nsme:"Имя коллекции",
+            sold_by:"Продано",
+            similar_items:"Похожие товары"
+        },
         footer: {
             title: {
-                mobile_app: "Мобильное приложение",
-                community: "Cообщество",
-                company: "Компания"
+                join_the_community: "Присоединяйтесь к сообществу",
+                recources: "Ресурсы",
+                company: "Компания",
+                stay_in_the_loop:"Оставайтесь в курсе событий"
             },
-            text_mobile_app: {
-                features: "Функции",
-                live_share: "Live share",
-                video_record: "Видеозапись"
-            },
-            text_community: {
-                artists: "Избранные художники",
-                portal: "Портал",
-                events: "Live events"
-            },
-            text_company: {
-                about_us: "О нас",
-                contact_us: "Связаться с нами",
-                history: "История"
-            },
-            follow_us: "Cледите за нами:"
+            text:{
+                stay_in_the_loop_text: "Присоединяйтесь к нашему списку рассылки, чтобы быть в курсе наших новейших выпусков функций, обновлений NFT, а также советов и рекомендаций",
+                email:"Ваш адрес электронной почты",
+                email_text:"Введите свою почту здесь!",
+                company_about:"О нас",
+                company_careers:"Карьера",
+                recources_help_center:"Справочный центр",
+                recources_partners:"Партнеры",
+                recources_suggestions:"Предложения",
+                recources_discord_community:"Сообщество Разногласия",
+                recources_blog:"Блог",
+                recources_docs:"Документации",
+                recources_newsletter:"Новостная рассылка",
+                privacy_policy:"Политика конфиденциальности",
+                terms_of_service:"Условия обслуживания"
+            }
         }
     },
-
-
-
-
-    kz: {
-        navbar: {
-            input_search: "Іздеу",
-            button_marketplace: "Каталог",
-            button_signin: "Кіру",
-            button_profile: "Менің профилім",
-            li_add: "NFT қосу",
-            li_metamask: "Metamask-қа қосылу",
-            wallet: "Әмияныңызға қосылыңыз",
-            li_logout: "Шығу",
-            li_eng: "Ағылшынша",
-            li_rus: "Орысша",
-            li_kaz: "Қазақша"
-        },
-        main: {
-            title: {
-                title: "Материалдық объектінің меншігін растайтын NFT белгілерін сату.",
-                subtitle: "УАҚЫТТЫ БІЗБЕН ҮНЕМДЕҢІЗ",
-                pop: "Танымал",
-                new: "Жаңа",
-                gallery: "Галерея",
-                nft: "NFT деген не?",
-                range: "Баға диапазоны",
-                sort: "Сұрыптау",
-                newest: "Ең жаңа",
-                oldest: "Ең ескі"
-            },
-            button: {
-                load: "Жүктеу",
-                explore: "Зерттеу",
-                create: "Құру",
-                learn: "Толық ақпарат"
-            },
-            card: {
-                price: "Бағасы:"
-            },
-            guide: {
-                register: "Тіркелу/Кіру",
-                connect: "Metamask қосу",
-                create: "NFT құру",
-                upload: "NFT-ді жүктеу"
-            },
-            nft: {
-                subtitle: {
-                    marketplace: "NFT Marketplace деген не?",
-                    deposit: "Marketplace-тың пайдаланушыларына NFT сатып алуға болады?",
-                    cryptocurrencies: "Marketplace-те NFT сатып алу немесе айырбастау үшін қандай криптовалюталарды қолдануға болады?",
-                    add: "Marketplace-те NFT құруға болады ма? Мен өз NFT -лерімді қалай құрамын және қосамын?"
-                },
-                text:
-                {
-                    marketplace: "Marketplace - бұл цифрлық өнер мен коллекциялардың барлық түрлері үшін нарық алаңы.",
-                    deposit: "Біз қазіргі уақытта NFT енгізуін және шығаруын қолдамаймыз. Бірақ біз бұл мүмкіндікті дамытып жатырмыз және ол жақын арада қол жетімді болады.",
-                    cryptocurrencies: "Мarketplace ETH қолдайды.",
-                    add: "Жасау мүмкіндігі қазіргі уақытта тек әртістер мен серіктестерді таңдау үшін қол жетімді. Жақын арада барлық пайдаланушылар өздерінің жеке NFT -лерін жасай алады."
-                }
-            }
-        },
-        auth: {
-            button_signin: "Кіру",
-            button_register: "Тіркелу",
-            text_username: "қолданушының аты",
-            text_first_name: "аты",
-            text_last_name: "тегі",
-            text_email: "электрондық пошта",
-            text_password: "құпия сөз",
-            text_password_confirmation: "құпия сөзді қайталаңыз",
-            incorrect: "Қолданушының аты немесе құпия сөз қате терілген",
-            create: "Аккаунт құру",
-            signin: "ArtMarketplace-ке кіру"
-        },
-        auth_text: {
-            hello: "Сәлем",
-            welcome: "Қош келдіңіз",
-            hello_text: "Жеке аккаунтыңыз болмаған жағдайда, мына батырмаға басыңыз",
-            welcome_text: "Жеке аккаунтыңызға кіргіңіз келсе, мына батырмаға басыңыз"
-        },
-        addNft: {
-            title: {
-                image: "Сурет",
-                information: "Ақпарат",
-                links: "Әлеуметтік желілер"
-            },
-            text: {
-                card: "Алдын ала көрстілім",
-                text_image: "Суретті жүктеңіз",
-                text_information: "Ақпаратты қосыңыз",
-                text_links: "Әлеуметтік желіңізге сілтеме беріңіз",
-                success: "NFT cәтті қосылды",
-                error: "Қосылу барысында кейбір қателіктер кетті",
-                message: "Хабарлама"
-            },
-            button_text: {
-                save: "Сақтау"
-            },
-            form_text: {
-                title: "Атауы",
-                price: "Бағасы",
-                tags: "Тэгтер",
-                description: "Сипаттамасы",
-                social_media: "Никнэйміңізді енгізіңіз"
-            }
-        },
-        footer: {
-            title: {
-                mobile_app: "Мобильді қосымша",
-                community: "Бірлестік",
-                company: "Компания"
-            },
-            text_mobile_app: {
-                features: "Ерекшеліктер",
-                live_share: "Live share",
-                video_record: "Бейнежазба"
-            },
-            text_community: {
-                artists: "Таңдаулы суретшілер",
-                portal: "Портал",
-                events: "Live events"
-            },
-            text_company: {
-                about_us: "Біз жайлы",
-                contact_us: "Бізге хабарласу",
-                history: "Тарихы"
-            },
-            follow_us: "Біздің әлеуметтік желілеріміз:"
-        }
-    }
 };

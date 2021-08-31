@@ -1,131 +1,84 @@
 <script>
-import translations from "../translations";
-import { dict, locale, t } from '../i18n';
+	import translations from '../translations';
+	import { dict, locale, t } from '../i18n';
 
-  $: languages = Object.keys(translations);
-  $: dict.set(translations);
+	$: languages = Object.keys(translations);
+	$: dict.set(translations);
 </script>
 
-<footer class="p-4 page-footer" style="background-color: rgb(0,0,0,0.9);">
-  <div class="container-fluid">
-    <!-- START FOOTER SECTION 1 -->
-    <div class="footer row border-bottom pb-4">
-      <div class="title col-2" >
-        <h2 style="text-align:center; color:white; font-family: 'Open Sans'; font-size:32px; font-weight: meduim;">Art</h2>
-        <h2 style="text-align:center; color:white; font-family: 'Open Sans'; font-size:28px; font-weight: meduim;">Marketplace</h2>
-      </div>
-      <div class="col">
-        <div class="footer_2nd_block row justify-content-end">
-          <div class="col-2">
-            <h5 class="mb-3" style="color:white; font-family: 'Open Sans'; font-size:24px; font-weight: meduim;">{$t('footer.title.mobile_app')}</h5>
-            <!-- <h5 class="mb-3">Mobile app</h5> -->
-            <ul class="list-unstyled">
-              <li class="mb-1">
-                <a href="#" class="text" style="color:white; font-family: 'Open Sans'; font-size:18px; font-weight: meduim;">{$t('footer.text_mobile_app.features')}</a>
-              </li>
-              <li class="mb-1">
-                <a href="#" class="text" style="color: white; font-family: 'Open Sans'; font-size:18px; font-weight: meduim;">{$t('footer.text_mobile_app.live_share')}</a>
-              </li>
-              <li class="mb-1">
-                <a href="#" class="text" style="color: white; font-family: 'Open Sans'; font-size:18px; font-weight: meduim;">{$t('footer.text_mobile_app.video_record')}</a>
-              </li>
-            </ul>
-          </div>
+<footer class="bg-primary py-5 text-light">
+	<div class="container-fluid">
+		<div class="row justify-content-center">
+			<div class="col-10">
+				<div class="row mb-3">
+					<h3>Stay in the loop</h3>
+				</div>
+				<div class="row pb-5 border-bottom">
+					<div class="col align-self-center">
+						<p class="m-0">
+							Join our mailing list to stay in the loop with our newest feature releases,<br />
+							NFT drops, and tips and tricks
+						</p>
+					</div>
+					<div class="col">
+						<p class="mb-1 w-auto">Your email address</p>
+						<input
+							type="text"
+							placeholder="Enter your email address here!"
+							class="form-control w-50 border-0 px-3 py-2"
+						/>
+					</div>
+				</div>
+				<div class="row py-4 border-bottom">
+					<div class="col">
+						<h1>ArtOK</h1>
+					</div>
+					<div class="col d-flex flex-column">
+						<h5 class="mb-3">Company</h5>
+						<a href="#">About</a>
+						<a href="#">Careers</a>
+					</div>
+					<div class="col d-flex flex-column">
+						<h5 class="mb-3">Recources</h5>
+						<a href="#">Help Center</a>
+						<a href="#">Partners</a>
+						<a href="#">Suggestions</a>
+						<a href="#">Discord Community</a>
+						<a href="#">Blog</a>
+						<a href="#">Docs</a>
+						<a href="#">Newsletter</a>
+					</div>
+					<div class="col">
+						<h5>Recources</h5>
+						<i class="fab fa-instagram fa-lg p-3  iconsBgcolor text-light me-3" />
+						<i class="fab fa-twitter fa-lg p-3 iconsBgcolor text-light me-3" />
+						<i class="fab fa-youtube fa-lg p-3 iconsBgcolor text-light me-3" />
+						<i class="far fa-envelope fa-lg p-3 iconsBgcolor text-light me-3" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<p class="m-0">© ArtMarketplace, Inc. 2019.</p>
+					</div>
+					<div class="col text-end">
+						<a class="m-0 me-3">Privacy Policy</a>
+						<a class="m-0">Terms of Service</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-          <div class="col-2">
-            <h5 class="mb-3" style="color: white; font-family: 'Open Sans'; font-size:24px; font-weight: meduim;">{$t('footer.title.community')}</h5>
-            <ul class="list-unstyled">
-              <li class="mb-1">
-                <a href="#" class="text" style="color: white; font-family: 'Open Sans'; font-size:18px; font-weight: meduim;">{$t('footer.text_community.artists')}</a>
-              </li>
-              <li class="mb-1">
-                <a href="#" class="text" style="color: white; font-family: 'Open Sans'; font-size:18px; font-weight: meduim;">{$t('footer.text_community.portal')}</a>
-              </li>
-              <li class="mb-1">
-                <a href="#" class="text" style="color: white; font-family: 'Open Sans'; font-size:18px; font-weight: meduim;">{$t('footer.text_community.events')}</a>
-              </li>
-            </ul>
-          </div>
-
-          <div class="col-2">
-            <h5 class="mb-3" style="color: white; font-family: 'Open Sans'; font-size:24px; font-weight: meduim;">{$t('footer.title.company')}</h5>
-            <ul class="list-unstyled">
-              <li class="mb-1">
-                <a href="#" class="text" style="color: white; font-family: 'Open Sans'; font-size:18px; font-weight: meduim;">{$t('footer.text_company.about_us')}</a>
-              </li>
-              <li class="mb-1">
-                <a href="#" class="text" style="color: white; font-family: 'Open Sans'; font-size:18px; font-weight: meduim;">{$t('footer.text_company.contact_us')}</a>
-              </li>
-              <li class="mb-1">
-                <a href="#" class="text" style="color: white; font-family: 'Open Sans'; font-size:18px; font-weight: meduim;">{$t('footer.text_company.history')}</a>
-              </li>
-            </ul>
-          </div>
-
-        </div>
-      </div>
-    </div>
-    <!-- END FOOTER SECTION 1 -->
-    
-    <!-- START FOOTER SECTION 2 -->
-    <div class="row mt-3">
-      <div class="col">
-        <p style="color: white; font-family: 'Open Sans'; font-size:16px; font-weight: meduim;" >© ArtMarketplace, Inc. 2019.</p>
-      </div>
-      <div class="col d-flex justify-content-end me-4">
-        <p class="mb-0 me-2 align-self-center " style="color: white; font-family: 'Open Sans'; font-size:16px; font-weight: meduim;">{$t('footer.follow_us')} </p>
-        <!-- Youtube -->
-        <a class="btn btn-primary btn-floating m-1" style="background-color: #ed302f;" href="#!" role="button">
-          <i class="fab fa-youtube"></i>
-        </a>
-        <!-- Facebook -->
-        <a
-          class="btn btn-primary btn-floating m-1"
-          style="background-color: #3b5998;"
-          href="#!"
-          role="button"
-          ><i class="fab fa-facebook-f"></i
-        ></a>
-
-        <!-- Twitter -->
-        <a
-          class="btn btn-primary btn-floating m-1"
-          style="background-color: #55acee;"
-          href="#!"
-          role="button"
-          ><i class="fab fa-twitter"></i
-        ></a>
-
-        <!-- Google -->
-        <a
-          class="btn btn-primary btn-floating m-1"
-          style="background-color: #dd4b39;"
-          href="#!"
-          role="button"
-          ><i class="fab fa-google"></i
-        ></a>
-      </div>
-    </div>
-    <!-- END FOOTER SECTION 2 -->
-  </div>
+	<section class="d-flex justify-content-center" />
 </footer>
 
 <style>
-  @media screen and (max-width: 579px) {
-    .footer {
-      flex-direction: column;
-    }
-    .footer_2nd_block {
-      flex-direction: column;
-    }
-    .title {
-      width: 100%;
-    }
-    .footer_2nd_block > div {
-      width: 100%;
-    }
-    .footer_2nd_block > div > h5, .footer_2nd_block > div > ul {
-      text-align: center;
-    }
-  }
+	.iconsBgcolor {
+		background-color: #004ac7;
+	}
+
+	a {
+		color: #ffffff;
+		margin-bottom: 5px;
+	}
 </style>

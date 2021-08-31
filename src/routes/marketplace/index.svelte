@@ -1,7 +1,7 @@
 <script>
-	import MainCardItem from '../../components/MainPage/MainCardItem.svelte';
 	import axiosInstance from '../../components/axios/axiosApi';
 	import { onMount } from 'svelte';
+	import BasicCard from '../../components/Card/BasicCard.svelte';
 	// import { page } from "$app/stores";
 	let links = {
 		next: null,
@@ -11,19 +11,11 @@
 	let nftList = [];
 	let page = 1;
 	let pages = 0;
-	let filterVisible = false;
-
-	let filter = {
-		recentlyAdd: false,
-		sortBy: '',
-		maxPrice: null,
-		minPrice: null
-	};
 
 	const getNFTList = async (selectedPage) => {
 		isLoading = true;
 		page = selectedPage;
-		const response = await axiosInstance.get(`/api/nft/?page=${page}&page_size=21`);
+		const response = await axiosInstance.get(`/api/nft/?page=${page}&page_size=20`);
 		nftList = response.data.results;
 		links = response.data.links;
 		pages = Math.ceil(response.data.total / response.data.page_size);
@@ -110,41 +102,44 @@
 					</div>
 				</div>
 			{:else}
-				<div class="row row-cols-1 row-cols-md-3 g-4">
+				<div class="row row-cols-4 g-4 mb-4">
 					{#each nftList as nft}
-						<MainCardItem data={nft} />
+						<BasicCard data={nft} />
 					{/each}
 				</div>
 			{/if}
-		</div>
-	</div>
-	<div class="row justify-content-center mb-5">
-		<div class="col-auto">
-			{#if nftList.length}
-				<nav>
-					<ul class="pagination pagination-lg">
-						<li class="page-item">
-							{#if links.previous}<div class="page-link" on:click={() => getNFTList(page - 1)}>
-									Previous
-								</div>{/if}
-						</li>
-						{#each { length: pages } as _, index}
-							<li class="page-item" aria-current="page">
-								<div class="page-link" on:click={() => getNFTList(index + 1)}>
-									{index + 1}<span class="visually-hidden" />
-								</div>
-							</li>
-						{/each}
-						<li class="page-item">
-							{#if links.next}<div class="page-link" on:click={() => getNFTList(page + 1)}>
-									Next
-								</div>{/if}
-						</li>
-					</ul>
-				</nav>
-			{:else}
-				<div>No results</div>
-			{/if}
+			<div class="row justify-content-center mb-5">
+				<div class="col-auto">
+					{#if nftList.length}
+						<nav>
+							<ul class="pagination pagination-lg">
+								<li class="page-item">
+									{#if links.previous}<div class="page-link" on:click={() => getNFTList(page - 1)}>
+											Previous
+										</div>{/if}
+								</li>
+								{#each { length: pages } as _, index}
+									<li class="page-item" aria-current="page">
+										<div class="page-link" on:click={() => getNFTList(index + 1)}>
+											{index + 1}<span class="visually-hidden" />
+										</div>
+									</li>
+								{/each}
+								<li class="page-item">
+									{#if links.next}<div class="page-link" on:click={() => getNFTList(page + 1)}>
+											Next
+										</div>{/if}
+								</li>
+							</ul>
+						</nav>
+					{:else}
+						<div>No results</div>
+					{/if}
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
+
+<style>
+</style>

@@ -11,6 +11,17 @@
 		goto('/');
 	}
 
+	let policy = false;
+	let regSuccess = false;
+
+	const renderCheck = () => {
+		if (regSuccess) {
+			return `<i class="fas fa-check me-2"></i>`;
+		} else {
+			return '';
+		}
+	};
+
 	let data = {
 		username: null,
 		email: null,
@@ -26,7 +37,9 @@
 			localStorage.setItem('jas-auth-data', JSON.stringify(response.data));
 			$authStore.isLogin = true;
 			$authStore.authData = response.data;
-			goto('/myProfile/onSale');
+			setTimeout(() => {
+				goto('/myProfile/onSale');
+			}, 2000);
 		} catch (error) {
 			$authStore.isLogin = false;
 		}
@@ -38,175 +51,158 @@
 </svelte:head>
 
 <div class="container-fluid ">
-	<div class="row ">
-		<div class="col" style="background-color: yellow;">
-			<div class="row justify-content-center align-items-center registerPage">
-				<div class="col-6 ">
-					<h2 style="font-family: 'Open Sans'; font-size:36px; font-weight: meduim">
-						{$t('auth_text.welcome')}
-					</h2>
-					<p style="font-family: 'Open Sans'; font-size:20px; font-weight: meduim">
-						{$t('auth_text.welcome_text')}
-					</p>
-					<a
-						href="/auth"
-						class="btn btn-outline-primary btn-rounded btn-lg btn-block mb-4"
-						style="border-color: grey; color:black">{$t('auth.button_signin')}</a
-					>
-				</div>
-			</div>
-		</div>
-		<div class="col-8 text-center ">
-			<div class="row justify-content-center align-items-center registerPage">
-				<div class="col-6 ">
+	<div class="row">
+		<div class="col">
+			<div class="row align-items-center justify-content-lg-center h-100">
+				<div class="col-8 text-center ">
+					<h2>{$t('auth.create')}</h2>
 					<form on:submit|preventDefault={onRegister}>
-						<h1 class="mb-5" style="font-family: 'Open Sans'; font-size:36px; font-weight: meduim">
-							{$t('auth.create')}
-						</h1>
 						<!-- Username input -->
-						<p
-							class="text-start mb-2"
-							style="font-family: 'Open Sans'; font-size:20px; font-weight: meduim"
-						>
-							{$t('auth.text_username')}
-						</p>
+						<p class="text-start mb-2 mt-4">{$t('auth.text_username')}</p>
 						<div class="input-group mb-4 input-group-lg">
-							<span class="input-group-text border-1 border-end-0 bg-light"
+							<span class="input-group-text border-1 border-end-0 bg-light" type
 								><i class="fas fa-user-alt" /></span
 							>
 							<input
 								type="text"
-								class="form-control border-start-0"
-								placeholder={$t('auth.text_username')}
+								class="form-control border-start-1"
+								placeholder="example"
 								bind:value={data.username}
-								style="font-family: 'Open Sans'; font-size:20px; font-weight: meduim"
+								style="border-right-radius: 16px;"
 							/>
 						</div>
-
-						<!-- First name input -->
-						<p
-							class="text-start mb-2"
-							style="font-family: 'Open Sans'; font-size:20px; font-weight: meduim"
-						>
-							{$t('auth.text_first_name')}
-						</p>
+						<!-- email input -->
+						<p class="text-start mb-2">{$t('auth.text_email')}</p>
 						<div class="input-group mb-4 input-group-lg">
-							<span class="input-group-text border-1 border-end-0 bg-light"
-								><i class="fas fa-user-alt" /></span
-							>
-							<input
-								type="text"
-								class="form-control border-start-0"
-								placeholder={$t('auth.text_first_name')}
-								bind:value={data.first_name}
-								style="font-family: 'Open Sans'; font-size:20px; font-weight: meduim"
-							/>
-						</div>
-
-						<!-- Last name input -->
-						<p
-							class="text-start mb-2"
-							style="font-family: 'Open Sans'; font-size:20px; font-weight: meduim"
-						>
-							{$t('auth.text_last_name')}
-						</p>
-						<div class="input-group mb-4 input-group-lg">
-							<span class="input-group-text border-1 border-end-0 bg-light"
-								><i class="fas fa-user-alt" /></span
-							>
-							<input
-								type="text"
-								class="form-control border-start-0"
-								placeholder={$t('auth.text_last_name')}
-								bind:value={data.last_name}
-								style="font-family: 'Open Sans'; font-size:20px; font-weight: meduim"
-							/>
-						</div>
-
-						<!-- Email input -->
-						<p
-							class="text-start mb-2"
-							style="font-family: 'Open Sans'; font-size:20px; font-weight: meduim"
-						>
-							{$t('auth.text_email')}
-						</p>
-						<div class="input-group mb-3">
-							<span class="input-group-text border-1 border-end-0 bg-light"
+							<span class="input-group-text border-1 border-end-0 bg-light" type
 								><i class="fas fa-at" /></span
 							>
 							<input
-								type="email"
-								class="form-control border-start-0"
-								placeholder={$t('auth.text_email')}
+								type="text"
+								class="form-control border-start-1"
+								placeholder="example@example.com"
 								bind:value={data.email}
-								style="font-family: 'Open Sans'; font-size:20px; font-weight: meduim"
+								style="border-right-radius: 16px;"
 							/>
 						</div>
-
-						<!-- Password1 input -->
-						<p
-							class="text-start mb-2"
-							style="font-family: 'Open Sans'; font-size:20px; font-weight: meduim"
-						>
-							{$t('auth.text_password')}
-						</p>
+						<!-- First name input -->
+						<p class="text-start mb-2">{$t('auth.text_first_name')}</p>
+						<div class="input-group mb-4 input-group-lg">
+							<span class="input-group-text border-1 border-end-0 bg-light" type
+								><i class="fas fa-file-signature" /></span
+							>
+							<input
+								type="text"
+								class="form-control border-start-1"
+								placeholder="Zhazira"
+								bind:value={data.first_name}
+								style="border-right-radius: 16px;"
+							/>
+						</div>
+						<!-- Last name input -->
+						<p class="text-start mb-2">{$t('auth.text_last_name')}</p>
+						<div class="input-group mb-4 input-group-lg">
+							<span class="input-group-text border-1 border-end-0 bg-light" type
+								><i class="fas fa-file-signature" /></span
+							>
+							<input
+								type="text"
+								class="form-control border-start-1"
+								placeholder="Oraz"
+								bind:value={data.last_name}
+								style="border-right-radius: 16px;"
+							/>
+						</div>
+						<!-- Password input -->
+						<p class="text-start mb-2">{$t('auth.text_password')}</p>
 						<div class="input-group mb-4 input-group-lg">
 							<span class="input-group-text border-1 border-end-0 bg-light"
 								><i class="fas fa-key" /></span
 							>
 							<input
 								type="password"
-								placeholder={$t('auth.text_password')}
-								class="form-control border-start-0"
+								placeholder="*******************"
+								class="form-control border-start-1"
 								bind:value={data.password1}
-								style="font-family: 'Open Sans'; font-size:20px; font-weight: meduim"
 							/>
 						</div>
-
-						<!-- Password2 input -->
-						<p
-							class="text-start mb-2"
-							style="font-family: 'Open Sans'; font-size:20px; font-weight: meduim"
-						>
-							{$t('auth.text_password_confirmation')}
-						</p>
+						<!-- Password confirmation -->
+						<p class="text-start mb-2">{$t('auth.text_password_confirmation')}</p>
 						<div class="input-group mb-4 input-group-lg">
 							<span class="input-group-text border-1 border-end-0 bg-light"
 								><i class="fas fa-key" /></span
 							>
 							<input
 								type="password"
-								placeholder={$t('auth.text_password_confirmation')}
-								class="form-control border-start-0"
+								placeholder="*******************"
+								class="form-control border-start-1"
 								bind:value={data.password2}
-								style="font-family: 'Open Sans'; font-size:20px; font-weight: meduim"
 							/>
+						</div>
+
+						<div class="row text-end mb-4">
+							<a href="../auth">{$t('auth_text.auth')}</a>
+						</div>
+
+						<div class="row text-center mb-4">
+							<label class="form-check-label" for="inlineCheckbox">
+								<input
+									class="form-check-input"
+									type="checkbox"
+									id="inlineCheckbox"
+									value="option"
+									bind:checked={policy}
+								/>
+								{$t('auth_text.agreement')}</label
+							>
 						</div>
 
 						<!-- Submit button -->
-						<button
-							type="submit"
-							class="btn btn-primary btn-rounded btn-lg btn-block mb-10 mt-6"
-							style="background-color: yellow; color:black">{$t('auth.button_register')}</button
-						>
+						<div class="row">
+							<div class="col text-center ">
+								<button
+									type="button"
+									class={regSuccess
+										? ' btn btn-lg mb-4 btn-success'
+										: 'btn btn-lg mb-4 btn-primary'}
+									disabled={!policy}
+								>
+									{@html renderCheck()}
+									{$t('auth.button_register')}</button
+								>
+							</div>
+						</div>
 					</form>
 				</div>
 			</div>
 		</div>
-		<!-- <div class="col" style="background-color: yellow;">
-                <div class="row justify-content-center align-items-center registerPage">
-                    <div class="col-6 ">
-                        <h2>{$t('auth_text.welcome')}</h2>
-                        <p>{$t('auth_text.welcome_text')}</p>
-                        <a href="/auth" class="btn btn-outline-primary btn-rounded btn-lg btn-block mb-4" style="border-color: grey; color:black">{$t('auth.button_signin')}</a>
-                    </div>
-                </div>
-            </div> -->
+
+		<div class="col p-0">
+			<img
+				src="https://psv4.userapi.com/c534536/u508794187/docs/d44/85794e476ea5/Frame_44.png?extra=CQV2R9f80eOeoDa0tFcjdvuQuhtiG7izaJzm_e9ILd0UjjOtmC1PjxPBs9pLoqUUgM2SkKUeNqrwhEEHkKS2yo9fAszk2u-P7pxK4NOdVXjEN09cf1ki4fGlxk1a-fAn5BIBnHTHSDe24RGyPitGNNGZN3A"
+				class="img-fluid w-100 h-100"
+				alt="Responsive image"
+			/>
+		</div>
 	</div>
 </div>
 
 <style>
 	.registerPage {
 		height: 100%;
+	}
+
+	.input-group-text {
+		border-top-left-radius: 64px;
+		border-bottom-left-radius: 64px;
+	}
+
+	.form-control {
+		border-top-right-radius: 64px;
+		border-bottom-right-radius: 64px;
+	}
+
+	img {
+		object-fit: cover;
 	}
 </style>

@@ -2,8 +2,9 @@
 	import { authStore } from '../../store.js';
 	import { onMount } from 'svelte';
 	import axiosInstance from '../../components/axios/axiosApiMedia.js';
+	import { host } from '../../host';
 
-	let baseURL = 'http://10.0.40.96:8000';
+	let baseURL = host;
 	let profile = $authStore.profile;
 	let fullName;
 	let backgroundInput;

@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import axiosInstance from '../../components/axios/axiosApi';
-	import CompCard from '../../components/CompCard/CompCard.svelte';
+	import BasicCard from '../../components/Card/BasicCard.svelte';
 
 	const getData = async () => {
 		try {
@@ -22,9 +22,9 @@
 </script>
 
 {#await promise then data}
-	<div class="row row-cols-1 row-cols-md-3 g-4">
+	<div class="row row-cols-1 row-cols-md-4 g-4">
 		{#each data as item}
-			<CompCard data={item} />
+			<BasicCard data={item} />
 		{/each}
 	</div>
 {/await}

@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { authStore } from '../../store.js';
 	import axiosInstance from '../../components/axios/axiosApiMedia';
-	import CompCard from '../../components/CompCard/CompCard.svelte';
+	import BasicCard from '../../components/Card/BasicCard.svelte';
 	import axiosApiMedia from '../../components/axios/axiosApiMedia';
 	let items = [];
 	let profile = $authStore.profile;
@@ -32,8 +32,8 @@
 	});
 </script>
 
-<div class="row row-cols-1 row-cols-md-3 g-4">
+<div class="row row-cols-1 row-cols-md-4 g-4">
 	{#each items.reverse() as item}
-		<CompCard data={item} />
+		<BasicCard data={item} />
 	{/each}
 </div>

@@ -22,16 +22,16 @@
 	async function getToken(refreshToken) {
 		await axiosInstance.post('/api/authentication/token/refresh/', { refresh: refreshToken }).then(
 			(res) => {
-				$authStore.isLogin = true;
+				isLogin = true;
 				console.log(res);
 				let userData = JSON.parse(localStorage.getItem('jas-auth-data'));
 				userData.access_token = res.data.access;
 				localStorage.setItem('jas-auth-data', JSON.stringify(userData));
 			},
 			(err) => {
-				$authStore.isLogin = false;
+				isLogin = false;
 				console.log(err.response);
-				localStorage.setItem('userData', '');
+				localStorage.setItem('jas-auth-data', '');
 				localStorage.setItem('MetamaskId', '');
 			}
 		);
@@ -52,7 +52,7 @@
 			userData = JSON.parse(localStorage.getItem('jas-auth-data'));
 			await getToken(userData.refresh_token);
 		} else {
-			$authStore.isLogin = false;
+			isLogin = false;
 		}
 		dataCard = await getNft();
 	});

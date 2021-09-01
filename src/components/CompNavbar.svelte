@@ -3,10 +3,12 @@
 	import translations from '../translations';
 	import { dict, locale, t } from '../i18n';
 	import { goto } from '$app/navigation';
-
 	import AutoComplete from 'simple-svelte-autocomplete';
 	import axiosInstance from './axios/axiosApi';
 	import { onMount } from 'svelte';
+	import { host } from '../host';
+
+	let profile = $authStore.profile;
 
 	$: languages = Object.keys(translations);
 	$: dict.set(translations);
@@ -94,7 +96,7 @@
 					aria-expanded="false"
 				>
 					<img
-						src="https://mdbootstrap.com/img/new/avatars/2.jpg"
+						src={host + profile.avatar}
 						class="rounded-circle"
 						height="30"
 						alt=""

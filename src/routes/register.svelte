@@ -37,10 +37,9 @@
 			localStorage.setItem('jas-auth-data', JSON.stringify(response.data));
 			$authStore.isLogin = true;
 			$authStore.authData = response.data;
-			setTimeout(() => {
-				goto('/myProfile/onSale');
-			}, 2000);
+			goto('/myProfile/onSale');
 		} catch (error) {
+			console.log(error.response);
 			$authStore.isLogin = false;
 		}
 	};
@@ -161,7 +160,7 @@
 						<div class="row">
 							<div class="col text-center ">
 								<button
-									type="button"
+									type="submit"
 									class={regSuccess
 										? ' btn btn-lg mb-4 btn-success'
 										: 'btn btn-lg mb-4 btn-primary'}

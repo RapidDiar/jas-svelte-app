@@ -19,5 +19,6 @@ export const authStore = writable({
 		instagram: null,
 		last_name: null,
 		telegram: null,
-	}
+	},
+	wallet: null
 });

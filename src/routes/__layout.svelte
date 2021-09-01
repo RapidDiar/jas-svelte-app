@@ -37,11 +37,24 @@
 		}
 	};
 
+	const auth = async () => {
+		if (typeof window.ethereum !== 'undefined' && $authStore.wallet === null) {
+			console.log('metamask is installed!');
+			const { ethereum } = window;
+			const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+			if (accounts[0]) $authStore.wallet = accounts[0];
+			console.log(accounts);
+		} else {
+			console.log('eth no found!');
+		}
+	};
+
 	onMount(() => {
 		authData = JSON.parse(localStorage.getItem('jas-auth-data'));
 		if (authData?.refresh_token) getToken();
 		else $authStore.isLogin = false;
 		setLocale();
+		auth();
 	});
 </script>
 

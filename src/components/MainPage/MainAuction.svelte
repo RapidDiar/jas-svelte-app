@@ -11,7 +11,7 @@
 			let data = response.data.results;
 			return data;
 		} catch (error) {
-			console.log(response);
+			console.log(error);
 		}
 	}
 

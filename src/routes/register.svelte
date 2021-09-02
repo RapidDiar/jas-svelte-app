@@ -32,6 +32,7 @@
 	};
 
 	const onRegister = async () => {
+		console.log('aa')
 		try {
 			const response = await axiosInstance.post('/api/authentication/registration/', data);
 			localStorage.setItem('jas-auth-data', JSON.stringify(response.data));

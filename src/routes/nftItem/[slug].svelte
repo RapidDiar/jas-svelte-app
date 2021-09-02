@@ -1,7 +1,7 @@
 <script context="module">
-	import axiosInstance from '../../components/axios/axiosApi';
-	import BasicCard from '../../components/Card/BasicCard.svelte';
-	import { host } from '../../host';
+	// import axiosInstance from '../../components/axios/axiosApi';
+	// import BasicCard from '../../components/Card/BasicCard.svelte';
+	// import { host } from '../../host';
 
 	async function getNftData(id) {
 		try {

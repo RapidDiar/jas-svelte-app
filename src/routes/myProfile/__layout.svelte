@@ -123,7 +123,7 @@
 			</div>
 			<div class="row mt-4">
 				<div class="col-3 text-center now ps-3 pe-3">
-					<h4 class="mb-2">{fullName}</h4>
+					<h4 class="mb-2">{profile.first_name} {profile.last_name}</h4>
 					{#if profile.metamask_id}<p class="text-break mb-2">{profile.metamask_id}</p>{/if}
 					{#if profile.email}<p class="text-break mb-2">{profile.email}</p>{/if}
 					{#if profile.description}<p class="text-break mb-2">{profile.description}</p>{/if}

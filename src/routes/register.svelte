@@ -161,7 +161,7 @@
 						<div class="row">
 							<div class="col text-center ">
 								<button
-									type="button"
+									type="submit"
 									class={regSuccess
 										? ' btn btn-lg mb-4 btn-success'
 										: 'btn btn-lg mb-4 btn-primary'}

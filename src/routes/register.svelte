@@ -11,6 +11,7 @@
 		goto('/');
 	}
 
+	let regError = false;
 	let policy = false;
 	let regSuccess = false;
 
@@ -32,14 +33,16 @@
 	};
 
 	const onRegister = async () => {
-		console.log('aa')
+		console.log('aa');
 		try {
 			const response = await axiosInstance.post('/api/authentication/registration/', data);
 			localStorage.setItem('jas-auth-data', JSON.stringify(response.data));
+			regError = false;
 			$authStore.isLogin = true;
 			$authStore.authData = response.data;
 			goto('/myProfile/onSale');
 		} catch (error) {
+			regError = true;
 			console.log(error.response);
 			$authStore.isLogin = false;
 		}
@@ -172,6 +175,14 @@
 								>
 							</div>
 						</div>
+						{#if regError}
+							<div class="row">
+								<div class="col d-flex justify-content-center">
+									<i class="fas fa-exclamation-circle fa-2x text-danger me-2" />
+									<p class="errorText m-0">Что-то пошло не так</p>
+								</div>
+							</div>
+						{/if}
 					</form>
 				</div>
 			</div>
@@ -200,5 +211,9 @@
 
 	img {
 		object-fit: cover;
+	}
+
+	.errorText {
+		font-size: 20px;
 	}
 </style>

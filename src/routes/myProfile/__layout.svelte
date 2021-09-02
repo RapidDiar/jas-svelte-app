@@ -69,7 +69,7 @@
 <div class="container-fluid">
 	<div class="row justify-content-center" on:click={addBackground}>
 		<img
-			src={getFilePath(profile.background)}
+			src={getFilePath(profile?.background)}
 			class="img-fluid ps-0 pe-0"
 			style="height: 300px; background-color: #BDBDBD;"
 			alt="..."

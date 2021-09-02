@@ -7,6 +7,7 @@
 	import axiosInstance from './axios/axiosApi';
 	import { onMount } from 'svelte';
 	import { host } from '../host';
+	import { page } from '$app/stores';
 
 	let profile = $authStore.profile;
 	let store = authStore;
@@ -35,19 +36,25 @@
 	};
 
 	const onLogout = () => {
-		store.update((item) => (item.isLogin = false));
+		$authStore.isLogin = false;
 		localStorage.removeItem('jas-auth-data');
 		localStorage.removeItem('metamaskID');
+		if ($page.path.search('/myProfile') == 0 || $page.path.search('/addNft') == 0) {
+			goto('/');
+		}
 	};
 
 	let items;
+
 	let selectedDataObject;
 	let selectedDataValue;
 
 	const getNft = async () => {
-		let response = await axiosInstance.get('/api/nft/?page_size=100');
-		let data = response.data.results;
-		return data;
+		try {
+			let response = await axiosInstance.get('/api/nft/?page_size=100');
+			let data = response.data.results;
+			return data;
+		} catch (error) {}
 	};
 
 	let promise = getNft();
@@ -90,11 +97,14 @@
 									? goto(`nftItem/${selectedDataObject.id}`, { replaceState: true })
 									: console.log(selectedDataObject?.id)}
 						/>
+					{:catch error}
+						<input type="text" class="form-control" placeholder="Username" />
 					{/await}
 				</div>
 			</form>
 		</div>
 		<div class="col navbar-nav d-flex flex-lg-row justify-content-end align-items-center">
+			<a class="navItem px-3 mx-3 text-light py-4" href="/marketplace">Marketplace</a>
 			<a class="navItem px-3 mx-3 text-light py-4" href="#">FAQ</a>
 			<a class="navItem px-3 mx-3 text-light py-4" href="#">Stats</a>
 			<a

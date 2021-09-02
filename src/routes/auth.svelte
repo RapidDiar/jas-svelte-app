@@ -15,6 +15,8 @@
 		goto('/');
 	}
 
+	let authError = false;
+
 	let data = {
 		username: '',
 		password: ''
@@ -25,10 +27,13 @@
 			const response = await axiosInstance.post('/api/authentication/login/', data);
 			console.log(response);
 			localStorage.setItem('jas-auth-data', JSON.stringify(response.data));
+			authError = false;
 			$authStore.isLogin = true;
 			$authStore.authData = response.data;
 			goto('/myProfile/onSale');
 		} catch (error) {
+			console.log(error.response);
+			authError = true;
 			$authStore.isLogin = false;
 		}
 	};
@@ -86,7 +91,16 @@
 						</div>
 
 						<!-- Submit button -->
-						<button type="submit" class="btn btn-lg btn-primary">{$t('auth.button_signin')}</button>
+						<button type="submit" class="btn btn-lg btn-primary mb-5"
+							>{$t('auth.button_signin')}</button
+						>
+
+						{#if authError}
+							<div class="d-flex justify-content-center">
+								<i class="fas fa-exclamation-circle fa-2x text-danger me-2" />
+								<p class="errorText m-0">Что-то пошло не так</p>
+							</div>
+						{/if}
 					</form>
 				</div>
 			</div>
@@ -115,5 +129,9 @@
 
 	img {
 		object-fit: cover;
+	}
+
+	.errorText {
+		font-size: 20px;
 	}
 </style>

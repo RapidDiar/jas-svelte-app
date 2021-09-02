@@ -37,9 +37,7 @@
 			} else if (accounts[0] !== currentAccount) {
 				metamask = 'connected';
 				currentAccount = accounts[0];
-				localStorage.setItem('MetamaskId', currentAccount);
-				console.log(currentAccount);
-				$authStore.metamaskID = currentAccount;
+				$authStore.wallet = currentAccount;
 			}
 		}
 	}
@@ -68,7 +66,7 @@
 				console.log('Please connect to MetaMask.');
 			} else if (accounts[0] !== currentAccount) {
 				currentAccount = accounts[0];
-				localStorage.setItem('MetamaskId', currentAccount);
+				$authStore.wallet = currentAccount;
 			}
 		}
 

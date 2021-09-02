@@ -22,7 +22,6 @@
 			const response = await axiosInstance.get('/api/authentication/profile/');
 			$authStore.profile = response?.data?.profile;
 			profile = $authStore.profile;
-			profile.metamask_id = localStorage.getItem('MetamaskId');
 		} catch (error) {}
 	};
 
@@ -124,7 +123,8 @@
 			<div class="row mt-4">
 				<div class="col-3 text-center now ps-3 pe-3">
 					<h4 class="mb-2">{fullName}</h4>
-					{#if profile.metamask_id}<p class="text-break mb-2">{profile.metamask_id}</p>{/if}
+					{#if $authStore.wallet}<p class="text-break mb-2">{$authStore.wallet}</p>{/if}
+					{#if !$authStore.wallet}<p class="text-break mb-2">No metamask account</p>{/if}
 					{#if profile.email}<p class="text-break mb-2">{profile.email}</p>{/if}
 					{#if profile.description}<p class="text-break mb-2">{profile.description}</p>{/if}
 					<div class="mt-3 mb-3">

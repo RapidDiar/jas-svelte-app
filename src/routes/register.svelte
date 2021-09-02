@@ -32,6 +32,7 @@
 	};
 
 	const onRegister = async () => {
+		console.log('aa')
 		try {
 			const response = await axiosInstance.post('/api/authentication/registration/', data);
 			localStorage.setItem('jas-auth-data', JSON.stringify(response.data));
@@ -161,7 +162,7 @@
 						<div class="row">
 							<div class="col text-center ">
 								<button
-									type="button"
+									type="submit"
 									class={regSuccess
 										? ' btn btn-lg mb-4 btn-success'
 										: 'btn btn-lg mb-4 btn-primary'}

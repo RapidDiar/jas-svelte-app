@@ -5,7 +5,8 @@
 	import { host } from '../../host';
 
 	let baseURL = host;
-	let profile = $authStore.profile;
+	let profile;
+	let connectStore = authStore.subscribe((item) => (profile = item.profile));
 	let backgroundInput;
 	let avatarInput;
 

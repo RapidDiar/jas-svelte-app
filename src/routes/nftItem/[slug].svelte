@@ -1,7 +1,5 @@
 <script context="module">
-	// import axiosInstance from '../../components/axios/axiosApi';
-	// import BasicCard from '../../components/Card/BasicCard.svelte';
-	// import { host } from '../../host';
+	import axiosInstance from '../../components/axios/axiosApi';
 
 	async function getNftData(id) {
 		try {
@@ -36,6 +34,8 @@
 </script>
 
 <script>
+	import BasicCard from '../../components/Card/BasicCard.svelte';
+	import { host } from '../../host';
 	export let nft;
 	export let items;
 </script>

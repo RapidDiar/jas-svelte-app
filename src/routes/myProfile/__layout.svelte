@@ -6,7 +6,6 @@
 
 	let baseURL = host;
 	let profile = $authStore.profile;
-	let fullName;
 	let backgroundInput;
 	let avatarInput;
 
@@ -62,8 +61,6 @@
 		updateProfile();
 	};
 	onMount(() => {
-		let userData = JSON.parse(localStorage.getItem('jas-auth-data'));
-		fullName = `${userData.user.first_name} ${userData.user.last_name}`;
 		getProfile();
 	});
 </script>
@@ -122,7 +119,7 @@
 			</div>
 			<div class="row mt-4">
 				<div class="col-3 text-center now ps-3 pe-3">
-					<h4 class="mb-2">{fullName}</h4>
+					<h4 class="mb-2">{profile.first_name} {profile.last_name}</h4>
 					{#if $authStore.wallet}<p class="text-break mb-2">{$authStore.wallet}</p>{/if}
 					{#if !$authStore.wallet}<p class="text-break mb-2">No metamask account</p>{/if}
 					{#if profile.email}<p class="text-break mb-2">{profile.email}</p>{/if}

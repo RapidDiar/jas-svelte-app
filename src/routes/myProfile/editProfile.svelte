@@ -37,6 +37,7 @@
 			message = 'success';
 			setTimeout(() => {
 				message = '';
+				
 			}, 3000);
 		} catch (error) {
 			message = 'error';

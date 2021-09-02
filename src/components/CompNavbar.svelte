@@ -9,6 +9,9 @@
 	import { host } from '../host';
 
 	let profile = $authStore.profile;
+	let store = authStore;
+	let storeContent;
+	let subscribeStore = store.subscribe((item) => (storeContent = item));
 
 	$: languages = Object.keys(translations);
 	$: dict.set(translations);
@@ -20,11 +23,21 @@
 		localStorage.setItem('jas-locale', $locale);
 	};
 
+	const getProfile = async () => {
+		try {
+			let userData = JSON.parse(localStorage.getItem('jas-auth-data'));
+			axiosInstance.defaults.headers.Authorization = 'Bearer ' + userData.access_token;
+			const response = await axiosInstance.get('/api/authentication/profile/');
+			$authStore.profile = response?.data?.profile;
+			profile = $authStore.profile;
+			profile.metamask_id = localStorage.getItem('MetamaskId');
+		} catch (error) {}
+	};
+
 	const onLogout = () => {
-		$authStore.isLogin = false;
+		store.update((item) => (item.isLogin = false));
 		localStorage.removeItem('jas-auth-data');
 		localStorage.removeItem('metamaskID');
-		goto('/');
 	};
 
 	let items;
@@ -41,13 +54,16 @@
 
 	onMount(async () => {
 		items = await getNft();
+		await getProfile();
 	});
 </script>
 
 <nav class="navbar navbar-primary bg-primary py-0 px-4">
 	<div class="container-fluid">
 		<div class="col-lg-2 col-md-auto">
-			<a class="navbar-brand text-light" href="/"><h4 class="m-0">ArtOK</h4></a>
+			<a class="navbar-brand text-light" href="/"
+				><img src="/src/assets/Logo2.png" alt="" width="140px" /></a
+			>
 		</div>
 		<div class="col-4">
 			<form>
@@ -96,8 +112,9 @@
 					aria-expanded="false"
 				>
 					<img
-						src={host + profile.avatar}
+						src={host + storeContent.profile.avatar}
 						class="rounded-circle"
+						width="30"
 						height="30"
 						alt=""
 						loading="lazy"
@@ -130,6 +147,9 @@
 </nav>
 
 <style>
+	img {
+		object-fit: cover;
+	}
 	.navSelect {
 		appearance: none;
 	}

@@ -93,11 +93,7 @@
 		</div>
 
 		<div class="col p-0">
-			<img
-				src="https://psv4.userapi.com/c534536/u508794187/docs/d44/85794e476ea5/Frame_44.png?extra=CQV2R9f80eOeoDa0tFcjdvuQuhtiG7izaJzm_e9ILd0UjjOtmC1PjxPBs9pLoqUUgM2SkKUeNqrwhEEHkKS2yo9fAszk2u-P7pxK4NOdVXjEN09cf1ki4fGlxk1a-fAn5BIBnHTHSDe24RGyPitGNNGZN3A"
-				class="img-fluid w-100 h-100"
-				alt="Responsive image"
-			/>
+			<img src="/src/assets/AuthImage/bgImage.png" class="img-fluid w-100 h-100" alt="" />
 		</div>
 	</div>
 </div>

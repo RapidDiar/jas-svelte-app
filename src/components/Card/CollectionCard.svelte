@@ -1,11 +1,11 @@
 <script>
 	import { goto } from '$app/navigation';
-
 	import { host } from '../../host';
 
 	export let data = {
 		id: 2,
-		image: 'https://www.mandlpaints.com/wp-content/uploads/2018/09/Lead-Gray-600x600.jpg'
+		image: 'https://www.mandlpaints.com/wp-content/uploads/2018/09/Lead-Gray-600x600.jpg',
+		name: 'name'
 	};
 </script>
 

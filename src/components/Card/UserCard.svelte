@@ -13,7 +13,7 @@
 </script>
 
 <div class="col">
-	<div class="card shadow-0 align-items-center">
+	<div class="card shadow-0 align-items-center bgColor">
 		<img src={host + data.image} class="card-img-top rounded-circle" alt="..." />
 		<div class="card-body text-center">
 			<p class="m-0">{data.user.username}</p>
@@ -26,5 +26,9 @@
 	img {
 		width: 200px;
 		height: 200px;
+	}
+
+	.bgColor {
+		background-color: #fff0;
 	}
 </style>

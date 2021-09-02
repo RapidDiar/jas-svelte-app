@@ -55,6 +55,7 @@
 			isLogin = false;
 		}
 		dataCard = await getNft();
+		console.log($authStore);
 	});
 </script>
 
@@ -63,20 +64,26 @@
 <div class="container-fluid">
 	<MainGallery />
 
-	<div class="row text-center mb-3">
+	<div class="row text-center mb-3 ">
 		<h3>Collection</h3>
 	</div>
 	<div class="row justify-content-center mb-5">
 		<div class="col-lg-8 col-md ">
 			<div class="row row-cols-md-5 row-cols-sm-2 row-cols-2 g-4">
-				{#each { length: 5 } as _, index}
-					<CollectionCard data={dataCard[index]} />
-				{/each}
+				{#await promise}
+					{#each { length: 5 } as _, index}
+						<CollectionCard />
+					{/each}
+				{:then data}
+					{#each { length: 5 } as _, index}
+						<CollectionCard data={data[index]} />
+					{/each}
+				{/await}
 			</div>
 		</div>
 	</div>
 
-	<div class="row justify-content-center mb-5 flex-lg-row flex-column">
+	<div class="row justify-content-center flex-lg-row flex-column ">
 		<div class="col-lg-4 col-md col-sm col align-self-center">
 			<h3 class="mb-5">Pre-Sale of collection</h3>
 			<p class="mb-5">
@@ -89,15 +96,22 @@
 		<MainAuction />
 	</div>
 
-	<div class="row text-center mb-4 pt-5">
-		<h3>Top seller</h3>
-	</div>
-	<div class="row justify-content-center mb-5">
+	<div class="row text-center align-items-center flex-column py-5 my-3 bgTopSeller">
+		<div class="col-8 pb-3">
+			<h3>Top seller</h3>
+		</div>
+
 		<div class="col-8">
 			<div class="row row-cols-1 row-cols-md-5 g-4">
-				{#each { length: 5 } as _, index}
-					<UserCard data={dataCard[index]} />
-				{/each}
+				{#await promise}
+					{#each { length: 5 } as _, index}
+						<UserCard />
+					{/each}
+				{:then data}
+					{#each { length: 5 } as _, index}
+						<UserCard data={data[index]} />
+					{/each}
+				{/await}
 			</div>
 		</div>
 	</div>
@@ -137,5 +151,12 @@
 <style>
 	:global(img) {
 		object-fit: cover;
+	}
+
+	.bgTopSeller {
+		background-image: url('/src/assets/MainImage/bgUserList.svg');
+		background-repeat: no-repeat;
+		background-position: top right;
+		background-size: cover;
 	}
 </style>

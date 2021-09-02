@@ -6,8 +6,9 @@
 	$: dict.set(translations);
 </script>
 
-<footer class="bg-primary py-5 text-light">
-	<div class="container-fluid">
+<footer class="pt-5 text-light">
+	<div class="container-flid imgFooter" />
+	<div class="container-fluid bg-primary pb-5">
 		<div class="row justify-content-center">
 			<div class="col-10">
 				<div class="row mb-3">
@@ -31,7 +32,7 @@
 				</div>
 				<div class="row py-4 border-bottom">
 					<div class="col">
-						<h1>ArtOK</h1>
+						<img src="/src/assets/Logo2.png" alt="" width="140px" />
 					</div>
 					<div class="col d-flex flex-column">
 						<h5 class="mb-3">Company</h5>
@@ -80,5 +81,13 @@
 	a {
 		color: #ffffff;
 		margin-bottom: 5px;
+	}
+
+	.imgFooter {
+		background-image: url('/src/assets/FooterTopImage/FooterTopImage.svg');
+		background-repeat: no-repeat;
+		background-position: top;
+		background-size: cover;
+		height: 110px;
 	}
 </style>

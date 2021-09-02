@@ -36,7 +36,7 @@
 				<img
 					src={host + data[Math.floor(Math.random() * data.length)].image}
 					alt=""
-					class="img-fluid baseImage w-100"
+					class="img-fluid rounded-5 baseImage w-100"
 				/>
 			</div>
 			<div class="col-lg-auto col-12 d-flex flex-lg-column flex-row justify-content-between">

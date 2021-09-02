@@ -3,7 +3,9 @@
 	import { fade } from 'svelte/transition';
 	import axiosInstance from '../axios/axiosApi';
 	import { host } from '../../host';
+	import { authStore } from '../../store';
 
+	let isLogin = $authStore.isLogin;
 	let promise = getData();
 
 	async function getData() {
@@ -21,12 +23,21 @@
 	});
 </script>
 
-<div class="row justify-content-center bg-primary text-light bgImage">
-	<div class="col-4 text-center align-self-end">
-		<h1 class="mb-5">Sale of NFT tokens<br />confirming ownership of<br />the material object</h1>
-		<a href={'/addNft'} type="button" class="btn btn-light btn-lg me-5 col-4">Create</a>
-		<a href="/marketplace" type="button" class="btn btn-light btn-lg col-4">Explore</a>
+<div class="row justify-content-center text-light bgImage">
+	<div class="col-3 text-center align-self-end px-5">
+		<h1 class="mb-5 mainGalleryText">
+			Sale of NFT tokens confirming ownership of the material object
+		</h1>
+		<a href="/marketplace" type="button" class="btn btn-light btn-lg col-4 me-5 btnExplore"
+			>Explore</a
+		>
+		<a
+			href={isLogin ? '/addNft' : '/auth'}
+			type="button"
+			class="btn btn-light btn-lg  col-4 btnCreate">Create</a
+		>
 	</div>
+	<div class="col-auto px-5" />
 	<div class="col-4 mainGallery">
 		<div class="row">
 			{#await promise}
@@ -76,9 +87,17 @@
 		</div>
 	</div>
 </div>
-<div class="row bg-primary mainGalleryBottom mb-5 " />
 
 <style>
+	@font-face {
+		font-family: NeueMachina-Light;
+		src: url('/src/assets/font/NeueMachina-Light.woff');
+	}
+
+	.mainGalleryText {
+		font-family: NeueMachina-Light;
+	}
+
 	img {
 		height: 280px;
 	}
@@ -97,9 +116,23 @@
 	}
 
 	.bgImage {
-		/* background-image: url('/src/assets/GalleryBackground.jpg');
-		background-position: center;
+		background-image: url('/src/assets/MainImage/bgMainGallery5.svg');
 		background-repeat: no-repeat;
-		background-size: cover; */
+		background-position: bottom;
+		background-size: cover;
+		padding-bottom: 500px;
+	}
+
+	.btnCreate {
+		color: #1868ef;
+	}
+
+	.btnExplore {
+		background-color: #eac503;
+		color: #1868ef;
+	}
+
+	.mainGalleryText {
+		/* padding-right: 150px; */
 	}
 </style>

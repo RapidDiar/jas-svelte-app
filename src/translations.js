@@ -32,6 +32,7 @@ export default {
 			},
 			card: {
 				price: 'Price:',
+				contract_address: 'Contract address:',
 				title: 'Title:',
 				tag: 'Tag:',
 				description: 'Description:'
@@ -142,6 +143,7 @@ export default {
 			bought: 'Bought',
 			favorites: 'Favorites',
 			following: 'Following',
+			collections: 'Collections',
 			edit_profile: 'Edit profile'
 		},
 		metamask: {
@@ -154,8 +156,10 @@ export default {
 		},
 		nftItem: {
 			set_name: 'Set Name:',
+			contract_address: 'Contract address:',
 			sold_by: 'Sold by:',
-			similar_items: 'Similar items'
+			similar_items: 'Similar items',
+			not_defined: 'Not defined'
 		},
 		footer: {
 			title: {
@@ -217,9 +221,11 @@ export default {
 			},
 			card: {
 				price: 'Цена:',
+				contract_address: 'Адрес контракта:',
 				title: 'Название:',
 				tag: 'Тэг:',
-				description: 'Описание:'
+				description: 'Описание:',
+				not_defined: 'Не указано'
 			},
 			guide: {
 				register: 'Зарегистрироваться/Войти',
@@ -327,6 +333,7 @@ export default {
 			bought: 'Купленные',
 			favorites: 'Избранные',
 			following: 'Подписки',
+			collections: 'Коллекции',
 			edit_profile: 'Редактировать'
 		},
 		metamask: {
@@ -339,6 +346,7 @@ export default {
 		},
 		nftItem: {
 			set_name: 'Имя коллекции',
+			contract_address: 'Адрес контракта',
 			sold_by: 'Продано',
 			similar_items: 'Похожие товары'
 		},

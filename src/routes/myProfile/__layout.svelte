@@ -94,32 +94,38 @@
 					<a
 						href="/myProfile/onSale"
 						type="button"
-						class="btn btn-light btn-lg me-2 w-responsive pt-3 pb-3 h-25 align-self-end"
+						class="btn btn-light btn-lg me-2 d-flex align-items-center align-self-end"
 						>{$t('profile.onSale')}</a
 					>
 					<a
 						href="/myProfile/created"
 						type="button"
-						class="btn btn-light btn-lg me-2 w-responsive pt-3 pb-3 h-25 align-self-end"
+						class="btn btn-light btn-lg me-2 d-flex align-items-center align-self-end"
 						>{$t('profile.created')}</a
 					>
 					<a
 						href="#"
 						type="button"
-						class="btn btn-light btn-lg me-2 w-responsive pt-3 pb-3 h-25 align-self-end"
+						class="btn btn-light btn-lg me-2 d-flex align-items-center align-self-end"
 						>{$t('profile.bought')}</a
 					>
 					<a
 						href="#"
 						type="button"
-						class="btn btn-light btn-lg me-2 w-responsive pt-3 pb-3 h-25 align-self-end"
+						class="btn btn-light btn-lg me-2 d-flex align-items-center align-self-end"
 						>{$t('profile.favorites')}</a
 					>
 					<a
 						href="#"
 						type="button"
-						class="btn btn-light btn-lg w-responsive pt-3 pb-3 h-25 align-self-end"
+						class="btn btn-light btn-lg me-2 d-flex align-items-center align-self-end"
 						>{$t('profile.following')}</a
+					>
+					<a
+						href="/myProfile/collections"
+						type="button"
+						class="btn btn-light btn-lg d-flex align-items-center align-self-end"
+						>{$t('profile.collections')}</a
 					>
 				</div>
 			</div>

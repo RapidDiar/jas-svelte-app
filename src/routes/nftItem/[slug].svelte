@@ -44,7 +44,7 @@
 
 	async function mint() {
 		try {
-			let result = await axiosInstance.post(`/api/nft/${nft.id}/mint/`, {
+			let result = await axiosInstance.post(`/api/nft/nft/${nft.id}/mint/`, {
 				from_address: $authStore.wallet
 			});
 			console.log(result);
@@ -88,6 +88,10 @@
 								<th class="ps-0 py-2" scope="row">{$t('main.card.tag')}</th>
 								<td class="ps-0 py-2">{nft?.tags.map((item) => item)}</td>
 							</tr>
+							<tr>
+								<th class="ps-0 py-2" scope="row">{$t('main.card.contract_address')}</th>
+								<td class="ps-0 py-2">{nft?.contract_address || $t('main.card.not_defined')}</td>
+							</tr>
 						</tbody>
 					</table>
 				</div>
@@ -102,7 +106,14 @@
 				<p class="mb-0">{nft?.description}</p>
 			</div>
 			{#if $authStore.authData?.user?.pk === nft?.user?.pk}
-				<div class="row" />
+				{#if !nft?.is_deployed}
+					<div class="row mb-5">
+						<div class="col">
+							<button on:click={mint} type="button" class="btn btn-primary btn-lg px-5">Mint</button
+							>
+						</div>
+					</div>
+				{/if}
 			{:else}
 				<div class="row mb-5">
 					<div class="col">

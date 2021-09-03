@@ -152,8 +152,8 @@ export default {
 			wallet_address: 'Wallet address',
 			metamask_installed: 'Metamask installed'
 		},
-		nstItem: {
-			set_nsme: 'Set Name:',
+		nftItem: {
+			set_name: 'Set Name:',
 			sold_by: 'Sold by:',
 			similar_items: 'Similar items'
 		},
@@ -337,8 +337,8 @@ export default {
 			wallet_address: 'Адрес кошелька',
 			metamask_installed: 'Metamask установлен'
 		},
-		nstItem: {
-			set_nsme: 'Имя коллекции',
+		nftItem: {
+			set_name: 'Имя коллекции',
 			sold_by: 'Продано',
 			similar_items: 'Похожие товары'
 		},

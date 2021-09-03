@@ -62,19 +62,19 @@
 					<table class="table table-borderless">
 						<tbody>
 							<tr>
-								<th class="ps-0 py-2" scope="row">{$t('nftItem.set_name')}</th>
+								<th class="ps-0 py-2" scope="row">{$t('nftItem.set_name')}:</th>
 								<td class="ps-0 py-2">{nft?.name}</td>
 							</tr>
 							<tr>
-								<th class="ps-0 py-2" scope="row">{$t('nftItem.sold_by')}</th>
+								<th class="ps-0 py-2" scope="row">{$t('nftItem.sold_by')}:</th>
 								<td class="ps-0 py-2">{nft?.user?.username}</td>
 							</tr>
 							<tr>
-								<th class="ps-0 py-2" scope="row">Price:</th>
+								<th class="ps-0 py-2" scope="row">{$t('main.card.price')}</th>
 								<td class="ps-0 py-2">{nft?.price} ETH</td>
 							</tr>
 							<tr>
-								<th class="ps-0 py-2" scope="row">Tags</th>
+								<th class="ps-0 py-2" scope="row">{$t('main.card.tag')}</th>
 								<td class="ps-0 py-2">{nft?.tags.map((item) => item)}</td>
 							</tr>
 						</tbody>

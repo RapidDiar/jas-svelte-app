@@ -2,6 +2,7 @@
 	import axiosInstance from '../../components/axios/axiosApi';
 	import { onMount } from 'svelte';
 	import BasicCard from '../../components/Card/BasicCard.svelte';
+	import { t } from '../../i18n';
 	// import { page } from "$app/stores";
 	let links = {
 		next: null,
@@ -15,7 +16,7 @@
 	const getNFTList = async (selectedPage) => {
 		isLoading = true;
 		page = selectedPage;
-		const response = await axiosInstance.get(`/api/nft/?page=${page}&page_size=20`);
+		const response = await axiosInstance.get(`/api/nft/nft/?page=${page}&page_size=20`);
 		nftList = response.data.results;
 		links = response.data.links;
 		pages = Math.ceil(response.data.total / response.data.page_size);
@@ -31,8 +32,8 @@
 <div class="container-fluid">
 	<div class="row justify-content-lg-center mt-4 mb-5">
 		<div class="col-2 pe-5">
-			<h4 class="mb-5">Explore</h4>
-			<p><i class="fas fa-circle me-3" />View All</p>
+			<h4 class="mb-5">{$t('main.button.explore')}</h4>
+			<p><i class="fas fa-circle me-3" />{$t('marketplace.view_all')}</p>
 			<p>
 				<svg
 					class="me-3"
@@ -44,20 +45,20 @@
 					><path d="M0 0h24v24H0V0z" fill="none" /><path
 						d="M20 4v12H8V4h12m0-2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 9.67l1.69 2.26 2.48-3.1L19 15H9zM2 6v14c0 1.1.9 2 2 2h14v-2H4V6H2z"
 					/></svg
-				>By Collection
+				>{$t('marketplace.collection')}
 			</p>
-			<p><i class="fas fa-user-circle me-3" />By Author</p>
+			<p><i class="fas fa-user-circle me-3" />{$t('marketplace.author')}</p>
 			<hr />
-			<h4 class="mb-3">Categories</h4>
-			<p class="mb-1">Modernism</p>
-			<p class="mb-1">Impressionism</p>
-			<p class="mb-1">Abstract Art</p>
-			<p class="mb-1">Expressionism</p>
-			<p class="mb-1">Cubism</p>
-			<p class="mb-1">Surrealism</p>
-			<p class="mb-1">See All</p>
+			<h4 class="mb-3">{$t('marketplace.categories')}</h4>
+			<p class="mb-1">{$t('marketplace.categories_Modernism')}</p>
+			<p class="mb-1">{$t('marketplace.categories_Impressionism')}</p>
+			<p class="mb-1">{$t('marketplace.categories_Abstract_Art')}</p>
+			<p class="mb-1">{$t('marketplace.categories_Expressionism')}</p>
+			<p class="mb-1">{$t('marketplace.categories_Cubism')}</p>
+			<p class="mb-1">{$t('marketplace.categories_Surrealism')}</p>
+			<p class="mb-1">{$t('marketplace.see_all')}</p>
 			<hr />
-			<h4 class="mb-3">Price</h4>
+			<h4 class="mb-3">{$t('addNft.form_text.price')}</h4>
 			<div class="d-flex">
 				<div class="input-group mb-3 w- 50">
 					<input type="text" class="form-control" placeholder="min" />
@@ -67,13 +68,15 @@
 				</div>
 			</div>
 			<hr />
-			<h4 class="mb-3">Status</h4>
-			<p class="mb-1">On Sale</p>
-			<p class="mb-1">Has offers</p>
-			<p class="mb-1">Buy Now</p>
-			<p class="mb-1">On Auction</p>
+			<h4 class="mb-3">{$t('marketplace.status')}</h4>
+			<p class="mb-1">{$t('marketplace.on_sale')}</p>
+			<p class="mb-1">{$t('marketplace.has_offers')}</p>
+			<p class="mb-1">{$t('marketplace.buy_now')}</p>
+			<p class="mb-1">{$t('marketplace.on_auction')}</p>
 			<div class="d-flex justify-content-center mt-4">
-				<button type="button" class="btn btn-primary btn-lg">Search</button>
+				<button type="button" class="btn btn-primary btn-lg"
+					>{$t('marketplace.search_button')}</button
+				>
 			</div>
 		</div>
 		<div class="col-6">

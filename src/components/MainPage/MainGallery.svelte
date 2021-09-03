@@ -4,13 +4,14 @@
 	import axiosInstance from '../axios/axiosApi';
 	import { host } from '../../host';
 	import { authStore } from '../../store';
+	import { t, dict } from '../../i18n';
 
 	let isLogin = $authStore.isLogin;
 	let promise = getData();
 
 	async function getData() {
 		try {
-			let response = await axiosInstance.get('/api/nft/?page_size=100');
+			let response = await axiosInstance.get('/api/nft/nft/?page_size=100');
 			let data = response.data.results;
 			return data;
 		} catch (error) {
@@ -26,15 +27,15 @@
 <div class="row justify-content-center text-light bgImage">
 	<div class="col-3 text-center align-self-end px-5">
 		<h1 class="mb-5 mainGalleryText">
-			Sale of NFT tokens confirming ownership of the material object
+			{$t('main.title.title')}
 		</h1>
 		<a href="/marketplace" type="button" class="btn btn-light btn-lg col-4 me-5 btnExplore"
-			>Explore</a
+			>{$t('main.button.explore')}</a
 		>
 		<a
 			href={isLogin ? '/addNft' : '/auth'}
 			type="button"
-			class="btn btn-light btn-lg  col-4 btnCreate">Create</a
+			class="btn btn-light btn-lg  col-4 btnCreate">{$t('main.button.create')}</a
 		>
 	</div>
 	<div class="col-auto px-5" />

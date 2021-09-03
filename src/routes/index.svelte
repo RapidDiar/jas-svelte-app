@@ -39,7 +39,7 @@
 
 	async function getNft() {
 		try {
-			let res = await axiosInstance.get('/api/nft/?page_size=100');
+			let res = await axiosInstance.get('/api/nft/nft/?page_size=100');
 			let data = [...res.data.results];
 			return data;
 		} catch (err) {
@@ -65,7 +65,7 @@
 	<MainGallery />
 
 	<div class="row text-center mb-3 ">
-		<h3>Collection</h3>
+		<h3>{$t('main.title.collection')}</h3>
 	</div>
 	<div class="row justify-content-center mb-5">
 		<div class="col-lg-8 col-md ">
@@ -85,7 +85,7 @@
 
 	<div class="row justify-content-center flex-lg-row flex-column ">
 		<div class="col-lg-4 col-md col-sm col align-self-center">
-			<h3 class="mb-5">Pre-Sale of collection</h3>
+			<h3 class="mb-5">{$t('main.title.pre_sale')}</h3>
 			<p class="mb-5">
 				The art of Kazakhstan covers all forms of art created throughout history by the peoples
 				living on the territory of modern-day Kazakhstan. Throughout most periods, much of the
@@ -98,7 +98,7 @@
 
 	<div class="row text-center align-items-center flex-column py-5 my-3 bgTopSeller">
 		<div class="col-8 pb-3">
-			<h3>Top seller</h3>
+			<h3>{$t('main.title.sellers')}</h3>
 		</div>
 
 		<div class="col-8">
@@ -117,7 +117,7 @@
 	</div>
 
 	<div class="row text-center mb-3">
-		<h3>Marketplace</h3>
+		<h3>{$t('navbar.button_marketplace')}</h3>
 	</div>
 	<div class="row justify-content-center mb-3">
 		<div class=" col-lg-8 col-md col-sm col">
@@ -134,12 +134,14 @@
 	</div>
 	<div class="row justify-content-center mb-5">
 		<div class="col-auto">
-			<a href="/marketplace" type="button" class="btn btn-primary btn-lg">See more</a>
+			<a href="/marketplace" type="button" class="btn btn-primary btn-lg"
+				>{$t('main.button.load')}</a
+			>
 		</div>
 	</div>
 
 	<div class="row text-center mb-4">
-		<h3>How to upload NFT?</h3>
+		<h3>{$t('main.title.nft')}</h3>
 	</div>
 	<div class="row justify-content-center mb-5">
 		<div class="col-8">

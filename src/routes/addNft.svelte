@@ -53,13 +53,14 @@
 		form.append('instagram', 'https://www.instagram.com/' + data.instagram);
 		form.append('telegram', 'https://www.t.me/' + data.telegram);
 		form.append('facebook', 'https://www.facebook.com/' + data.facebook);
+		form.append('collection', 1);
 		form.append('owner', localStorage.getItem('userId'));
 		form.append('selling_doc', data.selling_document);
 		form.append('author_rights', data.copyright_document);
 		// 
 		form.append('collection', 1);
 
-		axiosApiMedia.post('/api/nft/', form).then(
+		axiosApiMedia.post('/api/nft/nft/', form).then(
 			(res) => {
 				visible = 'success';
 				setTimeout(() => {
@@ -218,8 +219,8 @@
 						<div class="col">
 							<div class="card shadow-custom">
 								<div class="card-body">
-									<h3>Selling document</h3>
-									<p>Upload PDF file</p>
+									<h3>{$t('addNft.title.selling_document')}</h3>
+									<p>{$t('addNft.text.text_document')}</p>
 								</div>
 								<div class="card-body align-self-center col-6">
 									<!-- <FilePond
@@ -243,8 +244,8 @@
 							<div class="col">
 								<div class="card shadow-custom">
 									<div class="card-body">
-										<h3>Copyright document</h3>
-										<p>Upload PDF file</p>
+										<h3>{$t('addNft.title.copyright_document')}</h3>
+										<p>{$t('addNft.text.text_document')}</p>
 									</div>
 									<div class="card-body align-self-center col-6">
 										<!-- <FilePond

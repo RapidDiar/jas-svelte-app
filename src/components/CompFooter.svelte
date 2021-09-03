@@ -12,20 +12,19 @@
 		<div class="row justify-content-center">
 			<div class="col-10">
 				<div class="row mb-3">
-					<h3>Stay in the loop</h3>
+					<h3>{$t('footer.title.stay_in_the_loop')}</h3>
 				</div>
 				<div class="row pb-5 border-bottom">
 					<div class="col align-self-center">
 						<p class="m-0">
-							Join our mailing list to stay in the loop with our newest feature releases,<br />
-							NFT drops, and tips and tricks
+							{$t('footer.text.stay_in_the_loop_text')}
 						</p>
 					</div>
 					<div class="col">
-						<p class="mb-1 w-auto">Your email address</p>
+						<p class="mb-1 w-auto">{$t('footer.text.email')}</p>
 						<input
 							type="text"
-							placeholder="Enter your email address here!"
+							placeholder={$t('footer.text.email_text')}
 							class="form-control w-50 border-0 px-3 py-2"
 						/>
 					</div>
@@ -35,19 +34,19 @@
 						<img src="/src/assets/Logo2.png" alt="" width="140px" />
 					</div>
 					<div class="col d-flex flex-column">
-						<h5 class="mb-3">Company</h5>
-						<a href="#">About</a>
-						<a href="#">Careers</a>
+						<h5 class="mb-3">{$t('footer.title.company')}</h5>
+						<a href="#">{$t('footer.text.company_about')}</a>
+						<a href="#">{$t('footer.text.company_careers')}</a>
 					</div>
 					<div class="col d-flex flex-column">
-						<h5 class="mb-3">Recources</h5>
-						<a href="#">Help Center</a>
-						<a href="#">Partners</a>
-						<a href="#">Suggestions</a>
-						<a href="#">Discord Community</a>
-						<a href="#">Blog</a>
-						<a href="#">Docs</a>
-						<a href="#">Newsletter</a>
+						<h5 class="mb-3">{$t('footer.title.recources')}</h5>
+						<a href="#">{$t('footer.text.recources_help_center')}</a>
+						<a href="#">{$t('footer.text.recources_partners')}</a>
+						<a href="#">{$t('footer.text.recources_suggestions')}</a>
+						<a href="#">{$t('footer.text.recources_discord_community')}</a>
+						<a href="#">{$t('footer.text.recources_blog')}</a>
+						<a href="#">{$t('footer.text.recources_docs')}</a>
+						<a href="#">{$t('footer.text.recources_newsletter')}</a>
 					</div>
 					<div class="col">
 						<h5>Recources</h5>
@@ -62,8 +61,8 @@
 						<p class="m-0">© ArtMarketplace, Inc. 2019.</p>
 					</div>
 					<div class="col text-end">
-						<a class="m-0 me-3">Privacy Policy</a>
-						<a class="m-0">Terms of Service</a>
+						<a class="m-0 me-3">{$t('footer.text.privacy_policy')}</a>
+						<a class="m-0">{$t('footer.text.terms_of_service')}</a>
 					</div>
 				</div>
 			</div>

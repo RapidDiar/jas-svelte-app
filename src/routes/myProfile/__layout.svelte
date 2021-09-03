@@ -3,6 +3,7 @@
 	import { onMount } from 'svelte';
 	import axiosInstance from '../../components/axios/axiosApiMedia.js';
 	import { host } from '../../host';
+	import { t, dict } from '../../i18n.js';
 
 	let baseURL = host;
 	let profile;
@@ -69,7 +70,7 @@
 <div class="container-fluid">
 	<div class="row justify-content-center" on:click={addBackground}>
 		<img
-			src={getFilePath(profile.background)}
+			src={getFilePath(profile?.background)}
 			class="img-fluid ps-0 pe-0"
 			style="height: 300px; background-color: #BDBDBD;"
 			alt="..."
@@ -93,33 +94,32 @@
 					<a
 						href="/myProfile/onSale"
 						type="button"
-						class="btn btn-light btn-lg me-2 w-responsive pt-3 pb-3 h-20 align-self-end">On Sale</a
+						class="btn btn-light btn-lg me-2 w-responsive pt-3 pb-3 h-25 align-self-end"
+						>{$t('profile.onSale')}</a
 					>
 					<a
 						href="/myProfile/created"
 						type="button"
-						class="btn btn-light btn-lg me-2 w-responsive pt-3 pb-3 h-20 align-self-end">Created</a
+						class="btn btn-light btn-lg me-2 w-responsive pt-3 pb-3 h-25 align-self-end"
+						>{$t('profile.created')}</a
 					>
 					<a
 						href="#"
 						type="button"
-						class="btn btn-light btn-lg me-2 w-responsive pt-3 pb-3 h-20 align-self-end">Bought</a
+						class="btn btn-light btn-lg me-2 w-responsive pt-3 pb-3 h-25 align-self-end"
+						>{$t('profile.bought')}</a
 					>
 					<a
 						href="#"
 						type="button"
-						class="btn btn-light btn-lg me-2 w-responsive pt-3 pb-3 h-20 align-self-end"
-						>Favorites</a
+						class="btn btn-light btn-lg me-2 w-responsive pt-3 pb-3 h-25 align-self-end"
+						>{$t('profile.favorites')}</a
 					>
 					<a
 						href="#"
 						type="button"
-						class="btn btn-light btn-lg me-2 w-responsive pt-3 pb-3 h-20 align-self-end">Following</a
-					>
-					<a
-						href="/myProfile/collections"
-						type="button"
-						class="btn btn-light btn-lg w-responsive pt-3 pb-3 h-20 align-self-end">Collections</a
+						class="btn btn-light btn-lg w-responsive pt-3 pb-3 h-25 align-self-end"
+						>{$t('profile.following')}</a
 					>
 				</div>
 			</div>
@@ -140,7 +140,7 @@
 						<a href={profile.facebook} target="_blank"> <i class="fab fa-facebook fa-2x" /> </a>
 					</div>
 					<a href="/myProfile/editProfile" type="button" class="btn btn-primary btn-lg"
-						>Edit profile</a
+						>{$t('profile.edit_profile')}</a
 					>
 				</div>
 				<div class="col mb-5">

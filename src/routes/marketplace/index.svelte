@@ -16,7 +16,7 @@
 	const getNFTList = async (selectedPage) => {
 		isLoading = true;
 		page = selectedPage;
-		const response = await axiosInstance.get(`/api/nft/?page=${page}&page_size=20`);
+		const response = await axiosInstance.get(`/api/nft/nft/?page=${page}&page_size=20`);
 		nftList = response.data.results;
 		links = response.data.links;
 		pages = Math.ceil(response.data.total / response.data.page_size);

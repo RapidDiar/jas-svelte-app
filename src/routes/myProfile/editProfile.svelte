@@ -89,7 +89,7 @@
 			</div>
 
 			<div class="col ps-5">
-				<h2 class="mb-0">Social media</h2>
+				<h2 class="mb-0">{$t('addNft.title.links')}</h2>
 				<div class="input-group input-group-lg mt-5 mb-3">
 					<span class="input-group-text border-0"><i class="fab fa-facebook fa-2x" /></span>
 					<input
@@ -124,7 +124,9 @@
 			</div>
 		</div>
 		<div class="row justify-content-lg-center mt-5">
-			<button type="submit" class="btn btn-primary btn-lg col-2">Save</button>
+			<button type="submit" class="btn btn-primary btn-lg col-2"
+				>{$t('addNft.button_text.save')}</button
+			>
 		</div>
 	</form>
 

@@ -11,7 +11,7 @@
 
 	async function getData() {
 		try {
-			let response = await axiosInstance.get('/api/nft/?page_size=100');
+			let response = await axiosInstance.get('/api/nft/nft/?page_size=100');
 			let data = response.data.results;
 			return data;
 		} catch (error) {

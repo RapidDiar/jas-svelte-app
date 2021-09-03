@@ -4,7 +4,7 @@
 
 	async function getNftData(id) {
 		try {
-			let result = await axiosInstance.get(`/api/nft/${id}`);
+			let result = await axiosInstance.get(`/api/nft/nft/${id}`);
 			console.log(result);
 			let data = result.data.nft;
 			return data;
@@ -15,7 +15,7 @@
 
 	async function getNftList() {
 		try {
-			let result = await axiosInstance.get(`/api/nft/?page_size=100`);
+			let result = await axiosInstance.get(`/api/nft/nft/?page_size=100`);
 			let data = result.data.results;
 			return data;
 		} catch (error) {

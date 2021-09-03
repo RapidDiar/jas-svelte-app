@@ -10,7 +10,7 @@
 		console.log($authStore.authData);
 		let userData = JSON.parse(localStorage.getItem('jas-auth-data'));
 		axiosInstance.defaults.headers.Authorization = 'Bearer ' + userData.access_token;
-		axiosApiMedia.get('/api/nft/my_nfts/?page_size=100').then(
+		axiosApiMedia.get('/api/nft/nft/my_nfts/?page_size=100').then(
 			(res) => {
 				console.log(res.data.results);
 				items = [...res.data.results];

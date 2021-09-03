@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import detectEthereumProvider from '@metamask/detect-provider';
 	import { authStore } from '../store';
+	import { t, dict } from '../i18n';
 
 	let metamask = 'none';
 	let currentAccount = null;
@@ -82,27 +83,29 @@
 			<img
 				src="https://cdn.iconscout.com/icon/free/png-512/metamask-2728406-2261817.png"
 				class="w-25"
+				alt=""
 			/>
 		</div>
 	</div>
 	<div class="row justify-content-center mt-5">
 		<div class="col text-center">
 			{#if metamask === 'none'}
-				<h1>Metamask not installed</h1>
+				<h1>{$t('metamask.not_installed')}</h1>
 				<a
 					class="btn btn-primary mt-3"
 					href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en"
-					>Metamask for Chrome</a
+					>{$t('metamask.for_chrome')}</a
 				>
 			{:else if metamask === 'installed'}
-				<h1>Metamask installed</h1>
+				<h1>{$t('metamask.metamask_installed')}</h1>
 				<button type="button" class="btn btn-primary btn-lg" on:click={connectMetamask}
-					>Connect wallet</button
+					>{$t('metamask.installed')}</button
 				>
 			{:else if metamask === 'connected'}
-				<h1>Metamask сonnected</h1>
+				<h1>{$t('metamask.connected')}</h1>
 				<p>
-					Wallet address <a href="https://rinkeby.etherscan.io/address/{currentAccount}">
+					{$t('metamask.wallet_address')}
+					<a href="https://rinkeby.etherscan.io/address/{currentAccount}">
 						{currentAccount}
 					</a>
 				</p>

@@ -39,7 +39,7 @@
 
 	async function getNft() {
 		try {
-			let res = await axiosInstance.get('/api/nft/?page_size=100');
+			let res = await axiosInstance.get('/api/nft/nft/?page_size=100');
 			let data = [...res.data.results];
 			return data;
 		} catch (err) {

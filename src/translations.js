@@ -136,17 +136,24 @@ export default {
 			account_info: 'Account Info',
 			first_name: 'First Name',
 			last_name: 'Last Name',
-			bio: 'Bio'
+			bio: 'Bio',
+			onSale: 'On Sale',
+			created: 'Created',
+			bought: 'Bought',
+			favorites: 'Favorites',
+			following: 'Following',
+			edit_profile: 'Edit profile'
 		},
 		metamask: {
 			not_installed: 'Metamask not installed',
 			connected: 'Metamask сonnected',
 			installed: 'Connect wallet',
 			for_chrome: 'Metamask for Chrome',
-			wallet_address: 'Wallet address'
+			wallet_address: 'Wallet address',
+			metamask_installed: 'Metamask installed'
 		},
-		nftItem: {
-			set_name: 'Set Name:',
+		nstItem: {
+			set_nsme: 'Set Name:',
 			sold_by: 'Sold by:',
 			similar_items: 'Similar items'
 		},
@@ -314,17 +321,24 @@ export default {
 			account_info: 'Информация о аккаунте',
 			first_name: 'Имя',
 			last_name: 'Фамилия',
-			bio: 'О себе'
+			bio: 'О себе',
+			onSale: 'На Продаже',
+			created: 'Созданные',
+			bought: 'Купленные',
+			favorites: 'Избранные',
+			following: 'Подписки',
+			edit_profile: 'Редактировать'
 		},
 		metamask: {
 			not_installed: 'Metamask не установлена',
 			connected: 'Подключена к Metamask',
 			installed: 'Подключить кошелек',
 			for_chrome: 'Metamask для Chrome',
-			wallet_address: 'Адрес кошелька'
+			wallet_address: 'Адрес кошелька',
+			metamask_installed: 'Metamask установлен'
 		},
-		nftItem: {
-			set_name: 'Имя коллекции',
+		nstItem: {
+			set_nsme: 'Имя коллекции',
 			sold_by: 'Продано',
 			similar_items: 'Похожие товары'
 		},

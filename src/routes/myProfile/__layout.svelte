@@ -95,28 +95,31 @@
 						href="/myProfile/onSale"
 						type="button"
 						class="btn btn-light btn-lg me-2 w-responsive pt-3 pb-3 h-25 align-self-end"
-						>{$t('marketplace.on_sale')}</a
+						>{$t('profile.onSale')}</a
 					>
 					<a
 						href="/myProfile/created"
 						type="button"
-						class="btn btn-light btn-lg me-2 w-responsive pt-3 pb-3 h-25 align-self-end">Created</a
-					>
-					<a
-						href="#"
-						type="button"
-						class="btn btn-light btn-lg me-2 w-responsive pt-3 pb-3 h-25 align-self-end">Bought</a
+						class="btn btn-light btn-lg me-2 w-responsive pt-3 pb-3 h-25 align-self-end"
+						>{$t('profile.created')}</a
 					>
 					<a
 						href="#"
 						type="button"
 						class="btn btn-light btn-lg me-2 w-responsive pt-3 pb-3 h-25 align-self-end"
-						>Favorites</a
+						>{$t('profile.bought')}</a
 					>
 					<a
 						href="#"
 						type="button"
-						class="btn btn-light btn-lg w-responsive pt-3 pb-3 h-25 align-self-end">Following</a
+						class="btn btn-light btn-lg me-2 w-responsive pt-3 pb-3 h-25 align-self-end"
+						>{$t('profile.favorites')}</a
+					>
+					<a
+						href="#"
+						type="button"
+						class="btn btn-light btn-lg w-responsive pt-3 pb-3 h-25 align-self-end"
+						>{$t('profile.following')}</a
 					>
 				</div>
 			</div>
@@ -137,7 +140,7 @@
 						<a href={profile.facebook} target="_blank"> <i class="fab fa-facebook fa-2x" /> </a>
 					</div>
 					<a href="/myProfile/editProfile" type="button" class="btn btn-primary btn-lg"
-						>Edit profile</a
+						>{$t('profile.edit_profile')}</a
 					>
 				</div>
 				<div class="col mb-5">

@@ -51,7 +51,7 @@
 
 	const getNft = async () => {
 		try {
-			let response = await axiosInstance.get('/api/nft/?page_size=100');
+			let response = await axiosInstance.get('/api/nft/nft/?page_size=100');
 			let data = response.data.results;
 			return data;
 		} catch (error) {}
@@ -147,7 +147,7 @@
 					</li>
 				</ul>
 			{:else}
-				<a class="navItem px-3 mx-3 text-light py-4" href="/auth">{$t('navbar.button_singin')}</a>
+				<a class="navItem px-3 mx-3 text-light py-4" href="/auth">{$t('navbar.button_signin')}</a>
 			{/if}
 			<select
 				class="navSelect border-0 px-3 ms-3 text-light bg-primary"

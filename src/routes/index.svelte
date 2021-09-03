@@ -75,7 +75,7 @@
 						<CollectionCard />
 					{/each}
 				{:then data}
-					{#each { length: 5 } as _, index}
+					{#each { length: data.length } as _, index}
 						<CollectionCard data={data[index]} />
 					{/each}
 				{/await}
@@ -108,7 +108,7 @@
 						<UserCard />
 					{/each}
 				{:then data}
-					{#each { length: 5 } as _, index}
+					{#each { length: data.length } as _, index}
 						<UserCard data={data[index]} />
 					{/each}
 				{/await}
@@ -125,7 +125,7 @@
 				{#await promise}
 					<h3>...Loading</h3>
 				{:then data}
-					{#each { length: 10 } as _, index}
+					{#each { length: data.length } as _, index}
 						<BasicCard data={data[index]} />
 					{/each}
 				{/await}

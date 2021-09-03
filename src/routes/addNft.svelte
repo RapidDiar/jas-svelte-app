@@ -54,8 +54,10 @@
 		form.append('telegram', 'https://www.t.me/' + data.telegram);
 		form.append('facebook', 'https://www.facebook.com/' + data.facebook);
 		form.append('owner', localStorage.getItem('userId'));
-		form.append('selling_document', data.selling_document);
-		form.append('copyright_document', data.copyright_document);
+		form.append('selling_doc', data.selling_document);
+		form.append('author_rights', data.copyright_document);
+		// 
+		form.append('collection', 1);
 
 		axiosApiMedia.post('/api/nft/', form).then(
 			(res) => {

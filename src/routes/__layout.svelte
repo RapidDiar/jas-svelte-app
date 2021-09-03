@@ -32,6 +32,7 @@
 			}
 			$authStore.authData = newAuthData;
 			$authStore.isLogin = true;
+			auth();
 		} catch (error) {
 			$authStore.isLogin = false;
 		}
@@ -54,7 +55,6 @@
 		if (authData?.refresh_token) getToken();
 		else $authStore.isLogin = false;
 		setLocale();
-		auth();
 	});
 </script>
 

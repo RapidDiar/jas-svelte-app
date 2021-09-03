@@ -4,7 +4,7 @@
 	async function getNftData(id) {
 		try {
 			let result = await axiosInstance.get(`/api/nft/${id}`);
-			console.log(result);
+			console.log(result, 'nft');
 			let data = result.data.nft;
 			return data;
 		} catch (error) {
@@ -36,19 +36,32 @@
 <script>
 	import BasicCard from '../../components/Card/BasicCard.svelte';
 	import { host } from '../../host';
+	import { authStore } from '../../store';
+
 	export let nft;
-	export let items;
+	export let items = [];
+
+	async function mint() {
+		try {
+			let result = await axiosInstance.post(`/api/nft/${nft.id}/mint/`, {
+				from_address: $authStore.wallet
+			});
+			console.log(result);
+		} catch (error) {
+			console.log(error);
+		}
+	}
 </script>
 
 <div class="container-fluid">
 	<div class="row justify-content-lg-center my-5">
 		<div class="col-4 pe-5">
-			<img class="img-fluid" src={host + nft.image} alt="" />
+			<img class="img-fluid" src={host + nft?.image} alt="" />
 		</div>
 		<div class="col-4 ps-5">
 			<div class="row mb-3">
 				<div class="col">
-					<h1 class="mb-0">{nft.name}</h1>
+					<h1 class="mb-0">{nft?.name}</h1>
 				</div>
 				<div class="col-2 text-end align-self-center">
 					<i class="far fa-heart fa-2x" />
@@ -60,19 +73,19 @@
 						<tbody>
 							<tr>
 								<th class="ps-0 py-2" scope="row">Set Name:</th>
-								<td class="ps-0 py-2">{nft.name}</td>
+								<td class="ps-0 py-2">{nft?.name}</td>
 							</tr>
 							<tr>
 								<th class="ps-0 py-2" scope="row">Sold by:</th>
-								<td class="ps-0 py-2">{nft.user.username}</td>
+								<td class="ps-0 py-2">{nft?.user.username}</td>
 							</tr>
 							<tr>
 								<th class="ps-0 py-2" scope="row">Price:</th>
-								<td class="ps-0 py-2">{nft.price} ETH</td>
+								<td class="ps-0 py-2">{nft?.price} ETH</td>
 							</tr>
 							<tr>
 								<th class="ps-0 py-2" scope="row">Tags</th>
-								<td class="ps-0 py-2">{nft.tags.map((item) => item)}</td>
+								<td class="ps-0 py-2">{nft?.tags.map((item) => item)}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -85,12 +98,17 @@
 				</div>
 			</div>
 			<div class="row mb-4">
-				<p class="mb-0">{nft.description}</p>
+				<p class="mb-0">{nft?.description}</p>
 			</div>
 			<div class="row mb-5">
-				<div class="col">
+				<div class="col-lg-6">
 					<button type="button" class="btn btn-primary btn-lg px-5">Buy Now</button>
 				</div>
+				{#if !nft?.is_deployed}
+					<div class="col-lg-6">
+						<button on:click={mint} type="button" class="btn btn-primary btn-lg px-5">Mint</button>
+					</div>
+				{/if}
 			</div>
 		</div>
 	</div>
@@ -149,7 +167,7 @@
 				<h3>Similar items</h3>
 			</div>
 			<div class="row row-cols-5 mb-5">
-				{#each { length: 5 } as _, index}
+				{#each { length: items.length } as _, index}
 					<BasicCard data={items[index]} />
 				{/each}
 			</div>

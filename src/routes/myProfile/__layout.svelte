@@ -93,28 +93,33 @@
 					<a
 						href="/myProfile/onSale"
 						type="button"
-						class="btn btn-light btn-lg me-2 w-responsive pt-3 pb-3 h-25 align-self-end">On Sale</a
+						class="btn btn-light btn-lg me-2 w-responsive pt-3 pb-3 h-20 align-self-end">On Sale</a
 					>
 					<a
 						href="/myProfile/created"
 						type="button"
-						class="btn btn-light btn-lg me-2 w-responsive pt-3 pb-3 h-25 align-self-end">Created</a
+						class="btn btn-light btn-lg me-2 w-responsive pt-3 pb-3 h-20 align-self-end">Created</a
 					>
 					<a
 						href="#"
 						type="button"
-						class="btn btn-light btn-lg me-2 w-responsive pt-3 pb-3 h-25 align-self-end">Bought</a
+						class="btn btn-light btn-lg me-2 w-responsive pt-3 pb-3 h-20 align-self-end">Bought</a
 					>
 					<a
 						href="#"
 						type="button"
-						class="btn btn-light btn-lg me-2 w-responsive pt-3 pb-3 h-25 align-self-end"
+						class="btn btn-light btn-lg me-2 w-responsive pt-3 pb-3 h-20 align-self-end"
 						>Favorites</a
 					>
 					<a
 						href="#"
 						type="button"
-						class="btn btn-light btn-lg w-responsive pt-3 pb-3 h-25 align-self-end">Following</a
+						class="btn btn-light btn-lg me-2 w-responsive pt-3 pb-3 h-20 align-self-end">Following</a
+					>
+					<a
+						href="/myProfile/collections"
+						type="button"
+						class="btn btn-light btn-lg w-responsive pt-3 pb-3 h-20 align-self-end">Collections</a
 					>
 				</div>
 			</div>

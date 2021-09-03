@@ -104,13 +104,15 @@
 			</form>
 		</div>
 		<div class="col navbar-nav d-flex flex-lg-row justify-content-end align-items-center">
-			<a class="navItem px-3 mx-3 text-light py-4" href="/marketplace">Marketplace</a>
-			<a class="navItem px-3 mx-3 text-light py-4" href="#">FAQ</a>
-			<a class="navItem px-3 mx-3 text-light py-4" href="#">Stats</a>
+			<a class="navItem px-3 mx-3 text-light py-4" href="/marketplace"
+				>{$t('navbar.button_marketplace')}</a
+			>
+			<a class="navItem px-3 mx-3 text-light py-4" href="#">{$t('navbar.faq')}</a>
+			<a class="navItem px-3 mx-3 text-light py-4" href="#">{$t('navbar.stats')}</a>
 			<a
 				class="navItem px-3 mx-3 text-light py-4"
 				href="https://newcab.kazpatent.kz/"
-				target="_blank">Author Rights</a
+				target="_blank">{$t('navbar.rights')}</a
 			>
 			{#if isLogin}
 				<a
@@ -132,25 +134,31 @@
 				</a>
 				<ul class="dropdown-menu dropdown-menu-end me-5" aria-labelledby="navbarDropdownMenuLink">
 					<li>
-						<a class="dropdown-item" href="/myProfile/onSale">My profile</a>
+						<a class="dropdown-item" href="/myProfile/onSale">{$t('navbar.button_profile')}</a>
 					</li>
 					<li>
-						<a class="dropdown-item" href="/addNft">Add NFT</a>
+						<a class="dropdown-item" href="/addNft">{$t('navbar.li_add')}</a>
 					</li>
 					<li>
-						<a class="dropdown-item" href="/metamask">Connect Metamask</a>
+						<a class="dropdown-item" href="/metamask">{$t('navbar.li_metamask')}</a>
 					</li>
 					<li>
-						<a class="dropdown-item" href=" " on:click={onLogout}>Logout</a>
+						<a class="dropdown-item" href=" " on:click={onLogout}>{$t('navbar.li_logout')}</a>
 					</li>
 				</ul>
 			{:else}
-				<a class="navItem px-3 mx-3 text-light py-4" href="/auth">Sign In</a>
+				<a class="navItem px-3 mx-3 text-light py-4" href="/auth">{$t('navbar.button_singin')}</a>
 			{/if}
-			<select class="navSelect border-0 px-3 ms-3 text-light bg-primary">
-				<option selected value="ru">RU</option>
-				<option value="en">EN</option>
-				<option value="kz">KZ</option>
+			<select
+				class="navSelect border-0 px-3 ms-3 text-light bg-primary"
+				value={$locale}
+				on:change={setLocale}
+			>
+				{#each languages as lang}
+					<option value={lang}>
+						{lang}
+					</option>
+				{/each}
 			</select>
 		</div>
 	</div>

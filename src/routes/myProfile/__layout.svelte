@@ -3,6 +3,7 @@
 	import { onMount } from 'svelte';
 	import axiosInstance from '../../components/axios/axiosApiMedia.js';
 	import { host } from '../../host';
+	import { t, dict } from '../../i18n.js';
 
 	let baseURL = host;
 	let profile;
@@ -93,7 +94,8 @@
 					<a
 						href="/myProfile/onSale"
 						type="button"
-						class="btn btn-light btn-lg me-2 w-responsive pt-3 pb-3 h-25 align-self-end">On Sale</a
+						class="btn btn-light btn-lg me-2 w-responsive pt-3 pb-3 h-25 align-self-end"
+						>{$t('marketplace.on_sale')}</a
 					>
 					<a
 						href="/myProfile/created"

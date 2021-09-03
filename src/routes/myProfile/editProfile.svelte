@@ -3,6 +3,7 @@
 	import axiosInstance from '../../components/axios/axiosApi';
 	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
+	import { t } from '../../i18n.js';
 	let profile = $authStore.profile;
 
 	let message = '';
@@ -63,7 +64,7 @@
 	<form on:submit|preventDefault={updateProfile}>
 		<div class="row">
 			<div class="col pe-5">
-				<h2 class="mb-3">Account Info</h2>
+				<h2 class="mb-3">{$t('profile.first_name')}</h2>
 				<p class="mb-2"><strong>First Name</strong></p>
 				<input
 					type="text"
@@ -71,14 +72,14 @@
 					placeholder="Enter your first name"
 					bind:value={profile.first_name}
 				/>
-				<p class="mb-2"><strong>Last Name</strong></p>
+				<p class="mb-2"><strong>{$t('profile.last_name')}</strong></p>
 				<input
 					type="text"
 					class="p-2 mb-3 w-100"
 					placeholder="Enter your last name"
 					bind:value={profile.last_name}
 				/>
-				<p class="mb-2"><strong>Bio</strong></p>
+				<p class="mb-2"><strong>{$t('profile.bio')}</strong></p>
 				<textarea
 					id="textAreaExample"
 					rows="5"

@@ -90,7 +90,15 @@
 							</tr>
 							<tr>
 								<th class="ps-0 py-2" scope="row">{$t('main.card.contract_address')}</th>
-								<td class="ps-0 py-2">{nft?.contract_address || $t('main.card.not_defined')}</td>
+								<td class="ps-0 py-2">
+									<a
+										href={`https://rinkeby.etherscan.io/address/${
+											nft?.contract_address || $t('main.card.not_defined')
+										}`}
+									>
+										{nft?.contract_address || $t('main.card.not_defined')}
+									</a>
+								</td>
 							</tr>
 						</tbody>
 					</table>

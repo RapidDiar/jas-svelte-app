@@ -49,7 +49,7 @@
 			});
 			console.log(result);
 		} catch (error) {
-			console.log(error);
+			console.log(error.response);
 		}
 	}
 </script>
@@ -126,6 +126,59 @@
 				<div class="row mb-5">
 					<div class="col">
 						<button type="button" class="btn btn-primary btn-lg px-5">Buy Now</button>
+					</div>
+				</div>
+			{/if}
+		</div>
+	</div>
+	<div class="row justify-content-center mb-5">
+		<div class="col-8">
+			<div class="row">
+				<h4>Items Details</h4>
+			</div>
+			<div class="row py-3 border-bottom">
+				<div class="col-4">
+					<p class="m-0">Documents</p>
+				</div>
+				<div class="col-2">
+					<p class="m-0">Size</p>
+				</div>
+				<div class="col-2">
+					<p class="m-0">Type</p>
+				</div>
+				<div class="col-2">
+					<p class="m-0">Date</p>
+				</div>
+				<div class="col-2" />
+			</div>
+			{#if nft.author_rights}
+				<div class="row border-bottom py-3">
+					<div class="col-4 align-self-center">
+						<p class="m-0">Contract confirming ownership</p>
+					</div>
+					<div class="col-2 align-self-center"><p class="m-0">17.2 KB</p></div>
+					<div class="col-2 align-self-center"><i class="far fa-file-pdf fa-2x text-danger" /></div>
+					<div class="col-2 align-self-center"><p class="m-0">20.06.2021</p></div>
+					<div class="col-2 align-self-center text-center">
+						<a href={host + nft.author_rights} type="button" class="btn btn-primary" target="_blank"
+							>View</a
+						>
+					</div>
+				</div>
+			{/if}
+			{#if nft.transaction_hash}
+				<div class="row border-bottom py-3">
+					<div class="col-4 align-self-center"><p class="m-0">Contract of sale</p></div>
+					<div class="col-2 align-self-center"><p class="m-0">17.2 KB</p></div>
+					<div class="col-2 align-self-center"><i class="far fa-file-pdf fa-2x text-danger" /></div>
+					<div class="col-2 align-self-center"><p class="m-0">20.06.2021</p></div>
+					<div class="col-2 align-self-center text-center">
+						<a
+							href={host + nft.transaction_hash}
+							type="button"
+							class="btn btn-primary"
+							target="_blank">View</a
+						>
 					</div>
 				</div>
 			{/if}
